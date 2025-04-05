@@ -6,29 +6,34 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     public function register(Request $request)
     {
-
-        $data = $request->validate([
-            'name' => 'required|string',
+        $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string',
+            'password' => 'required|string|min:8',
         ]);
-
+ 
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+ 
+       
         $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'], 
-            'password' => Hash::make($data['password']),
+           
+            'name' => $request['email'], 
+            'email' => $request['email'], 
+            'password' => Hash::make($request['password']),
         ]);
 
 
           // Создание токена
     $token = $user->createToken('auth_token')->plainTextToken;
     // Возвращение токена
-    return response()->json(['token' => $token], 201);
+    return response()->json(['token' => $token], 200);
 
 
     }
