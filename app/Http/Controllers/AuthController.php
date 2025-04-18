@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Setting;
 
 class AuthController extends Controller
 {
@@ -16,26 +17,39 @@ class AuthController extends Controller
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|min:8',
         ]);
- 
+    
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
- 
-       
+    
+        // Создание пользователя
         $user = User::create([
-           
-            'name' => $request['email'], 
-            'email' => $request['email'], 
+            'name' => $request['email'],
+            'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);
-
-
-          // Создание токена
-    $token = $user->createToken('auth_token')->plainTextToken;
-    // Возвращение токена
-    return response()->json(['token' => $token], 200);
-
-
+    
+        // Создание дефолтных настроек для пользователя
+        Setting::create([
+            'user_id' => $user->id,
+            'display_length' => 'M',
+            'font_size' => 'L',
+            'lv1_volume' => 500000,
+            'lv2_volume' => 1000000,
+            'lv3_volume' => 3000000,
+            'scan_distance' => 2.00,
+            'additional_spot' => 'BTC, ETH',
+            'additional_futures' => 'BTC, ETH',
+            'blacklisted_spot' => 'TST, MOVE',
+            'blacklisted_futures' => 'TST, MOVE',
+            'market' => '1',
+        ]);
+    
+        // Создание токена
+        $token = $user->createToken('auth_token')->plainTextToken;
+    
+        // Возвращение токена
+        return response()->json(['token' => $token], 200);
     }
 
 

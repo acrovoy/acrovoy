@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\VersionController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\CoinController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SettingController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -20,3 +22,12 @@ Route::get('/fcoins', [CoinController::class, 'getAllFuturesCoins']);
 Route::get('/coins', [CoinController::class, 'getAllSpotCoins']);
 Route::post('/invoice/store', [InvoiceController::class, 'store']);
 Route::middleware('auth:sanctum')->post('/check-invoice-status', [InvoiceController::class, 'checkInvoiceStatus']);
+Route::middleware('auth:sanctum')->post('/invoice/get-invoice', [InvoiceController::class, 'getInvoiceByEmail']);
+Route::post('/invoice/paid', [InvoiceController::class, 'markAsPaid']);
+Route::get('/settings/{email}', [SettingController::class, 'getSettingsByEmail']);
+Route::post('/settings/create/{user_id}', [SettingController::class, 'createDefaultSettings']);
+Route::post('/settings/update', [SettingController::class, 'updateSettingsByEmail']);
+Route::post('/settings/market/update', [SettingController::class, 'updateMarketByEmail']);
+Route::post('/inv/chpm', [InvoiceController::class, 'checkPm']);
+Route::get('/version/{app}/{version}', [VersionController::class, 'getCurrentVersion']);
+Route::get('/active-ad', [AdController::class, 'getActiveAd']);
