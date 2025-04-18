@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VersionController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\AdController;
 use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\CoinController;
 use Illuminate\Http\Request;
