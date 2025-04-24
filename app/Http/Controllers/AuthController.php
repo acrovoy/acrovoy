@@ -32,12 +32,12 @@ class AuthController extends Controller
         // Создание дефолтных настроек для пользователя
         Setting::create([
             'user_id' => $user->id,
-            'display_length' => 'M',
-            'font_size' => 'L',
+            'display_length' => 'S',
+            'font_size' => 'M',
             'lv1_volume' => 500000,
             'lv2_volume' => 1000000,
             'lv3_volume' => 3000000,
-            'scan_distance' => 2.00,
+            'scan_distance' => 3.00,
             'additional_spot' => 'BTC, ETH',
             'additional_futures' => 'BTC, ETH',
             'blacklisted_spot' => 'TST, MOVE',
