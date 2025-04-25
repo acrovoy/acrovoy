@@ -32,3 +32,5 @@ Route::post('/settings/market/update', [SettingController::class, 'updateMarketB
 Route::post('/inv/chpm', [InvoiceController::class, 'checkPm']);
 Route::get('/version/{app}/{version}', [VersionController::class, 'getCurrentVersion']);
 Route::get('/active-ad', [AdController::class, 'getActiveAd']);
+Route::get('/notice/{email}', [NoticeController::class, 'show']);
+Route::post('/notice', [NoticeController::class, 'store']);
