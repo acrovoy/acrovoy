@@ -5,6 +5,7 @@ use App\Http\Controllers\VersionController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\AdController;
 use App\Http\Controllers\Api\InvoiceController;
+use App\Http\Controllers\Api\NoticeController;
 use App\Http\Controllers\Api\CoinController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
