@@ -68,7 +68,7 @@ class PromocodeController extends Controller
 
         return response()->json([
             'success' => true,
-            'price' => $price,
+            'discounted_price' => $price,
         ]);
     }
 }
