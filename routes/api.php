@@ -30,7 +30,7 @@ Route::post('/settings/create/{user_id}', [SettingController::class, 'createDefa
 Route::post('/settings/update', [SettingController::class, 'updateSettingsByEmail']);
 Route::post('/settings/market/update', [SettingController::class, 'updateMarketByEmail']);
 Route::post('/inv/chpm', [InvoiceController::class, 'checkPm']);
-Route::get('/version/{app}', [ProductController::class, 'getCurrentVersion']);
+Route::get('/product/{app}', [ProductController::class, 'getCurrentVersion']);
 Route::get('/active-ad', [AdController::class, 'getActiveAd']);
 Route::get('/notice/{email}', [NoticeController::class, 'show']);
 Route::post('/notice', [NoticeController::class, 'store']);
