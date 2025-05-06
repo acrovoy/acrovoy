@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Manager;
 use App\Models\ManagerProduct;
 use App\Models\Sale;
 use Illuminate\Validation\ValidationException;
@@ -34,15 +35,17 @@ class AuthController extends Controller
        
         // Создание Sale
 
-        $managerproduct = ManagerProduct::where('promocode', $request['promocode'])
+        $manager = Manager::where('promocode', $request['promocode'])->first();
+        $managerproduct = ManagerProduct::where('product_id', $request['product_id'])
+        ->where('manager_id', $manager->id)
         ->first();
 
         $sale = Sale::create([
             'site_price' => $request['own_price'],
             'price' => $managerproduct->price,
             'own_price' => $request['min_price'],
-            'manager_id' => $managerproduct->manager_id,
-            'product_id' => $managerproduct->product_id,
+            'manager_id' => $manager->id,
+            'product_id' => $request['product_id'],
             'buyer_id' => $user->id,
 
         ]);
