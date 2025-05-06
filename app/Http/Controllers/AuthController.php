@@ -25,12 +25,14 @@ class AuthController extends Controller
             return response()->json($validator->errors(), 422);
         }
     
-        // Создание пользователя
-        $user = User::create([
-            'name' => $request['email'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
+        
+        $user = User::firstOrCreate(
+            ['email' => $request['email']],
+            [
+                'name' => $request['email'],
+                'password' => Hash::make($request['password']),
+            ]
+        );
     
        
         // Создание Sale
@@ -51,22 +53,22 @@ class AuthController extends Controller
         ]);
        
        
-        // Создание дефолтных настроек для пользователя
-        Setting::create([
-            'user_id' => $user->id,
-            'display_length' => 'S',
-            'font_size' => 'M',
-            'lv1_volume' => 500000,
-            'lv2_volume' => 1000000,
-            'lv3_volume' => 3000000,
-            'scan_distance' => 3.00,
-            'additional_spot' => 'BTC, ETH',
-            'additional_futures' => 'BTC, ETH',
-            'blacklisted_spot' => 'TST, MOVE',
-            'blacklisted_futures' => 'TST, MOVE',
-            'market' => '1',
-        ]);
-    
+        if($request['product_id'] == 1){
+            Setting::create([
+                'user_id' => $user->id,
+                'display_length' => 'S',
+                'font_size' => 'M',
+                'lv1_volume' => 500000,
+                'lv2_volume' => 1000000,
+                'lv3_volume' => 3000000,
+                'scan_distance' => 3.00,
+                'additional_spot' => 'BTC, ETH',
+                'additional_futures' => 'BTC, ETH',
+                'blacklisted_spot' => 'TST, MOVE',
+                'blacklisted_futures' => 'TST, MOVE',
+                'market' => '1',
+            ]);
+         }
         // Создание токена
         $token = $user->createToken('auth_token')->plainTextToken;
           
