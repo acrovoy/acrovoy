@@ -25,7 +25,7 @@ class PromocodeController extends Controller
         if (!$manager) {
             return response()->json([
                 'success' => false,
-                'message' => 'Промокод не найден'
+                'message' => 'Promocode has not been found'
             ], 404);
         }
 
@@ -36,7 +36,7 @@ class PromocodeController extends Controller
         if ($price === null) {
             return response()->json([
                 'success' => false,
-                'message' => 'Цена по промокоду не найдена'
+                'message' => 'The price has not found for this promo'
             ], 404);
         }
 
