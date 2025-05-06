@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 // Главная страница
 Route::get('/', function () {
-    return view('main');
+    return view('mainn');
 })->name('home');
 
 // Защищенный маршрут для панели
