@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\CoinController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\Api\PromocodeController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -33,3 +34,4 @@ Route::get('/version/{app}', [ProductController::class, 'getCurrentVersion']);
 Route::get('/active-ad', [AdController::class, 'getActiveAd']);
 Route::get('/notice/{email}', [NoticeController::class, 'show']);
 Route::post('/notice', [NoticeController::class, 'store']);
+Route::get('/promocode/price', [PromocodeController::class, 'getPrice']);
