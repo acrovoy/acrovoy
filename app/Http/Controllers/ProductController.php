@@ -1,16 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Versions;
+use App\Models\Products;
 use Illuminate\Http\Request;
 
-class VersionController extends Controller
+class ProductController extends Controller
 {
-    public function getCurrentVersion($app, $version)
+    public function getCurrentVersion($app)
     {
         
-        $current_version = Versions::where('version', $version)
-        ->where('app', $app)
+        $current_version = Products::where('app', $app)
         ->first();
         
         return response()->json([

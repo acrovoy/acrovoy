@@ -1,0 +1,59 @@
+.custom-table {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    max-width: 900px;
+}
+
+.custom-row {
+    display: flex;
+    border-bottom: 0;
+    /* background: #fff; */
+}
+
+.custom-row:first-child {
+    border: none;
+    /* font-weight: bold; */
+}
+
+.custom-cell {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+   
+}
+
+
+.custom-row:not(.custom-header)>.custom-cell:not(:last-child) {
+    border-right: 1px solid #303944b0;
+    border-top: 1px solid #303944b0;
+}
+
+.custom-row:not(.custom-header)>.custom-cell:first-child {
+    border-left: 1px solid #303944b0;
+}
+
+
+.custom-row:last-child>.custom-cell:not(:last-child) {
+    border-bottom: 1px solid #303944b0;
+}
+
+/* Округление только углов */
+.custom-table .custom-row:nth-child(2) .custom-cell:first-child {
+    border-top-left-radius: 12px;
+}
+
+.custom-table .custom-row:nth-child(2) .custom-cell:nth-last-child(2) {
+    border-top-right-radius: 12px;
+}
+
+.custom-table .custom-row:last-child .custom-cell:first-child {
+    border-bottom-left-radius: 12px;
+}
+
+.custom-table .custom-row:last-child .custom-cell:nth-last-child(2) {
+    border-bottom-right-radius: 12px;
+}
+

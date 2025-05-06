@@ -8,7 +8,7 @@ class Invoices extends Model
 {
     protected $table = 'cs_invoices';
     protected $primaryKey = 'id';
-    protected $fillable = ['user_id', 'invoice', 'payment_link'];
+    protected $fillable = ['user_id', 'invoice', 'payment_link', 'product_id'];
     public $timestamps = true;
 
     public function user(): BelongsTo
