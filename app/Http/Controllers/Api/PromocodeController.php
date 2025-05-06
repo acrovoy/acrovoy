@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Manager;
+use App\Models\Products;
 use App\Models\ManagerProduct;
 
 class PromocodeController extends Controller
@@ -32,6 +33,31 @@ class PromocodeController extends Controller
         $price = ManagerProduct::where('manager_id', $manager->id)
             ->where('product_id', $productId)
             ->value('price');
+
+        if ($price === null) {
+            return response()->json([
+                'success' => false,
+                'message' => 'The price has not found for this promo'
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'price' => $price,
+        ]);
+    }
+
+    public function getOwnPrice(Request $request)
+    {
+        $request->validate([
+            
+            'product_id' => 'required|integer',
+        ]);
+
+        $productId = $request->input('product_id');
+
+        $price = Products::where('product_id', $productId)
+            ->value('discounted_price');
 
         if ($price === null) {
             return response()->json([
