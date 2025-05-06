@@ -4,6 +4,11 @@
     "src": "resources/css/app.css",
     "isEntry": true
   },
+  "resources/css/dashboard.css": {
+    "file": "assets/dashboard-CD6IT3XJ.css",
+    "src": "resources/css/dashboard.css",
+    "isEntry": true
+  },
   "resources/js/app.js": {
     "file": "assets/app-eMHK6VFw.js",
     "name": "app",
