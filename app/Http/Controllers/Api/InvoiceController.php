@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Sale;
 use App\Models\User;  // Импортируем модель User
 use App\Models\Invoices;  // Импортируем модель Invoices
 
@@ -22,12 +23,24 @@ class InvoiceController extends Controller
         $existingInvoice->delete();
     }
 
+
+
+
     // Создание новой записи инвойса
     $invoice = Invoices::create([
         'user_id' => $user->id,
         'invoice' => $request->invoice,
         'payment_link' => $request->payment_link,
+        
     ]);
+
+    $sale = Sale::where('id', $request->sale)->first();
+    if ($sale) {
+        // Обновление поля invoice_id
+        $sale->invoice_id = $invoice->id;
+        $sale->save();
+    }
+
 
     return response()->json([
         'status' => 'success',
