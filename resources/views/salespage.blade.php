@@ -47,6 +47,7 @@
             </div>
         </div>   
 
+    @if($sales && $sales->count())
 
 <div class="custom-table">
     <div class="custom-row custom-header">
@@ -102,6 +103,12 @@
    
 
 </div>
+
+@else
+
+You dont have sales yet.
+
+@endif
 
 @php
     $currentPage = $sales->currentPage();

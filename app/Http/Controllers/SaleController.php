@@ -167,8 +167,18 @@ class SaleController extends Controller
         ->where('product_id', $request->product_id)
         ->first();
 
+
+        $product = Products::where('id', $request->product_id)
+        ->first();
+
+
     if ($managerProduct) {
         $managerProduct->price = $request->price;
+        if($request->price < $product->min_price){
+            $managerProduct->price = $product->min_price;
+
+        }
+
         $managerProduct->save();
         return back()->with('success', 'Price updated successfully.');
     }
@@ -215,12 +225,18 @@ public function addProducts()
     // Удалим все предыдущие продукты менеджера
     ManagerProduct::where('manager_id', $manager->id)->delete();
 
+    
+
     // Добавим новые (если есть)
     foreach ($productIds as $productId) {
+
+        $product = Products::where('id', $productId)
+        ->first();
+
         ManagerProduct::create([
             'manager_id' => $manager->id,
             'product_id' => $productId,
-            'price' => 0, // если нужно — можно сюда передать цену из формы
+            'price' => $product->min_price, // если нужно — можно сюда передать цену из формы
         ]);
     }
 

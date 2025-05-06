@@ -30,6 +30,8 @@
     </p>
 
                 <h5>Your Products for Sale:</h5>
+
+    @if($products && $products->count())
             <div class="custom-table">
 
             @php
@@ -61,6 +63,11 @@
 
 
             </div>
+    @else
+    <div class="d-flex mb-4"><span>You dont have products for selling yet. Please add products </span><a href="/add_product" class="ms-1" style="color:cadetblue; text-decoration:none">here</a>
+    </div>
+    @endif
+
 
 @endif
 
