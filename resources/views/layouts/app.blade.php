@@ -12,6 +12,7 @@
     <title>ACROVOY</title>
 
     @vite('resources/css/app.css') 
+    @vite('resources/css/dashboard.css') 
 </head>
 <body class="logo-bg" style="background-image: url('/img/bg_logo.jpg');">
     
