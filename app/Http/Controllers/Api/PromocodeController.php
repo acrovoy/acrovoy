@@ -54,9 +54,9 @@ class PromocodeController extends Controller
             'product_id' => 'required|integer',
         ]);
 
-        $productId = $request->input('product_id');
+        $product_id = $request->input('product_id');
 
-        $price = Products::where('product_id', $productId)
+        $price = Products::where('id', $product_id)
             ->value('discounted_price');
 
         if ($price === null) {
