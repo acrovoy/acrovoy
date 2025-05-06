@@ -37,7 +37,7 @@ class AuthController extends Controller
         $managerproduct = ManagerProduct::where('promocode', $request['promocode'])
         ->first();
 
-        Sale::create([
+        $sale = Sale::create([
             'site_price' => $request['own_price'],
             'price' => $managerproduct->price,
             'own_price' => $request['min_price'],
