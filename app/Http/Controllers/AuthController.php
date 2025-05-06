@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\ManagerProduct;
+use App\Models\Sale;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -29,6 +31,23 @@ class AuthController extends Controller
             'password' => Hash::make($request['password']),
         ]);
     
+       
+        // Создание Sale
+
+        $managerproduct = ManagerProduct::where('promocode', $request['promocode'])
+        ->first();
+
+        Sale::create([
+            'site_price' => $request['own_price'],
+            'price' => $managerproduct->price,
+            'own_price' => $request['min_price'],
+            'manager_id' => $managerproduct->manager_id,
+            'product_id' => $managerproduct->product_id,
+            'buyer_id' => $user->id,
+
+        ]);
+       
+       
         // Создание дефолтных настроек для пользователя
         Setting::create([
             'user_id' => $user->id,
