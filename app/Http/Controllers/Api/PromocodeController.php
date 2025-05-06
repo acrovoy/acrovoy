@@ -58,6 +58,8 @@ class PromocodeController extends Controller
 
         $price = Products::where('id', $product_id)
             ->value('discounted_price');
+        $min_price = Products::where('id', $product_id)
+            ->value('min_price');
 
         if ($price === null) {
             return response()->json([
@@ -69,6 +71,7 @@ class PromocodeController extends Controller
         return response()->json([
             'success' => true,
             'discounted_price' => $price,
+            'min_price' => $min_price,
         ]);
     }
 }
