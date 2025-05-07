@@ -214,5 +214,49 @@ public function checkPm(Request $request)
 
 
 
+    public function getInvoiceByEmailAndProduct(Request $request)
+    {
+        // Проверка, был ли передан email
+        $email = $request->email;
+        $product = $request->product;
+
+        // Поиск пользователя по email
+        $user = User::where('email', $email)->first();
+
+        // Если пользователь не найден
+        if (!$user) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User not found',
+            ], 404);
+        }
+
+        // Получаем user_id
+        $userId = $user->id;
+
+        // Поиск инвойса по user_id
+        $invoiceRecord = Invoices::where('user_id', $userId)
+            ->where('product_id', $product)
+            ->first();
+
+        // Если инвойс не найден
+        if (!$invoiceRecord) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Invoice not found for this user',
+            ], 404);
+        }
+
+        // Возвращаем номер инвойса
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Invoice found successfully',
+            'data' => [
+                'invoice_number' => $invoiceRecord->invoice, // или используйте другое поле, которое содержит номер инвойса
+                'payment_link' => $invoiceRecord->payment_link, 
+            ],
+        ], 200);
+    }
+
 
 }

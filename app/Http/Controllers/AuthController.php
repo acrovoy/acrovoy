@@ -42,6 +42,15 @@ class AuthController extends Controller
         ->where('manager_id', $manager->id)
         ->first();
 
+        $existingSale = Sale::where('product_id', $request['product_id'])
+            ->where('buyer_id', $user->id)
+            ->first();
+
+        if ($existingSale) {
+            return response()->json(['message' => 'This product has already bought'], 409); // HTTP 409 Conflict
+        }
+
+        // Если записи нет — создаём новую
         $sale = Sale::create([
             'site_price' => $request['own_price'],
             'price' => $managerproduct->price,
@@ -49,7 +58,6 @@ class AuthController extends Controller
             'manager_id' => $manager->id,
             'product_id' => $request['product_id'],
             'buyer_id' => $user->id,
-
         ]);
        
        
