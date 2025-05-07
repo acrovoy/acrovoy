@@ -90,11 +90,11 @@ class SaleController extends Controller
         foreach ($sales as $sale) {
             $sale->invoiceDetails = $invoices->get($sale->product_id);
 
-            $manager = Manager::where('id', $sale->manager_id)
+            $manager1 = Manager::where('id', $sale->manager_id)
             ->first();
-            $user = User::where('id', $manager->user_id)->first();
-            $manager->user = $user;
-            $sale->manager = $manager;
+            $user1 = User::where('id', $manager1->user_id)->first();
+            $manager1->user = $user1;
+            $sale->manager = $manager1;
 
 
 
