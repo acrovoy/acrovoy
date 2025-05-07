@@ -107,7 +107,7 @@
                 <div class="custom-cell" style="text-align: left;">
 
                 @if($sale->manager->user->name == 'ACROVOY')
-                    <span style="color:rgb(72, 98, 214)">{{ $sale->manager->user->name }}</span>
+                    <span style="color:#0d6efd">{{ $sale->manager->user->name }}</span>
                 @else
                     <span style="color: #2ddd63">{{ $sale->manager->user->name }}</span>
                 @endif
