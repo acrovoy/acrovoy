@@ -23,7 +23,8 @@ class InvoiceController extends Controller
         $existingInvoice->delete();
     }
 
-
+    $sale = Sale::where('id', $request->sale)->first();
+    
 
 
     // Создание новой записи инвойса
@@ -31,10 +32,11 @@ class InvoiceController extends Controller
         'user_id' => $user->id,
         'invoice' => $request->invoice,
         'payment_link' => $request->payment_link,
+        'product_id' => $sale->product_id,
         
     ]);
 
-    $sale = Sale::where('id', $request->sale)->first();
+    
     if ($sale) {
         // Обновление поля invoice_id
         $sale->invoice_id = $invoice->id;
