@@ -36,11 +36,18 @@ class AuthController extends Controller
     
        
         // Создание Sale
-
-        $manager = Manager::where('promocode', $request['promocode'])->first();
-        $managerproduct = ManagerProduct::where('product_id', $request['product_id'])
-        ->where('manager_id', $manager->id)
-        ->first();
+        if ($request['promocode'] != 'NIL'){
+            $manager = Manager::where('promocode', $request['promocode'])->first();
+            $managerproduct = ManagerProduct::where('product_id', $request['product_id'])
+            ->where('manager_id', $manager->id)
+            ->first();
+            $manager_id = $manager->id;
+            $selling_price = $managerproduct->price;
+        }
+        else {
+            $manager_id = 1;
+            $selling_price = $request['own_price'];
+        }
 
         $existingSale = Sale::where('product_id', $request['product_id'])
             ->where('buyer_id', $user->id)
@@ -53,9 +60,9 @@ class AuthController extends Controller
         // Если записи нет — создаём новую
         $sale = Sale::create([
             'site_price' => $request['own_price'],
-            'price' => $managerproduct->price,
+            'price' => $selling_price,
             'own_price' => $request['min_price'],
-            'manager_id' => $manager->id,
+            'manager_id' => $manager_id,
             'product_id' => $request['product_id'],
             'buyer_id' => $user->id,
         ]);
