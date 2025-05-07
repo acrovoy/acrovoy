@@ -73,7 +73,7 @@
 
 <h5>Your Products:</h5>
 
-{{dd($sales)}}
+
 
 @if($sales && $sales->count())
     <div class="custom-table">
