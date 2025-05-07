@@ -89,6 +89,16 @@ class SaleController extends Controller
         // Добавим инвойс к каждой продаже вручную
         foreach ($sales as $sale) {
             $sale->invoiceDetails = $invoices->get($sale->product_id);
+
+            $manager = Manager::where('id', $sale->manager_id)
+            ->first();
+            $user = User::where('id', $manager->user_id)->first();
+            $manager->user = $user;
+            $sale->manager = $manager;
+
+
+
+
         }
         return view('dashboard', compact('user', 'sales', 'grandTotalAmount', 'products', 'promocode', 'manager'));
     }
