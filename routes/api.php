@@ -24,7 +24,7 @@ Route::get('/coins', [CoinController::class, 'getAllSpotCoins']);
 Route::post('/invoice/store', [InvoiceController::class, 'store']);
 Route::middleware('auth:sanctum')->post('/check-invoice-status', [InvoiceController::class, 'checkInvoiceStatus']);
 Route::middleware('auth:sanctum')->post('/invoice/get-invoice', [InvoiceController::class, 'getInvoiceByEmail']);
-Route::middleware('auth:sanctum')->post('/invoice/get-product-invoice', [InvoiceController::class, 'getInvoiceByEmailAndProduct']);
+Route::post('/invoice/get-product-invoice', [InvoiceController::class, 'getInvoiceByEmailAndProduct']);
 Route::post('/invoice/paid', [InvoiceController::class, 'markAsPaid']);
 Route::get('/settings/{email}', [SettingController::class, 'getSettingsByEmail']);
 Route::post('/settings/create/{user_id}', [SettingController::class, 'createDefaultSettings']);
