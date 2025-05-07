@@ -37,12 +37,17 @@ class InvoiceController extends Controller
     ]);
 
     
+    if ($request->invoice == 'HEAD') {
+        
+        $invoice->is_paid = 1;
+        $invoice->save();
+    }
+
     if ($sale) {
         // Обновление поля invoice_id
         $sale->invoice_id = $invoice->id;
         $sale->save();
-    }
-
+    }       
 
     return response()->json([
         'status' => 'success',
