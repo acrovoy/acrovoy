@@ -24,7 +24,7 @@ class InvoiceController extends Controller
     }
 
     $sale = Sale::where('id', $request->sale)->first();
-    dd($sale);
+    
 
 
     // Создание новой записи инвойса
