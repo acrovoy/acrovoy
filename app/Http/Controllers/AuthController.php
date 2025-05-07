@@ -53,7 +53,7 @@ class AuthController extends Controller
             ->where('buyer_id', $user->id)
             ->first();
 
-        if ($existingSale) {
+        if ($existingSale && $existingSale != 0) {
             return response()->json(['message' => 'This product has already bought'], 409); // HTTP 409 Conflict
         }
 
