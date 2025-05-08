@@ -51,10 +51,24 @@
                     <div class="">
                         <p class="mb-0" style="line-height: 1.3;">Это мощный инструмент для анализа рыночных данных в реальном времени. Он помогает трейдерам видеть скрытые объемы, плотности заявок и оптимизировать свои торговые стратегии.</p>
                     </div>
+                    
+                    
+                    @php
+                        $priceParts = explode('.', number_format($product->discounted_price, 2, '.', ''));
+                    @endphp
+
                     <div class="text-center">
-                        <p class="h1 mb-0">150<sup style="font-size:24px">00</sup></p>
+                        <p class="mb-0" style="font-size: 48px; line-height: 1; white-space: nowrap;">
+                            {{ $priceParts[0] }}
+                            <sup style="font-size: 0.5em; position: relative; top: -0.9em;">
+                                {{ $priceParts[1] }}
+                            </sup>
+                        </p>
                         <p class="small">USDT</p>
                     </div>
+
+
+
                 </div>
 
                 <div class="d-flex align-items-start mt-4 gap-3 download-block">

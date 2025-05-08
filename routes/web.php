@@ -2,12 +2,14 @@
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Models\Products;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 
 // Главная страница
 Route::get('/', function () {
-    return view('main');
+    $product = Products::where('id', 1)->latest()->first(); 
+    return view('main', compact('product'));
 })->name('home');
 
 Route::get('/download/orderscanner', function () {
