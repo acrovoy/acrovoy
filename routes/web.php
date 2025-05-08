@@ -5,6 +5,8 @@ use App\Http\Controllers\DashboardController;
 use App\Models\Products;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Download;
 
 // Главная страница
 Route::get('/', function () {
@@ -12,10 +14,7 @@ Route::get('/', function () {
     return view('main', compact('product'));
 })->name('home');
 
-Route::get('/download/orderscanner', function () {
-    $file = storage_path('app/public/orderscanner/OrderScannerSetup.exe');
-    return Response::download($file);
-})->name('download.orderscanner');
+
 
 // Защищенный маршрут для панели
 Route::middleware([
@@ -39,4 +38,26 @@ Route::middleware([
 
 
 });
+
+
+Route::get('/download/orderscanner', function () {
+    $file = storage_path('app/public/orderscanner/OrderScannerSetup.exe');
+
+    // Проверка существования файла
+    if (!file_exists($file)) {
+        abort(404, 'Файл не найден');
+    }
+
+    // Логируем скачивание
+    $product_id = 1;  // Здесь укажите актуальный id продукта
+
+    // Создаем запись о скачивании с IP-адресом пользователя
+    Download::create([
+        'product_id' => $product_id,
+        'ip_address' => request()->ip(),
+    ]);
+
+    // Возвращаем файл на скачивание
+    return Response::download($file);
+})->name('download.orderscanner');
 

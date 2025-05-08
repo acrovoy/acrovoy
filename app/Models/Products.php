@@ -11,6 +11,11 @@ class Products extends Model
     protected $fillable = ['app', 'version', 'release_date', 'is_active', 'name', 'notice', 'color_of_notice', 'expiry_date', 'own_price', 'discounted_price', 'min_price'];
     public $timestamps = true;
 
+
+    public function downloads()
+{
+    return $this->hasMany(Download::class);
+}
     
 
     
