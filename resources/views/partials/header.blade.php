@@ -10,7 +10,7 @@
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Products
+            {{ __('header.products') }}
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Order Scanner 1.01</a></li>
@@ -20,16 +20,16 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Development</a>
+          <a class="nav-link disabled" aria-disabled="true">{{ __('header.development') }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Algotrading</a>
+          <a class="nav-link disabled" aria-disabled="true">{{ __('header.algotrading') }}</a>
         </li>
       </ul>
 
      
       <div class="nav-item">
-          <a class="nav-link disabled me-3" aria-disabled="true" style="color:darkgray">For Partners</a>
+          <a class="nav-link disabled me-3" aria-disabled="true" style="color:darkgray">{{ __('header.for_partners') }}</a>
       </div>
 
       @guest
@@ -42,20 +42,20 @@
                   <form method="POST" class="form-horizontal" action="{{ route('login') }}">
                       @csrf
                       <div class="mb-3">
-                          <label for="loginEmail" class="form-label">Login</label>
-                          <input type="text" class="form-control" id="loginEmail" name="email" placeholder="Enter login" required>
+                          <label for="loginEmail" class="form-label">{{ __('header.login') }}</label>
+                          <input type="text" class="form-control" id="loginEmail" name="email" placeholder="{{ __('header.enter_login') }}" required>
                       </div>
                       <div class="mb-3">
-                          <label for="loginPassword" class="form-label">Password</label>
-                          <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" required>
+                          <label for="loginPassword" class="form-label">{{ __('header.password') }}</label>
+                          <input type="password" class="form-control" id="loginPassword" name="password" placeholder="{{ __('header.enter_password') }}" required>
                       </div>
-                      <button type="submit" class="btn btn-primary w-100 mb-2">Sign In</button>
+                      <button type="submit" class="btn btn-primary w-100 mb-2">{{ __('header.sign_in') }}</button>
                   </form>
                   
                   <!-- Forgot password link -->
                   <div class="text-center">
                       <a href="{{ route('password.request') }}" class="d-block text-decoration-none" style="font-size: 0.875rem; color: #0d6efd;">
-                          Forgot the password?
+                      {{ __('header.forgot_the_password') }}
                       </a>
                   </div>
               </div>
@@ -80,23 +80,25 @@
             </div>
         @endauth
 
-      <li class="nav-item dropdown list-unstyled me-3">
+        <li class="nav-item dropdown list-unstyled me-3">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            En
+            {{ strtoupper(app()->getLocale()) }}
           </a>
           <ul class="dropdown-menu" style="width: 60px; min-width: 0;">
-            <li><a class="dropdown-item" href="#">Sp</a></li>
-            <li><a class="dropdown-item" href="#">De</a></li>
-            <li><a class="dropdown-item" href="#">Ru</a></li>
-           
+            <li><a class="dropdown-item" href="{{ route('lang.switch', ['locale' => 'en']) }}">En</a></li>
+            <li><a class="dropdown-item" href="{{ route('lang.switch', ['locale' => 'es']) }}">Es</a></li> 
+            <li><a class="dropdown-item" href="{{ route('lang.switch', ['locale' => 'fr']) }}">Fr</a></li> 
+            <li><a class="dropdown-item" href="{{ route('lang.switch', ['locale' => 'ru']) }}">Ru</a></li> 
+            <li><a class="dropdown-item" href="{{ route('lang.switch', ['locale' => 'de']) }}">De</a></li>
+            <li><a class="dropdown-item" href="{{ route('lang.switch', ['locale' => 'cn']) }}">Cn</a></li>
           </ul>
-      </li>
+        </li>
 
 
 
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="search" placeholder="{{ __('header.search') }}" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">{{ __('header.go') }}</button>
       </form>
     </div>
   </div>

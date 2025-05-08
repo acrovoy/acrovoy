@@ -7,12 +7,15 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Download;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 // Главная страница
 Route::get('/', function () {
     $product = Products::where('id', 1)->latest()->first(); 
     $data = Download::where('product_id', 1)->count();
     $downloaded = $data + 948;
+    
     return view('main', compact('product', 'downloaded'));
 })->name('home');
 
@@ -27,7 +30,7 @@ Route::middleware([
     Route::get('/dashboard', [SaleController::class, 'dashboard'])->name('dashboard');
     Route::get('/add_product', [SaleController::class, 'addProducts'])->name('add_product');
     Route::get('/sales/{product_id}', [SaleController::class, 'salesPage'])->name('salespage');
-    Route::post('/sales/update-products', [App\Http\Controllers\SaleController::class, 'updateProductList'])->name('sales.updateProducts');
+    Route::post('/sales/update-products', [SaleController::class, 'updateProductList'])->name('sales.updateProducts');
 
     
     Route::get('/profile', function () {
@@ -62,4 +65,19 @@ Route::get('/download/orderscanner', function () {
     // Возвращаем файл на скачивание
     return Response::download($file);
 })->name('download.orderscanner');
+
+Route::get('/lang/{locale}', function (string $locale) {
+    $supportedLocales = ['en', 'es', 'fr', 'ru', 'de', 'cn'];
+
+    if (!in_array($locale, $supportedLocales)) {
+        abort(400, 'Unsupported locale');
+    }
+
+    Session::put('locale', $locale);
+    App::setLocale($locale);
+    return redirect()->back();
+})->name('lang.switch');
+
+
+
 

@@ -11,7 +11,8 @@
     <div class="row justify-content-center text-center mb-5">
         <div class="col-md-8">
             <h1 class="display-4 mb-3">Order Scanner</h1>
-            <p class="lead">Мы рады представить Вам новый продукт для эффективного анализа стакана ордеров.</p>
+            <p class="lead">{{ __('main.product_welcome') }}</p>
+           
         </div>
     </div>
 
@@ -24,7 +25,7 @@
                 <img src="{{ asset('img/line.png') }}" alt="Line" class="img-fluid ms-3" style="height: 8px; width: auto;">
             </div>
 
-            <div class="h6">version. 1.01</div>
+            <div class="h6">{{ __('main.version') }}. 1.01</div>
 
             <div>
                 <img src="{{ asset('img/exchngs.png') }}" alt="Line" class="img-fluid mb-4 mt-3" style="height: 34px;">
