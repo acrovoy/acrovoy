@@ -4,32 +4,7 @@
 
 @section('content')
 
-<style>
-    .product-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-    }
 
-    .product-info {
-        grid-area: 1 / 1 / 2 / 2;
-    }
-
-    .product-price {
-        grid-area: 2 / 1 / 3 / 2;
-    }
-
-    .product-image {
-        grid-area: 1 / 2 / 3 / 3;
-    }
-
-    @media (max-width: 768px) {
-        .product-container {
-           display: block;
-        }
-
-    }
-</style>
 <div class="container py-4" style="border-radius: 15px;">
 
 
@@ -72,8 +47,8 @@
         </div>
         <div class="d-flex justify-content-center product-price">
             <DIV>
-                <div class="d-flex align-items-center mt-4" style="max-width: 440px;">
-                    <div class="me-3">
+                <div class="d-flex  mt-4 gap-3 price-block" style="max-width: 440px;">
+                    <div class="">
                         <p class="mb-0" style="line-height: 1.3;">Это мощный инструмент для анализа рыночных данных в реальном времени. Он помогает трейдерам видеть скрытые объемы, плотности заявок и оптимизировать свои торговые стратегии.</p>
                     </div>
                     <div class="text-center">
@@ -82,8 +57,8 @@
                     </div>
                 </div>
 
-                <div class="d-flex align-items-start mt-4">
-                    <div class="col-md-9">
+                <div class="d-flex align-items-start mt-4 gap-3 download-block">
+                    <div class="">
                         <a href="" class="position-relative d-inline-block" style="width: 320px;">
                             <img src="{{ asset('img/download.png') }}" alt="Download" class="img-fluid" style="object-fit: cover;">
                             <div class="position-absolute translate-middle-x text-center text-white" style="top: 3%; left: 58%">

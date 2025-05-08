@@ -4,7 +4,7 @@
     <footer class="mt-auto bg-light">
         <div class="container mt-auto bg-light " >
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-4  grey_text"
-                 style="justify-content: space-between; padding-right: 150px; padding-left: 150px">
+                 style="justify-content: space-between; padding-left: 25px">
 
 
                 <div class="col mb-1">
