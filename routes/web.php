@@ -11,7 +11,9 @@ use App\Models\Download;
 // Главная страница
 Route::get('/', function () {
     $product = Products::where('id', 1)->latest()->first(); 
-    return view('main', compact('product'));
+    $data = Download::where('product_id', 1)->count();
+    $downloaded = $data + 948;
+    return view('main', compact('product', 'downloaded'));
 })->name('home');
 
 

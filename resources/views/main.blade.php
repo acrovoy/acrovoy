@@ -50,6 +50,7 @@
                 <div class="d-flex  mt-4 gap-3 price-block" style="max-width: 440px;">
                     <div class="">
                         <p class="mb-0" style="line-height: 1.3;">Это мощный инструмент для анализа рыночных данных в реальном времени. Он помогает трейдерам видеть скрытые объемы, плотности заявок и оптимизировать свои торговые стратегии.</p>
+                        <p>Downloaded: <span style="font-weight:bold">{{$downloaded}} </span>times</p>
                     </div>
                     
                     
