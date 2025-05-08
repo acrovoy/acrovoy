@@ -3,11 +3,17 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
 
 // Главная страница
 Route::get('/', function () {
     return view('main');
 })->name('home');
+
+Route::get('/download/orderscanner', function () {
+    $file = storage_path('app/public/orderscanner/OrderScannerSetup.exe');
+    return Response::download($file);
+})->name('download.orderscanner');
 
 // Защищенный маршрут для панели
 Route::middleware([
