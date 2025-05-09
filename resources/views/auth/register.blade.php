@@ -1,8 +1,8 @@
-@if (Auth::check())
+
     <script>
-        window.location.href = '/home';  
+        window.location.href = '/';  
     </script>
-@endif
+
 
 <x-guest-layout>
     <x-authentication-card>
