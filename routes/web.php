@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('main', compact('product', 'downloaded'));
 })->name('home');
 
+Route::get('/successful-payment', function () {
+    return view('successful-payment');
+})->name('successful-payment');
+
 
 
 // Защищенный маршрут для панели
