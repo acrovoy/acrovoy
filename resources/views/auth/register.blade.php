@@ -1,3 +1,9 @@
+@if (Auth::check())
+    <script>
+        window.location.href = '/home';  
+    </script>
+@endif
+
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
