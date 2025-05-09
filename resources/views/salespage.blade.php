@@ -10,11 +10,11 @@
         <div class="d-flex"> 
             <div>
                 <h3 > {{ $product->name }}  {{ $product->version }} </h3>
-                <p class="mb-0">Total profit for all your sellings: <strong>USDT {{ number_format($totalAmount, 2, '.', '') }}</strong> </p>
+                <p class="mb-0">{{ __('salespage.totalprodforselling') }} <strong>USDT {{ number_format($totalAmount, 2, '.', '') }}</strong> </p>
                 <div class="d-flex">
                     
-                    <p class="ms-0">Registered: <strong>{{$totalCount}}</strong> buyers&nbsp;  |  </p>
-                    <p class="ms-2">Paid: <strong>{{$paidCount}}</strong> units</p>
+                    <p class="ms-0">{{ __('salespage.registered') }} <strong>{{$totalCount}}</strong> {{ __('salespage.buyers') }}&nbsp;  |  </p>
+                    <p class="ms-2">{{ __('salespage.paid') }} <strong>{{$paidCount}}</strong> {{ __('salespage.units') }}</p>
                 </div>
             </div>
             <div>
@@ -25,15 +25,15 @@
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
 
                     <div class="d-flex" style="margin-left: 70px; align-items: center; gap: 10px;">
-                        <label for="usdt-price">Set price: USDT</label>
+                        <label for="usdt-price">{{ __('salespage.setprice') }} USDT</label>
                         <input id="usdt-price" name="price" type="text" value="{{ $current_price }}" style="width: 70px; border-radius: 4px; border: 1px #303944b0 solid; text-align: center;" />
-                        <button type="submit" style="color: white; color: #2ddd63; width: 40px; border: none; padding: 5px 5px; background: none;">Save</button>
+                        <button type="submit" style="color: white; color: green; width: 40px; border: none; padding: 5px 5px; background: none;">{{ __('salespage.save') }}</button>
                     </div>
                 </form>
 
 
 
-                <span style="margin-left: 70px; align-items: center; gap: 10px; font-size: 12px; color: crimson">Price for you: <strong>USDT&nbsp;{{ $product->min_price }}</strong> </span>
+                <span style="margin-left: 70px; align-items: center; gap: 10px; font-size: 12px; color: crimson">{{ __('salespage.priceforyou') }} <strong>USDT&nbsp;{{ $product->min_price }}</strong> </span>
 
                 @php
                 
@@ -41,7 +41,7 @@
                 
                 @endphp
 
-                <div style="margin-left: 70px; align-items: center; gap: 10px; font-size: 12px; color: crimson">Profit as per unit: <strong>USDT&nbsp;{{ number_format($profit, 2, '.', '') }}</strong></div>
+                <div style="margin-left: 70px; align-items: center; gap: 10px; font-size: 12px; color: crimson">{{ __('salespage.profitasperunit') }} <strong>USDT&nbsp;{{ number_format($profit, 2, '.', '') }}</strong></div>
 
 
             </div>
@@ -52,10 +52,10 @@
 <div class="custom-table">
     <div class="custom-row custom-header">
         <div class="custom-cell" style="width: 30px !important"></div>
-        <div class="custom-cell">Email</div>
-        <div class="custom-cell">Registered</div>
-        <div class="custom-cell">Paid</div>
-        <div class="custom-cell">Selling price</div>
+        <div class="custom-cell">{{ __('salespage.email') }}</div>
+        <div class="custom-cell">{{ __('salespage.registered2') }}</div>
+        <div class="custom-cell">{{ __('salespage.paid2') }}</div>
+        <div class="custom-cell">{{ __('salespage.sellingprice') }}</div>
         <div class="custom-cell"></div>
     </div>
 
@@ -81,9 +81,9 @@
 
     <div class="custom-cell">
         @if ($sale->invoice->is_paid == 1)
-            <span style="color:#2ddd63">YES</span>
+            <span style="color:green">{{ __('salespage.yes') }}</span>
         @else
-            <span style="color:red">NO</span>
+            <span style="color:red">{{ __('salespage.no') }}</span>
         @endif
     </div>
 
@@ -106,7 +106,7 @@
 
 @else
 
-You dont have sales yet.
+{{ __('salespage.youdonthavesaling') }}
 
 @endif
 
@@ -123,7 +123,7 @@ You dont have sales yet.
 
         {{-- Previous --}}
         <li class="page-item {{ $currentPage == 1 ? 'disabled' : '' }}">
-            <a class="page-link" href="{{ $sales->previousPageUrl() }}" tabindex="-1">Previous</a>
+            <a class="page-link" href="{{ $sales->previousPageUrl() }}" tabindex="-1">{{ __('salespage.pre') }}</a>
         </li>
 
         {{-- Pages --}}
@@ -135,7 +135,7 @@ You dont have sales yet.
 
         {{-- Next --}}
         <li class="page-item {{ $currentPage == $lastPage ? 'disabled' : '' }}">
-            <a class="page-link" href="{{ $sales->nextPageUrl() }}">Next</a>
+            <a class="page-link" href="{{ $sales->nextPageUrl() }}">{{ __('salespage.next') }}</a>
         </li>
 
     </ul>

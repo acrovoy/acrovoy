@@ -13,4 +13,6 @@ return [
     'enter_password' => 'Ingrese la contraseña',
     'sign_in' => 'Iniciar sesión',
     'forgot_the_password' => '¿Olvidó la contraseña?',
+    'dashboard' => 'Tablero',
+    'logout' => 'Cerrar sesión',
 ];

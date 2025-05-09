@@ -65,16 +65,16 @@
         @auth
             <!-- Если пользователь АВТОРИЗОВАН, показываем его email -->
             <div class="nav-item dropdown me-3">
-                <a class="nav-link" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:#2ddd63">
+                <a class="nav-link" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:green">
                   {{ Auth::user()->email }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-end p-2">
 
-                <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                <a class="dropdown-item" href="{{ route('dashboard') }}">{{ __('header.dashboard') }}</a>
                 <div><hr class="dropdown-divider"></div>
                   <form method="POST" action="{{ route('logout') }}">
                       @csrf
-                      <button type="submit" class="dropdown-item">Logout</button>
+                      <button type="submit" class="dropdown-item">{{ __('header.logout') }}</button>
                   </form>
                 </div>
             </div>

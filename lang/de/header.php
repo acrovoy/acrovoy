@@ -13,4 +13,6 @@ return [
     'enter_password' => 'Passwort eingeben',
     'sign_in' => 'Einloggen',
     'forgot_the_password' => 'Passwort vergessen?',
+    'dashboard' => 'Dashboard',
+    'logout' => 'Abmelden',
 ];

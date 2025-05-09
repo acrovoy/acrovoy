@@ -13,4 +13,7 @@ return [
     'enter_password' => 'Enter password',
     'sign_in' => 'Sign In',
     'forgot_the_password' => 'Forgot the password?',
+    'dashboard' => 'Dashboard',
+    'logout' => 'Logout',
+
 ];

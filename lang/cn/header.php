@@ -13,4 +13,6 @@ return [
     'enter_password' => '请输入密码',
     'sign_in' => '登录',
     'forgot_the_password' => '忘记密码？',
+    'dashboard' => '仪表板',
+    'logout' => '登出',
 ];

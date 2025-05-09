@@ -13,4 +13,6 @@ return [
     'enter_password' => 'Ввести пароль',
     'sign_in' => 'Войти',
     'forgot_the_password' => 'Забыли пароль?',
+    'dashboard' => 'Панель управления',
+    'logout' => 'Выйти',
 ];
