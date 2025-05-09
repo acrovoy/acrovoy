@@ -23,6 +23,10 @@ Route::get('/successful-payment', function () {
     return view('successful-payment');
 })->name('successful-payment');
 
+Route::get('/failed-payment', function () {
+    return view('failed-payment');
+})->name('failed-payment');
+
 
 
 // Защищенный маршрут для панели
@@ -83,5 +87,11 @@ Route::get('/lang/{locale}', function (string $locale) {
 })->name('lang.switch');
 
 
-
+Route::get('/orderscanner101', function () {
+    $product = Products::where('id', 1)->latest()->first(); 
+    $data = Download::where('product_id', 1)->count();
+    $downloaded = $data + 948;
+    
+    return view('orderscanner101', compact('product', 'downloaded'));
+})->name('orderscanner101');
 
