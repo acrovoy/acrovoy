@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Download;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
 
 // Главная страница
 Route::get('/', function () {
