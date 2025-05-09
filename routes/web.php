@@ -29,7 +29,7 @@ Route::get('/failed-payment', function () {
     return view('failed-payment');
 })->name('failed-payment');
 
-Route::get('/callback', function (Request $request) {
+Route::post('/callback', function (Request $request) {
     return view('callback_debug', ['data' => $request->all()]);
 });
 
