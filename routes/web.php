@@ -28,7 +28,9 @@ Route::get('/failed-payment', function () {
     return view('failed-payment');
 })->name('failed-payment');
 
-Route::post('/callback', [PaymentCallbackController::class, 'handle'])->name('payment.callback');
+Route::get('/callback', function (Request $request) {
+    return view('callback_debug', ['data' => $request->all()]);
+});
 
 
 
