@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Acrovoy Order Scanner - Оптимизируйте свою торговлю')
+@section('title', "{{ __('main.title') }}")
 
 @section('content')
 
@@ -81,17 +81,13 @@
 
             </div>
 
-            <p>Это простой, но очень эффективный инструмент для анализа рыночных данных в реальном времени. Он помогает трейдерам отслеживать крупные объёмы, анализировать движение плотностей и оптимизировать торговые стратегии в зависимости от текущей рыночной ситуации.</p>
-            <p><strong>Order Scanner</strong> не перегружен функционалом и максимально сфокусирован на одной задаче — поиске крупных ордеров.</p>
-            <h5>Основные возможности инструмента:</h5>
-            <p><strong>Поддержка бирж Binance и Bybit</strong>. Сканирование работает как в режиме старт-стоп, так и в автоматическом режиме. Нет необходимости вручную открывать список ордеров каждой монеты — Order Scanner сам подсветит все ордера, соответствующие вашим параметрам.</p>
-            <p><strong>Широкий охват монет.</strong> Сканирует большое количество монет, включая самые активные и трендовые. Вы можете самостоятельно добавлять в сканируемый список монеты, которые считаете недооценёнными.</p>
-            <p><strong>Гибкие настройки.</strong> Оптимальное количество настроек позволяет легко и быстро менять параметры поиска и улучшать сортировку результатов.</p>
-            <p><strong>Анализ двух рынков.</strong> Профессиональные трейдеры знают, как важно отслеживать как рынок фьючерсов, так и спот-рынок. Order Scanner позволяет быстро переключаться между ними, предоставляя больше информации для анализа.</p>
-            
-
-
-
+            <p>{{ __('main.product_welcome1') }}</p>
+            <p><strong>Order Scanner</strong> {{ __('main.product_welcome2') }}</p>
+            <h5>{{ __('main.product_welcome3') }}</h5>
+            <p><strong>{{ __('main.product_welcome4') }}</strong> {{ __('main.product_welcome5') }}</p>
+            <p><strong>{{ __('main.product_welcome6') }}</strong> {{ __('main.product_welcome7') }}</p>
+            <p><strong>{{ __('main.product_welcome8') }}</strong> {{ __('main.product_welcome9') }}</p>
+            <p><strong>{{ __('main.product_welcome10') }}</strong> {{ __('main.product_welcome11') }}</p>
 
 
 
@@ -103,8 +99,8 @@
             <DIV>
                 <div class="d-flex  mt-4 gap-3 price-block" style="max-width: 440px;">
                     <div class="">
-                        <p class="mb-0" style="line-height: 1.3; font-size: 14px;">Без подписки и скрытых платежей. Одноразовая оплата. Без ограничений по времени</p>
-                        <p>Downloaded: <span style="font-weight:bold">{{$downloaded}} </span>times</p>
+                        <p class="mb-0" style="line-height: 1.3; font-size: 14px;">{{ __('main.product_welcome12') }}</p>
+                        <p>{{ __('main.downloaded') }} <span style="font-weight:bold">{{$downloaded}} </span>{{ __('main.times') }}</p>
                     </div>
                     
                     
@@ -131,7 +127,7 @@
                     <a href="{{ route('download.orderscanner') }}" class="position-relative d-inline-block" style="width: 320px;">
                             <img src="{{ asset('img/download.png') }}" alt="Download" class="img-fluid" style="object-fit: cover;">
                             <div class="position-absolute translate-middle-x text-center text-white" style="top: 3%; left: 58%">
-                                <div style="font-size: 20px; font-weight: bold;">Скачать</div>
+                                <div style="font-size: 20px; font-weight: bold;">{{ __('main.download') }}</div>
                                 <div style="font-size: 14px;">OrderScannerSetup.exe</div>
                             </div>
                         </a>
@@ -155,8 +151,8 @@
 
     <div class="row justify-content-center text-center">
         <div class="col-md-10 mt-5">
-            <h2 class="h3 mb-4">Почему выбирают Order Scanner?</h2>
-            <p>С Order Scanner вы получаете преимущество на рынке, быстрее реагируете на изменения и минимизируете риски. Инструмент разработан для профессионалов и начинающих трейдеров, которые стремятся к результату.</p>
+            <h2 class="h3 mb-4">{{ __('main.product_welcome13') }}</h2>
+            <p>{{ __('main.product_welcome14') }}</p>
         </div>
     </div>
 </div>

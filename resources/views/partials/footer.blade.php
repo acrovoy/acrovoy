@@ -8,31 +8,31 @@
 
 
                 <div class="col mb-1">
-                    <h5 class="mb-4 fw-bold">Компания</h5>
+                    <h5 class="mb-4 fw-bold">{{ __('footer.company') }}</h5>
                     <ul class="nav flex-column">
-                        <li class="nav-item mb-2">Разработка</li>
-                        <li class="nav-item mb-2">Сервис</li>
-                        <li class="nav-item mb-2">Менеджмент</li>
+                        <li class="nav-item mb-2">{{ __('footer.development') }}</li>
+                        <li class="nav-item mb-2">{{ __('footer.service') }}</li>
+                        <li class="nav-item mb-2">{{ __('footer.collaboration') }}</li>
 
                     </ul>
                 </div>
 
                 <div class="col mb-1">
-                    <h5 class="mb-4 fw-bold">Продукт</h5>
+                    <h5 class="mb-4 fw-bold">{{ __('footer.products') }}</h5>
                     <ul class="nav flex-column">
-                        <li class="nav-item mb-2">Стандарты</li>
-                        <li class="nav-item mb-2">Виденье</li>
-                        <li class="nav-item mb-2">Производство</li>
+                        <li class="nav-item mb-2">{{ __('footer.vision') }}</li>
+                        <li class="nav-item mb-2">{{ __('footer.standarts') }}</li>
+                        <li class="nav-item mb-2">{{ __('footer.marketing') }}</li>
 
                     </ul>
                 </div>
 
                 <div class="col mb-1">
-                    <h5 class="mb-4 fw-bold">Контакты</h5>
+                    <h5 class="mb-4 fw-bold">{{ __('footer.contacts') }}</h5>
                     <ul class="nav flex-column">
-                        <li class="nav-item mb-2">Социальные сети</li>
-                        <li class="nav-item mb-2">Email</li>
-                        <li class="nav-item mb-2">Телеграм</li>
+                        <li class="nav-item mb-2">{{ __('footer.email') }}</li>
+                        <li class="nav-item mb-2">{{ __('footer.telegram') }}</li>
+                        <li class="nav-item mb-2">{{ __('footer.network') }}</li>
 
                     </ul>
                 </div>
