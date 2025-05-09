@@ -7,7 +7,7 @@
             <h4>🔧 Отладка Callback-уведомления</h4>
         </div>
         <div class="card-body">
-            <pre>{{ print_r($data, true) }}</pre>
+            <pre>@json($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)</pre>
         </div>
     </div>
 </div>
