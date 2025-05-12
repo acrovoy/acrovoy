@@ -46,6 +46,12 @@ class PaymentCallbackController extends Controller
             'order_id' => $orderId,
         ]);
 
+        Log::channel('single')->info('Full payment callback data', [
+            'headers' => $request->headers->all(),
+            'body' => $request->all(),
+            'raw' => $request->getContent(),
+        ]);
+
         return response()->json(['message' => 'Invalid payment data'], 400);
     }
 }
