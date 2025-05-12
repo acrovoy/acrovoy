@@ -14,17 +14,17 @@ class PaymentCallbackController extends Controller
         Log::info('Payment callback received', $request->all());
 
         $status = $request->input('status');
-        $orderId = $request->input('order_id'); // это ваш invoice
+        $invoice_id = $request->input('invoice_id'); // это ваш invoice
 
-        if ($status === 'success' && $orderId) {
-            $affected = Invoices::where('invoice', $orderId)
+        if ($status === 'success' && $invoice_id) {
+            $affected = Invoices::where('invoice', $invoice_id)
                 ->update(['is_paid' => 1, 'updated_at' => now()]);
 
             if ($affected) {
-                Log::info("Invoice $orderId marked as paid.");
+                Log::info("Invoice $invoice_id marked as paid.");
                 return response()->json(['message' => 'Invoice updated'], 200);
             } else {
-                Log::warning("Invoice $orderId not found or already updated.");
+                Log::warning("Invoice $invoice_id not found or already updated.");
                 return response()->json(['message' => 'Invoice not found'], 404);
             }
         }
