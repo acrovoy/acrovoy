@@ -1,7 +1,6 @@
 <?php
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProfileController;
-
 use App\Http\Controllers\DashboardController;
 use App\Models\Products;
 use Illuminate\Support\Facades\Route;

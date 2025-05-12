@@ -38,4 +38,4 @@ Route::get('/notice/{email}', [NoticeController::class, 'show']);
 Route::post('/notice', [NoticeController::class, 'store']);
 Route::get('/promocode/price', [PromocodeController::class, 'getPrice']);
 Route::get('/promocode/ownprice', [PromocodeController::class, 'getOwnPrice']);
-Route::post('/payment-callback', [PaymentCallbackController::class, 'handle']);
+Route::post('/callback', [PaymentCallbackController::class, 'handle']);
