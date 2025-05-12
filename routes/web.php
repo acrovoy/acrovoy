@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PaymentCallbackController;
+
 use App\Http\Controllers\DashboardController;
 use App\Models\Products;
 use Illuminate\Support\Facades\Route;
@@ -29,9 +29,9 @@ Route::get('/failed-payment', function () {
     return view('failed-payment');
 })->name('failed-payment');
 
-Route::post('/callback', function (Request $request) {
-    return view('callback_debug', ['data' => $request->all()]);
-});
+
+
+
 
 
 
