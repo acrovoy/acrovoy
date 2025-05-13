@@ -107,5 +107,5 @@ Route::get('/orderscanner208', function () {
     $downloaded = $data + 948;
     
     return view('orderscanner208', compact('product', 'downloaded'));
-})->name('orderscanner101');
+})->name('orderscanner208');
 
