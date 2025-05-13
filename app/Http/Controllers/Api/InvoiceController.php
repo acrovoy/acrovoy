@@ -142,6 +142,8 @@ class InvoiceController extends Controller
                 $shop_id = config('services.cryptocloud.shop_id');
                 $currency = 'USD';
 
+                Log::info('http data', ['apiKey' => $apiKey,'shop_id'=> $shop_id,'currency'=> $currency]);
+
                 $response = Http::withToken($apiKey)
                     ->post('https://api.cryptocloud.plus/v2/invoice/merchant/info', [
                         'uuids' => [$invoiceRecord->invoice],
