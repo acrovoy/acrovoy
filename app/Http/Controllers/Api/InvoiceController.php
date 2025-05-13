@@ -180,7 +180,7 @@ class InvoiceController extends Controller
                         'response_body' => $response->body(),
                     ]);
 
-
+                    Log::info('Точка достигнута: создание инвойса начато.');
 
                     $newinvoiceresponse = Http::withHeaders([
                         'Authorization' => 'Token ' . $apiKey,
@@ -200,7 +200,7 @@ class InvoiceController extends Controller
                             'status' => $newinvoiceresponse->status(),
                             'body' => $newinvoiceresponse->body()
                         ]);
-                        return response()->json(['message' => 'Failed to create new invoice'], 500);
+                        return response()->json(['message' => 'XFailed to create new invoice'], 500);
                     }
 
                     $newInvoiceData = $newinvoiceresponse->json();
