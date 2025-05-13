@@ -59,7 +59,7 @@ Route::middleware([
 
 
 Route::get('/download/orderscanner', function () {
-    $file = storage_path('app/public/orderscanner/OrderScannerSetup101.exe');
+    $file = storage_path('app/public/orderscanner/OrderScanner101Setup.exe');
 
     // Проверка существования файла
     if (!file_exists($file)) {
