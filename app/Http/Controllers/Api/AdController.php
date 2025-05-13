@@ -9,27 +9,31 @@ use App\Models\Ad;
 class AdController extends Controller
 {
     // Метод для получения активного рекламного баннера
-    public function getActiveAd()
-    {
-        // Получаем рекламные баннеры, которые активны в данный момент
-        $currentDate = now()->toDateString(); // Текущая дата
-        $ad = Ad::where('date_from', '<=', $currentDate)
-                ->where('date_to', '>=', $currentDate)
-                ->first(); // Получаем первый подходящий баннер
+    public function getActiveAd(Request $request)
+{
+    $productId = $request->input('product_id');
+    $currentDate = now()->toDateString();
 
-        // Если баннер найден, возвращаем его данные в формате JSON
-        if ($ad) {
-            return response()->json([
-                'image_path' => $ad->image_path,
-                'link' => $ad->link,
-                'advertiser_name' => $ad->advertiser_name,
-                'advertiser_contact' => $ad->advertiser_contact,
-            ]);
-        }
+    $query = Ad::where('date_from', '<=', $currentDate)
+               ->where('date_to', '>=', $currentDate);
 
-        // Если баннер не найден, возвращаем ошибку
-        return response()->json(['message' => 'No active ad found'], 404);
+    if ($productId) {
+        $query->where('product_id', $productId);
     }
+
+    $ad = $query->first();
+
+    if ($ad) {
+        return response()->json([
+            'image_path' => $ad->image_path,
+            'link' => $ad->link,
+            'advertiser_name' => $ad->advertiser_name,
+            'advertiser_contact' => $ad->advertiser_contact,
+        ]);
+    }
+
+    return response()->json(['message' => 'No active ad found'], 404);
+}
 
 
     public function uploadBanner(Request $request)
