@@ -164,17 +164,9 @@ class InvoiceController extends Controller
                     isset($data['result'][0]['status']) && $data['result'][0]['status'] === 'canceled'
                 ) {
                     // Создаём новый инвойс
-                    $newinvoiceresponse = Http::withHeaders([
-                        'Authorization' => 'Token ' . $apiKey,
-                        'Content-Type' => 'application/json',
-                    ])->post('https://api.cryptocloud.plus/v2/invoice/create', [
-                        'amount' => $price,
-                        'shop_id' => $shop_id,
-                        'currency' => $currency,
-                    ]);
 
 
-                    Log::info('REQUEST SENT:', [
+                      Log::info('REQUEST SENT:', [
                         'headers' => [
                             'Authorization' => 'Token ' . $apiKey,
                             'Content-Type' => 'application/json',
@@ -187,6 +179,20 @@ class InvoiceController extends Controller
                         'response_status' => $response->status(),
                         'response_body' => $response->body(),
                     ]);
+
+
+
+                    $newinvoiceresponse = Http::withHeaders([
+                        'Authorization' => 'Token ' . $apiKey,
+                        'Content-Type' => 'application/json',
+                    ])->post('https://api.cryptocloud.plus/v2/invoice/create', [
+                        'amount' => $price,
+                        'shop_id' => $shop_id,
+                        'currency' => $currency,
+                    ]);
+
+
+                   
 
 
                     if (!$newinvoiceresponse->ok()) {
