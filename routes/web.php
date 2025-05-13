@@ -79,6 +79,31 @@ Route::get('/download/orderscanner', function () {
     return Response::download($file);
 })->name('download.orderscanner');
 
+
+Route::get('/download/orderscanner208', function () {
+    $file = storage_path('app/public/orderscanner/OrderScanner208Setup.exe');
+
+    // Проверка существования файла
+    if (!file_exists($file)) {
+        abort(404, 'Файл не найден');
+    }
+
+    // Логируем скачивание
+    $product_id = 2;  // Здесь укажите актуальный id продукта
+
+    // Создаем запись о скачивании с IP-адресом пользователя
+    Download::create([
+        'product_id' => $product_id,
+        'ip_address' => request()->ip(),
+    ]);
+
+    // Возвращаем файл на скачивание
+    return Response::download($file);
+})->name('download.orderscanner208');
+
+
+
+
 Route::get('/lang/{locale}', function (string $locale) {
     $supportedLocales = ['en', 'es', 'fr', 'ru', 'de', 'cn'];
 

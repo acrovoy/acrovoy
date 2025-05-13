@@ -84,7 +84,7 @@
 
         </div>
         <div class="mb-4 mb-md-0 product-image">
-            <img src="{{ asset('img/Orderscannerpack.png') }}" alt="Order Scanner" class="img-fluid mx-auto d-block">
+            <img src="{{ asset('img/OrderScannerBearpack.png') }}" alt="Order Scanner" class="img-fluid mx-auto d-block">
         </div>
         <div class="d-flex justify-content-center product-price">
             <DIV>
@@ -115,7 +115,7 @@
 
                 <div class="d-flex align-items-start mt-4 gap-3 download-block">
                     <div class="">
-                    <a href="{{ route('download.orderscanner') }}" class="position-relative d-inline-block" style="width: 320px;">
+                    <a href="{{ route('download.orderscanner208') }}" class="position-relative d-inline-block" style="width: 320px;">
                             <img src="{{ asset('img/download.png') }}" alt="Download" class="img-fluid" style="object-fit: cover;">
                             <div class="position-absolute translate-middle-x text-center text-white" style="top: 3%; left: 58%">
                                 <div style="font-size: 20px; font-weight: bold;">{{ __('main.download') }}</div>
