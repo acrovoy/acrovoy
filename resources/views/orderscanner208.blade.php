@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', "{{ __('main.title') }}")
+@section('title', "{{ __('osv208.title') }}")
 
 @section('content')
 
@@ -65,20 +65,23 @@
                 <img src="{{ asset('img/line.png') }}" alt="Line" class="img-fluid ms-3" style="height: 8px; width: auto;">
             </div>
 
-            <div class="h6">{{ __('main.version') }}. 2.08</div>
+            <div class="h6">{{ __('osv208.version') }}. 2.08  <span style="color:red">&nbsp; presale</span></div>
 
             <div>
-                <img src="{{ asset('img/exchngs.png') }}" alt="Line" class="img-fluid mb-4 mt-3" style="height: 34px;">
+                <img src="{{ asset('img/exchngs3.png') }}" alt="Line" class="img-fluid mb-4 mt-3" style="height: 34px;">
 
             </div>
 
-            <p>{{ __('main.product_welcome1') }}</p>
-            <p><strong>Order Scanner</strong> {{ __('main.product_welcome2') }}</p>
-            <h5>{{ __('main.product_welcome3') }}</h5>
-            <p><strong>{{ __('main.product_welcome4') }}</strong> {{ __('main.product_welcome5') }}</p>
-            <p><strong>{{ __('main.product_welcome6') }}</strong> {{ __('main.product_welcome7') }}</p>
-            <p><strong>{{ __('main.product_welcome8') }}</strong> {{ __('main.product_welcome9') }}</p>
-            <p><strong>{{ __('main.product_welcome10') }}</strong> {{ __('main.product_welcome11') }}</p>
+            <p>{{ __('osv208.product_welcome1') }}</p>
+            <p><strong>Order Scanner</strong> {{ __('osv208.product_welcome2') }}</p>
+            <h5>{{ __('osv208.product_welcome3') }}</h5>
+
+            <p><strong>{{ __('osv208.product_welcome15') }}</strong> {{ __('osv208.product_welcome16') }}</p>
+
+            <p><strong>{{ __('osv208.product_welcome4') }}</strong> {{ __('osv208.product_welcome5') }}</p>
+            <p><strong>{{ __('osv208.product_welcome6') }}</strong> {{ __('osv208.product_welcome7') }}</p>
+            <p><strong>{{ __('osv208.product_welcome8') }}</strong> {{ __('osv208.product_welcome9') }}</p>
+            <p><strong>{{ __('osv208.product_welcome10') }}</strong> {{ __('osv208.product_welcome11') }}</p>
 
 
 
@@ -90,8 +93,8 @@
             <DIV>
                 <div class="d-flex  mt-4 gap-3 price-block" style="max-width: 440px;">
                     <div class="">
-                        <p class="mb-0" style="line-height: 1.3; font-size: 14px;">{{ __('main.product_welcome12') }}</p>
-                        <p>{{ __('main.downloaded') }} <span style="font-weight:bold">{{$downloaded}} </span>{{ __('main.times') }}</p>
+                        <p class="mb-0" style="line-height: 1.3; font-size: 14px;">{{ __('osv208.product_welcome12') }}</p>
+                        <p>{{ __('osv208.downloaded') }} <span style="font-weight:bold">{{$downloaded}} </span>{{ __('osv208.times') }}</p>
                     </div>
                     
                     
@@ -118,7 +121,7 @@
                     <a href="{{ route('download.orderscanner208') }}" class="position-relative d-inline-block" style="width: 320px;">
                             <img src="{{ asset('img/download.png') }}" alt="Download" class="img-fluid" style="object-fit: cover;">
                             <div class="position-absolute translate-middle-x text-center text-white" style="top: 3%; left: 58%">
-                                <div style="font-size: 20px; font-weight: bold;">{{ __('main.download') }}</div>
+                                <div style="font-size: 20px; font-weight: bold;">{{ __('osv208.download') }}</div>
                                 <div style="font-size: 14px;">OrderScanner209Setup.exe</div>
                             </div>
                         </a>
@@ -142,8 +145,8 @@
 
     <div class="row justify-content-center text-center">
         <div class="col-md-10 mt-5">
-            <h2 class="h3 mb-4">{{ __('main.product_welcome13') }}</h2>
-            <p>{{ __('main.product_welcome14') }}</p>
+            <h2 class="h3 mb-4">{{ __('osv208.product_welcome13') }}</h2>
+            <p>{{ __('osv208.product_welcome14') }}</p>
         </div>
     </div>
 </div>
