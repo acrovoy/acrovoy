@@ -164,12 +164,14 @@ class InvoiceController extends Controller
                     isset($data['result'][0]['status']) && $data['result'][0]['status'] === 'canceled'
                 ) {
                     // Создаём новый инвойс
-                    $newinvoiceresponse = Http::withToken($apiKey)
-                        ->post('https://api.cryptocloud.plus/v2/invoice/create', [
-                            'amount' => $price,
-                            'shop_id' => $shop_id,
-                            'currency' => $currency,
-                        ]);
+                    $newinvoiceresponse = Http::withHeaders([
+                        'Authorization' => 'Token ' . $apiKey,
+                        'Content-Type' => 'application/json',
+                    ])->post('https://api.cryptocloud.plus/v2/invoice/create', [
+                        'amount' => $price,
+                        'shop_id' => $shop_id,
+                        'currency' => $currency,
+                    ]);
 
                     if (!$newinvoiceresponse->ok()) {
                         Log::error("Failed to create new invoice for user $user->id", [
