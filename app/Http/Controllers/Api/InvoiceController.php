@@ -150,7 +150,7 @@ class InvoiceController extends Controller
                     ]);
 
                 if (!$response->ok()) {
-                    Log::error("Failed to verify invoice $invoiceRecord->invoice via CryptoCloud", [
+                    Log::error("XSFailed to verify invoice $invoiceRecord->invoice via CryptoCloud", [
                         'status' => $response->status(),
                         'body' => $response->body()
                     ]);
