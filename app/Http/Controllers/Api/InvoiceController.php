@@ -144,10 +144,30 @@ class InvoiceController extends Controller
 
                 Log::info('http data', ['apiKey' => $apiKey,'shop_id'=> $shop_id,'currency'=> $currency]);
 
-                $response = Http::withToken($apiKey)
-                    ->post('https://api.cryptocloud.plus/v2/invoice/merchant/info', [
+                $response = Http::withHeaders([
+                        'Authorization' => 'Token ' . $apiKey,
+                        'Content-Type' => 'application/json',
+                    ])->post('https://api.cryptocloud.plus/v2/invoice/merchant/info', [
                         'uuids' => [$invoiceRecord->invoice],
                     ]);
+
+
+                     Log::info('REQUEST SENT:', [
+                        'headers' => [
+                            'Authorization' => 'Token ' . $apiKey,
+                            'Content-Type' => 'application/json',
+                        ],
+                        'payload' => [
+                            'amount' => $price,
+                            'shop_id' => $shop_id,
+                            'currency' => $currency,
+                        ],
+                        'response_status' => $response->status(),
+                        'response_body' => $response->body(),
+                    ]);
+
+                    Log::info('Точка достигнута: создание инвойса начато.');
+
 
                 if (!$response->ok()) {
                     Log::error("XSFailed to verify invoice $invoiceRecord->invoice via CryptoCloud", [
@@ -165,23 +185,7 @@ class InvoiceController extends Controller
                 ) {
                     // Создаём новый инвойс
 
-
-                      Log::info('REQUEST SENT:', [
-                        'headers' => [
-                            'Authorization' => 'Token ' . $apiKey,
-                            'Content-Type' => 'application/json',
-                        ],
-                        'payload' => [
-                            'amount' => $price,
-                            'shop_id' => $shop_id,
-                            'currency' => $currency,
-                        ],
-                        'response_status' => $response->status(),
-                        'response_body' => $response->body(),
-                    ]);
-
-                    Log::info('Точка достигнута: создание инвойса начато.');
-
+                     
                     $newinvoiceresponse = Http::withHeaders([
                         'Authorization' => 'Token ' . $apiKey,
                         'Content-Type' => 'application/json',
