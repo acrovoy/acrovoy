@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'title' => 'Acrovoy | Aujourd\'hui Demain',
+    'version' => 'version',
+    'presale' => 'prévente',
+    'product_welcome' => 'Nous sommes heureux de vous présenter notre nouveau produit pour une analyse efficace du carnet d’ordres.',
+    'product_welcome1' => 'C’est un outil simple mais très efficace pour analyser les données de marché en temps réel. Il aide les traders à suivre les gros volumes, analyser les mouvements de densité du carnet d’ordres et optimiser les stratégies de trading en fonction de la situation actuelle du marché.',
+    'product_welcome2' => 'n’est pas surchargé de fonctionnalités et se concentre entièrement sur une seule tâche : détecter les gros ordres.',
+    'product_welcome3' => 'Fonctionnalités principales de l’outil :',
+    'product_welcome4' => 'Compatible avec les plateformes Binance, Bybit et Bitget.',
+    'product_welcome5' => 'Le scan fonctionne à la fois en mode manuel et automatique. Il n’est pas nécessaire d’ouvrir manuellement le carnet d’ordres de chaque monnaie — Order Scanner met en évidence tous les ordres pertinents selon vos paramètres.',
+    'product_welcome6' => 'Large couverture de cryptomonnaies.',
+    'product_welcome7' => 'Il analyse un grand nombre de cryptomonnaies, y compris les plus actives et tendances. Vous pouvez également ajouter manuellement des monnaies à la liste de scan que vous jugez sous-évaluées.',
+    'product_welcome8' => 'Paramètres flexibles.',
+    'product_welcome9' => 'Un ensemble optimal de paramètres permet d’ajuster facilement les critères de recherche et d’améliorer le tri des résultats.',
+    'product_welcome10' => 'Analyse des deux marchés.',
+    'product_welcome11' => 'Les traders professionnels savent combien il est important de surveiller à la fois le marché à terme et le marché spot. Order Scanner permet de passer rapidement de l’un à l’autre, fournissant plus de données pour l’analyse.',
+    'product_welcome12' => 'Pas d’abonnements ni de frais cachés. Paiement unique. Utilisation illimitée.',
+    'product_welcome15' => 'Support des proxys.',
+    'product_welcome16' => 'Pour renforcer l’anonymat et contourner les restrictions IP, Order Scanner permet l’utilisation de serveurs proxy personnalisés. C’est particulièrement utile dans des conditions réseau instables ou depuis des régions à connectivité limitée.',
+    'downloaded' => 'Téléchargé :',
+    'times' => 'fois',
+    'download' => 'Télécharger',
+    'product_welcome13' => 'Pourquoi choisir Order Scanner ?',
+    'product_welcome14' => 'Avec Order Scanner, vous gagnez un avantage sur le marché, réagissez plus rapidement aux changements et minimisez les risques. L’outil est conçu pour les traders professionnels comme pour les débutants orientés résultats.',
+];

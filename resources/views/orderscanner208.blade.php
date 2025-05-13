@@ -65,7 +65,7 @@
                 <img src="{{ asset('img/line.png') }}" alt="Line" class="img-fluid ms-3" style="height: 8px; width: auto;">
             </div>
 
-            <div class="h6">{{ __('osv208.version') }}. 2.08  <span style="color:red">&nbsp; presale</span></div>
+            <div class="h6">{{ __('osv208.version') }}. 2.08  <span style="color:red">&nbsp; {{ __('osv208.presale') }}</span></div>
 
             <div>
                 <img src="{{ asset('img/exchngs3.png') }}" alt="Line" class="img-fluid mb-4 mt-3" style="height: 34px;">
@@ -122,7 +122,7 @@
                             <img src="{{ asset('img/download.png') }}" alt="Download" class="img-fluid" style="object-fit: cover;">
                             <div class="position-absolute translate-middle-x text-center text-white" style="top: 3%; left: 58%">
                                 <div style="font-size: 20px; font-weight: bold;">{{ __('osv208.download') }}</div>
-                                <div style="font-size: 14px;">OrderScanner209Setup.exe</div>
+                                <div style="font-size: 14px;">OrderScanner208Setup.exe</div>
                             </div>
                         </a>
                     </div>

@@ -3,6 +3,7 @@
 return [
     'title' => 'Acrovoy | Today Tomorrow',
     'version' => 'version',
+    'presale' => 'presale',
     'product_welcome' => 'We are pleased to introduce our new product for efficient order book analysis.',
     'product_welcome1' => 'This is a simple yet highly effective tool for analyzing market data in real time. It helps traders track large volumes, analyze order book density movements, and optimize trading strategies based on the current market situation.',
     'product_welcome2' => 'is not overloaded with features and is fully focused on a single task — detecting large orders.',
