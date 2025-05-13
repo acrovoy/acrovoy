@@ -21,10 +21,7 @@ class PaymentCallbackController extends Controller
         $amountPaid = $invoiceInfo['amount_paid'] ?? 0;
 
         if (
-            $status === 'success' &&
-            $invoiceStatus === 'success' &&
-            $amountPaid > 0 &&
-            $invoiceId
+            $status === 'success'            
         ) {
             $affected = Invoices::where('invoice', $invoiceId)
                 ->update(['is_paid' => 1, 'updated_at' => now()]);
