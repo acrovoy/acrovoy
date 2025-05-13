@@ -173,6 +173,22 @@ class InvoiceController extends Controller
                         'currency' => $currency,
                     ]);
 
+
+                    logger()->info('REQUEST SENT:', [
+                        'headers' => [
+                            'Authorization' => 'Token ' . $apiKey,
+                            'Content-Type' => 'application/json',
+                        ],
+                        'payload' => [
+                            'amount' => $price,
+                            'shop_id' => $shop_id,
+                            'currency' => $currency,
+                        ],
+                        'response_status' => $response->status(),
+                        'response_body' => $response->body(),
+                    ]);
+
+
                     if (!$newinvoiceresponse->ok()) {
                         Log::error("Failed to create new invoice for user $user->id", [
                             'status' => $newinvoiceresponse->status(),
