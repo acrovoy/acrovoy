@@ -13,6 +13,7 @@
             {{ __('header.products') }}
           </a>
           <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ route('orderscanner208') }}">Order Scanner 2.08</a></li>
             <li><a class="dropdown-item" href="{{ route('orderscanner101') }}">Order Scanner 1.01</a></li>
             
             <li><hr class="dropdown-divider"></li>
