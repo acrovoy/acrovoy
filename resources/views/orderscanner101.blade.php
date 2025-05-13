@@ -119,7 +119,7 @@
                             <img src="{{ asset('img/download.png') }}" alt="Download" class="img-fluid" style="object-fit: cover;">
                             <div class="position-absolute translate-middle-x text-center text-white" style="top: 3%; left: 58%">
                                 <div style="font-size: 20px; font-weight: bold;">{{ __('main.download') }}</div>
-                                <div style="font-size: 14px;">OrderScannerSetup.exe</div>
+                                <div style="font-size: 14px;">OrderScanner101Setup.exe</div>
                             </div>
                         </a>
                     </div>
