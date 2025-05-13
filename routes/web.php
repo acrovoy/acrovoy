@@ -129,7 +129,7 @@ Route::get('/orderscanner101', function () {
 Route::get('/orderscanner208', function () {
     $product = Products::where('id', 3)->latest()->first(); 
     $data = Download::where('product_id', 1)->count();
-    $downloaded = $data + 348;
+    $downloaded = $data;
     
     return view('orderscanner208', compact('product', 'downloaded'));
 })->name('orderscanner208');
