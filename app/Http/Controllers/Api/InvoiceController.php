@@ -174,7 +174,7 @@ class InvoiceController extends Controller
                     ]);
 
 
-                    logger()->info('REQUEST SENT:', [
+                    Log::info('REQUEST SENT:', [
                         'headers' => [
                             'Authorization' => 'Token ' . $apiKey,
                             'Content-Type' => 'application/json',
