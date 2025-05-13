@@ -13,7 +13,9 @@ class PaymentCallbackController extends Controller
         Log::info('Payment callback received', $request->all());
 
         $status = $request->input('status');
-        $invoiceId = $request->input('invoice_id');
+        $invoiceshort = $request->input('invoice_id');
+        $invoiceId = 'INV-' . $invoiceshort;
+
         $orderId = $request->input('order_id');
         $invoiceInfo = $request->input('invoice_info');
 
@@ -21,7 +23,7 @@ class PaymentCallbackController extends Controller
         $amountPaid = $invoiceInfo['amount_paid'] ?? 0;
 
         if (
-            $status === 'success'            
+            $status == 'success'            
         ) {
             $affected = Invoices::where('invoice', $invoiceId)
                 ->update(['is_paid' => 1, 'updated_at' => now()]);
