@@ -30,7 +30,7 @@
 
      
       <div class="nav-item">
-          <a class="nav-link disabled me-3" aria-disabled="true" style="color:darkgray" href="{{ route('collaboration') }}">{{ __('header.for_partners') }}</a>
+          <a class="nav-link me-3" aria-disabled="true" style="color:darkgray" href="{{ route('collaboration') }}">{{ __('header.for_partners') }}</a>
       </div>
 
       @guest
