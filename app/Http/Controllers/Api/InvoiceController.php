@@ -273,6 +273,7 @@ public function checkPm(Request $request)
     {
         // Проверка, был ли передан email
         $email = $request->email;
+        $product_id = $request->product_id;
 
         
 
@@ -289,9 +290,11 @@ public function checkPm(Request $request)
         }
 
         // Поиск инвойса пользователя
-        $invoiceRecord = Invoices::where('user_id', $user->id)->first();
+        $invoiceRecord = Invoices::where('user_id', $user->id)
+        ->where('product_id', $product_id)
+        ->first();
 
-        Log::info('Email', ['email' =>  $email, 'user_id'=> $user->id, 'invoice' => $invoiceRecord->invoice ]);
+        Log::info('Email', ['email' =>  $email, 'product_id' =>  $product_id, 'user_id'=> $user->id, 'invoice' => $invoiceRecord->invoice ]);
 
         // Если инвойс не найден
         if (!$invoiceRecord) {
