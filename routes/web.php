@@ -134,3 +134,7 @@ Route::get('/orderscanner208', function () {
     return view('orderscanner208', compact('product', 'downloaded'));
 })->name('orderscanner208');
 
+Route::get('/development', function () {
+    return view('development');
+})->name('development');
+

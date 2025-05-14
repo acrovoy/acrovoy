@@ -10,7 +10,7 @@
                 <div class="col mb-1">
                     <h5 class="mb-4 fw-bold">{{ __('footer.company') }}</h5>
                     <ul class="nav flex-column">
-                        <li class="nav-item mb-2">{{ __('footer.development') }}</li>
+                        <li class="nav-item mb-2"><a href="{{ route('development') }}" class="text-muted text-decoration-none">{{ __('footer.development') }}</a></li>
                         <li class="nav-item mb-2">{{ __('footer.service') }}</li>
                         <li class="nav-item mb-2">{{ __('footer.collaboration') }}</li>
 
