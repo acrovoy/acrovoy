@@ -21,7 +21,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">{{ __('header.development') }}</a>
+          <a class="nav-link" aria-disabled="true" href="{{ route('development') }}">{{ __('header.development') }}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">{{ __('header.algotrading') }}</a>

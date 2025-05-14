@@ -1,38 +1,24 @@
 @extends('layouts.app')
 
-@section('title', 'Разработка')
+@section('title', __('development.title'))
 
 @section('content')
-    <section class="py-16 bg-white text-gray-800">
-        <div class="max-w-5xl mx-auto px-4">
-            <h1 class="text-4xl font-bold mb-6 border-b pb-2 border-gray-200">Разработка</h1>
-            
-            <p class="text-lg leading-7 mb-6">
-                Наша компания занимается профессиональной разработкой программных решений. Мы создаём приложения под операционные системы, web-приложения, мобильные приложения и интеграционные системы, которые помогают бизнесу расти, автоматизировать процессы и повышать эффективность.
-            </p>
+   
 
-            <p class="text-lg leading-7 mb-6">
-                Мы берем на себя весь цикл разработки — от анализа и проектирования до запуска и поддержки продукта. В работе мы используем современные технологии, гибкие методологии и индивидуальный подход к каждому клиенту.
-            </p>
+    <section class="development-wrapper">
+        <h1>{{ __('development.title') }}</h1>
 
-            <div class="mb-6">
-                <h2 class="text-2xl font-semibold mb-4">Наши специалисты имеют опыт в создании:</h2>
-                <ul class="list-disc list-inside text-lg leading-7 space-y-2">
-                    <li>CRM и ERP-систем</li>
-                    <li>Интернет-магазинов и маркетплейсов</li>
-                    <li>SaaS-платформ</li>
-                    <li>Приложений для Windows, iOS и Android</li>
-                    <li>Интеграций с внешними сервисами и API</li>
-                </ul>
-            </div>
+        <p>{{ __('development.intro_1') }}</p>
+        <p>{{ __('development.intro_2') }}</p>
 
-            <p class="text-lg leading-7 mb-6">
-                Мы ценим прозрачность, сроки и качество, поэтому наши клиенты всегда знают, на каком этапе находится проект и что будет сделано дальше.
-            </p>
+        <h2>{{ __('development.experience_title') }}</h2>
+        <ul>
+            @foreach(__('development.experience_items') as $item)
+                <li>{{ $item }}</li>
+            @endforeach
+        </ul>
 
-            <p class="text-lg leading-7">
-                Если вы ищете команду, которая может превратить идею в работающий продукт — мы готовы помочь.
-            </p>
-        </div>
+        <p>{{ __('development.transparency') }}</p>
+        <p>{{ __('development.final') }}</p>
     </section>
 @endsection

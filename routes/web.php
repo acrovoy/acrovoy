@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\SaleController;
+use App\Mail\ContactFormMail;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Models\Products;
@@ -10,6 +11,7 @@ use App\Models\Download;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 // Главная страница
 Route::get('/', function () {
@@ -137,4 +139,37 @@ Route::get('/orderscanner208', function () {
 Route::get('/development', function () {
     return view('development');
 })->name('development');
+
+Route::get('/service', function () {
+    return view('service');
+})->name('service');
+
+Route::get('/collaboration', function () {
+    return view('collaboration');
+})->name('collaboration');
+
+Route::get('/vision', function () {
+    return view('vision');
+})->name('vision');
+
+Route::get('/standards', function () {
+    return view('standards');
+})->name('standards');
+
+Route::get('/marketing', function () {
+    return view('marketing');
+})->name('marketing');
+
+Route::view('/contact', 'contact')->name('contact');
+Route::post('/contact', function (Request $request) {
+    $validated = $request->validate([
+        'email' => 'required|email',
+        'subject' => 'required|string|max:255',
+        'message' => 'required|string|max:2000',
+    ]);
+
+  Mail::to('support@acrovoy.com')->send(new ContactFormMail($validated));
+
+    return redirect()->route('contact')->with('success', __('contact.success'));
+})->name('contact.send');
 
