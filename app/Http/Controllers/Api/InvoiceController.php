@@ -274,8 +274,11 @@ public function checkPm(Request $request)
         // Проверка, был ли передан email
         $email = $request->email;
 
+        
+
         // Поиск пользователя по email
         $user = User::where('email', $email)->first();
+
 
         // Если пользователь не найден
         if (!$user) {
@@ -288,6 +291,8 @@ public function checkPm(Request $request)
         // Поиск инвойса пользователя
         $invoiceRecord = Invoices::where('user_id', $user->id)->first();
 
+        Log::info('Email', ['email' =>  $email, 'user_id'=> $user->id, 'invoice' => $invoiceRecord->invoice ]);
+
         // Если инвойс не найден
         if (!$invoiceRecord) {
             return response()->json([
@@ -298,7 +303,7 @@ public function checkPm(Request $request)
 
         // Проверяем, оплачен ли счет
         $isPaid = $invoiceRecord->is_paid;
-
+        Log::info('Email', ['is_paid' =>  $isPaid ]);
         if ($isPaid == 1) {
             // Возвращаем статус
                 return response()->json([
