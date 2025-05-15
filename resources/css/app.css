@@ -27,7 +27,11 @@ footer {
     /* Фиксируем футер внизу */
 }
 
-
+@media (max-width: 992px) {
+    .lang-selector {
+        margin: 1rem 0;
+    }
+}
 
 .pagination {
     display: flex;
@@ -486,6 +490,9 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    max-width: 500px;
+    width: 100%;
+
 }
 
 .contact-form label {
@@ -636,6 +643,21 @@ footer {
     align-items: center;
     text-align: left;
     max-width: 1200px;
+
+}
+
+.form-wrapper {
+    padding: 0 1rem;
+}
+
+.form-section {
+    margin-bottom: 100px;
+    width: 100%;
+    gap: 2rem;
+}
+
+.form-section .hero-text {
+    padding: 0;
 }
 
 .hero-image img {
@@ -646,7 +668,6 @@ footer {
 
 .hero-text {
     padding: 0 2rem;
-    flex: 1;
     min-width: 300px;
 }
 

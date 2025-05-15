@@ -7,7 +7,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 800px;">
 
         <li class="nav-item">
           <a class="nav-link" aria-disabled="true" href="{{ route('development') }}">{{ __('header.development') }}</a>
@@ -87,7 +87,7 @@
             </div>
         @endauth
 
-        <li class="nav-item dropdown list-unstyled me-3">
+        <li class="nav-item lang-selector dropdown list-unstyled me-3">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {{ strtoupper(app()->getLocale()) }}
           </a>

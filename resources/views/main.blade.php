@@ -93,9 +93,8 @@ and market scanning.</p>
 
 
 {{-- Hero Section --}}
-<div class="hero-wrapper">
-    <div class="hero-section">
-        <div class="hero-image">
+<div class="hero-wrapper form-wrapper">
+    <div class="hero-section form-section">
         
           <!-- Error messages -->
     @if ($errors->any())
@@ -109,7 +108,7 @@ and market scanning.</p>
     @endif
 
     <!-- Contact Form -->
-    <form method="POST" action="{{ route('contact.send') }}" class="contact-form" style="width: 500px; margin-bottom: 100px">
+    <form method="POST" action="{{ route('contact.send') }}" class="contact-form">
         @csrf
 
         <div class="form-group">
@@ -135,7 +134,6 @@ and market scanning.</p>
 
 
 
-        </div>
         <div class="hero-text">
           
 
