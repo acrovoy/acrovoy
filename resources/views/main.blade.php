@@ -52,7 +52,9 @@
             <div class="product-info">
                 <h3>Order Scanner</h3>
                 <p class="version">version 2.08 <span class="badge">presale</span></p>
-                <p>This is a simple yet highly effective tool for analyzing market data — track large volumes, analyze order book density, movement strategies based on the current market situation.</p>
+                <p>Stay ahead of the market with precision and speed. 
+Instantly detect large orders and leverage proxy capabilities. A powerful tool for real-time order book analysis 
+and market scanning.</p>
                 <ul>
                     <li><strong>Supports Binance, Bybit and Bitget exchanges.</strong></li>
                     <li><strong>Wide coin coverage.</strong></li>
@@ -75,7 +77,7 @@
             <div class="product-info">
                 <h3>Order Scanner</h3>
                 <p class="version">version 1.01</p>
-                <p>This is a simple yet highly effective tool for analyzing market data — track large volumes, analyze order book density, movement strategies based on the current market situation.</p>
+                <p>This is a simple yet highly effective crypto tool for analyzing market data — track large volumes, analyze order book density, movement strategies based on the current market situation.</p>
                 <ul>
                     <li><strong>Supports Binance and Bybit exchanges.</strong></li>
                     <li><strong>Wide coin coverage.</strong></li>
@@ -138,19 +140,27 @@
           
 
             <div class="hero-box">
-                <h4>Main features of the tool:</h4>
+                <h4>Get in touch with us:</h4>
                 <ul>
-                    <li><strong>Supports Binance and Bybit exchanges.</strong></li>
-                    <li>Scanning works both in start-stop mode and in automatic mode.</li>
-                    <li>No need to open the order book manually — Order Scanner highlights relevant orders based on your parameters.</li>
+                    <li>Follow us on social media for updates and insights.</li>
+                    <li>We’re open to partnerships, collaborations, and media inquiries.</li>
                 </ul>
             </div>
             <div class="hero-box">
-                <h4>Main features of the tool:</h4>
+                <h4>Join our network:</h4>
                 <ul>
-                    <li><strong>Supports Binance and Bybit exchanges.</strong></li>
-                    <li>Scanning works both in start-stop mode and in automatic mode.</li>
-                    <li>No need to open the order book manually — Order Scanner highlights relevant orders based on your parameters.</li>
+                    <li><strong>Explore career opportunities at Acrovoy.</strong></li>
+                    <li>Subscribe to our newsletter to stay informed.</li>
+                    <li>Connect with us to learn how we can support your goals.</li>
+                </ul>
+            </div>
+
+            <div class="hero-box">
+                <h4>Contact us:</h4>
+                <ul>
+                    <li><strong>Email:</strong> support@acrovoy.com</li>
+                    <li><strong>Telegram:</strong> @acrovoy_tech_support</li>
+                    <li>We usually respond within 24 hours on business days.</li>
                 </ul>
             </div>
 
