@@ -658,6 +658,7 @@ footer {
 
 .form-section .hero-text {
     padding: 0;
+    flex: unset;
 }
 
 .hero-image img {
@@ -667,6 +668,7 @@ footer {
 }
 
 .hero-text {
+    flex: 1 1;
     padding: 0 2rem;
     min-width: 300px;
 }
