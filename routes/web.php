@@ -3,6 +3,7 @@ use App\Http\Controllers\SaleController;
 use App\Mail\ContactFormMail;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SearchController;
 use App\Models\Products;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
@@ -172,4 +173,6 @@ Route::post('/contact', function (Request $request) {
 
     return redirect()->route('contact')->with('success', __('contact.success'));
 })->name('contact.send');
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');
 

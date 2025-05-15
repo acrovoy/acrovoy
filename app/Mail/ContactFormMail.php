@@ -25,6 +25,8 @@ class ContactFormMail extends Mailable
 
     public function build()
     {
+
+       
         return $this->subject($this->data['subject'])
             ->replyTo($this->data['email'])
             ->view('emails.contact')
@@ -51,7 +53,7 @@ class ContactFormMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.contact',
         );
     }
 

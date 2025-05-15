@@ -31,8 +31,8 @@
                     <h5 class="mb-4 fw-bold">{{ __('footer.contacts') }}</h5>
                     <ul class="nav flex-column">
                         <li class="nav-item mb-2"><a href="{{ route('contact') }}" class="text-muted text-decoration-none">{{ __('footer.email') }}</a></li>
-                        <li class="nav-item mb-2">{{ __('footer.telegram') }}</li>
-                        <li class="nav-item mb-2">{{ __('footer.network') }}</li>
+                        <li class="nav-item mb-2"><a href="https://t.me/acrovoy_tech_support" target="_blank" rel="noopener" class="nav-link p-0 text-body">{{ __('footer.telegram') }}</a></li>
+                        <!-- <li class="nav-item mb-2">{{ __('footer.network') }}</li> -->
 
                     </ul>
                 </div>

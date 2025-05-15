@@ -23,9 +23,9 @@
         <li class="nav-item">
           <a class="nav-link" aria-disabled="true" href="{{ route('development') }}">{{ __('header.development') }}</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">{{ __('header.algotrading') }}</a>
-        </li>
+        </li> -->
       </ul>
 
      
@@ -97,9 +97,9 @@
 
 
 
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="{{ __('header.search') }}" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">{{ __('header.go') }}</button>
+      <form class="d-flex" role="search" action="{{ route('search') }}" method="GET">
+          <input class="form-control me-2" type="search" name="q" placeholder="{{ __('header.search') }}" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">{{ __('header.go') }}</button>
       </form>
     </div>
   </div>
