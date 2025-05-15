@@ -11,27 +11,33 @@
             <img src="{{ asset('img/mountain.png') }}" alt="Mountain">
         </div>
         <div class="hero-text">
-            <h2>Reaching tomorrow today</h2>
-            <p><strong>Order Scanner</strong> is not overloaded with features and is fully focused on a single task — detecting large orders.</p>
+    <h2>Reaching tomorrow today</h2>
+    <p><strong>Acrovoy</strong> is a team overloaded with features and is fully focused on a single task — detecting large orders.</p>
 
-            <div class="hero-box">
-                <h4>Main features of the tool:</h4>
-                <ul>
-                    <li><strong>Supports Binance and Bybit exchanges.</strong></li>
-                    <li>Scanning works both in start-stop mode and in automatic mode.</li>
-                    <li>No need to open the order book manually — Order Scanner highlights relevant orders based on your parameters.</li>
-                </ul>
-            </div>
-            <div class="hero-box">
-                <h4>Main features of the tool:</h4>
-                <ul>
-                    <li><strong>Supports Binance and Bybit exchanges.</strong></li>
-                    <li>Scanning works both in start-stop mode and in automatic mode.</li>
-                    <li>No need to open the order book manually — Order Scanner highlights relevant orders based on your parameters.</li>
-                </ul>
-            </div>
+    <div class="hero-box">
+        <h4>Main features of the tool:</h4>
+        <ul>
+            <li><strong>Supports Binance and Bybit exchanges.</strong></li>
+            <li>Scanning works both in start-stop mode and in automatic mode.</li>
+            <li>No need to open the order book manually — Order Scanner highlights relevant orders based on your parameters.</li>
+        </ul>
+    </div>
 
+    <div class="hero-box">
+        <h4>Who we work with:</h4>
+        <p>Choose your role and see how Acrovoy can empower your goals:</p>
+        <div class="role-selector">
+            <button onclick="showRole('trader')">Trader</button>
+            <button onclick="showRole('influencer')">Influencer</button>
+            <button onclick="showRole('developer')">Developer</button>
+            <button onclick="showRole('startup')">Startup</button>
         </div>
+        <div id="role-result" class="role-result">
+            <!-- динамически подставляется -->
+        </div>
+    </div>
+</div>
+
     </div>
 </div>
 <section class="page-wrapper">
@@ -152,6 +158,31 @@
     </div>
 </div>
 
+
+
+<script>
+function showRole(role) {
+    const result = document.getElementById('role-result');
+    let content = '';
+
+    switch(role) {
+        case 'trader':
+            content = "<strong>You're a Trader</strong><br>Use our detection system to track large market moves in real time and make faster decisions.";
+            break;
+        case 'influencer':
+            content = "<strong>You're an Influencer</strong><br>Partner with Acrovoy and offer your audience powerful trading insights, with monetization tools built-in.";
+            break;
+        case 'developer':
+            content = "<strong>You're a Developer</strong><br>Integrate Acrovoy’s detection engine into your platform using our upcoming API.";
+            break;
+        case 'startup':
+            content = "<strong>You're a Startup</strong><br>Leverage Acrovoy’s tech to enhance your product, attract investors, and stand out from the competition.";
+            break;
+    }
+
+    result.innerHTML = content;
+}
+</script>
 
 
 @endsection
