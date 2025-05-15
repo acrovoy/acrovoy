@@ -11,26 +11,26 @@
             <img src="{{ asset('img/mountain.png') }}" alt="Mountain">
         </div>
         <div class="hero-text">
-    <h2>Reaching tomorrow today</h2>
-<p><strong>Acrovoy</strong> is a visionary collective driven by precision. We build intelligent tools that decode market behavior and illuminate hidden liquidity — empowering professionals with actionable insight in real time.</p>
+    <h2>{{ __('main.description') }}</h2>
+<p><strong>Acrovoy</strong>{{ __('main.description1') }}</p>
 
     <div class="hero-box">
-        <h4>What drives us:</h4>
+        <h4>{{ __('main.description2') }}</h4>
         <ul>
-         <li><strong>Acrovoy unites experts from diverse fields — technology, finance, and design.</strong></li>
-        <li>We collaborate to create innovative tools that solve complex real-world challenges.</li>
-        <li>Our strength lies in a shared vision and a multidisciplinary approach to development.</li>
+         <li><strong>{{ __('main.description3') }}</strong></li>
+        <li>{{ __('main.description4') }}</li>
+        <li>{{ __('main.description5') }}</li>
     </ul>
     </div>
 
     <div class="hero-box">
-        <h4>Who we work with:</h4>
-        <p>Choose your role and see how Acrovoy can empower your goals:</p>
+        <h4>{{ __('main.description6') }}</h4>
+        <p>{{ __('main.description7') }}</p>
         <div class="role-selector">
-            <button onclick="showRole('trader')">Trader</button>
-            <button onclick="showRole('influencer')">Influencer</button>
-            <button onclick="showRole('developer')">Developer</button>
-            <button onclick="showRole('startup')">Startup</button>
+            <button onclick="showRole('trader')">{{ __('main.trader') }}</button>
+            <button onclick="showRole('influencer')">{{ __('main.influencer') }}</button>
+            <button onclick="showRole('developer')">{{ __('main.developer') }}</button>
+            <button onclick="showRole('startup')">{{ __('main.startup') }}</button>
         </div>
         <div id="role-result" class="role-result">
             <!-- динамически подставляется -->
@@ -44,25 +44,23 @@
 
     {{-- Products Section --}}
     <div class="products-section">
-        <h2 class="section-title">Our Products</h2>
-        <p class="section-subtitle">We are pleased to introduce our new product for efficient order book analysis.</p>
+        <h2 class="section-title">{{ __('main.description8') }}</h2>
+        <p class="section-subtitle">{{ __('main.description9') }}</p>
 
         {{-- Product 1 --}}
         <div class="product">
             <div class="product-info">
-                <h3>Order Scanner</h3>
-                <p class="version">version 2.08 <span class="badge">presale</span></p>
-                <p>Stay ahead of the market with precision and speed. 
-Instantly detect large orders and leverage proxy capabilities. A powerful tool for real-time order book analysis 
-and market scanning.</p>
+                <h3>{{ __('main.description10') }}</h3>
+                <p class="version">{{ __('main.version') }} 2.08 <span class="badge">{{ __('main.presale') }}</span></p>
+                <p>{{ __('main.description12') }}</p>
                 <ul>
-                    <li><strong>Supports Binance, Bybit and Bitget exchanges.</strong></li>
-                    <li><strong>Wide coin coverage.</strong></li>
-                    <li><strong>Flexible settings.</strong></li>
-                    <li><strong>Dual market analysis.</strong></li>
-                    <li><strong>Proxy support.</strong></li>
+                    <li><strong>{{ __('main.description13') }}</strong></li>
+                    <li><strong>{{ __('main.description14') }}</strong></li>
+                    <li><strong>{{ __('main.description15') }}</strong></li>
+                    <li><strong>{{ __('main.description16') }}</strong></li>
+                    <li><strong>{{ __('main.description17') }}</strong></li>
                 </ul>
-                <a href="{{ route('orderscanner208') }}" class="learn-more">Learn more...</a>
+                <a href="{{ route('orderscanner208') }}" class="learn-more">{{ __('main.learn_more') }}</a>
             </div>
             <div class="product-image">
                 <img style="max-width: 220px;" src="{{ asset('img/os208.png') }}" alt="Order Scanner 2.08">
@@ -75,16 +73,16 @@ and market scanning.</p>
                 <img style="max-width: 220px;" src="{{ asset('img/os101.png') }}" alt="Order Scanner 1.01">
             </div>
             <div class="product-info">
-                <h3>Order Scanner</h3>
-                <p class="version">version 1.01</p>
-                <p>This is a simple yet highly effective crypto tool for analyzing market data — track large volumes, analyze order book density, movement strategies based on the current market situation.</p>
+                <h3>{{ __('main.description10') }}</h3>
+                <p class="version">{{ __('main.version') }} 1.01</p>
+                <p>{{ __('main.description19') }}</p>
                 <ul>
-                    <li><strong>Supports Binance and Bybit exchanges.</strong></li>
-                    <li><strong>Wide coin coverage.</strong></li>
-                    <li><strong>Flexible settings.</strong></li>
-                    <li><strong>Dual market analysis.</strong></li>
+                    <li><strong>{{ __('main.description20') }}</strong></li>
+                    <li><strong>{{ __('main.description14') }}</strong></li>
+                    <li><strong>{{ __('main.description15') }}</strong></li>
+                    <li><strong>{{ __('main.description16') }}</strong></li>
                 </ul>
-                <a href="{{ route('orderscanner101') }}" class="learn-more">Learn more...</a>
+                <a href="{{ route('orderscanner101') }}" class="learn-more">{{ __('main.learn_more') }}</a>
             </div>
         </div>
     </div>
@@ -138,27 +136,27 @@ and market scanning.</p>
           
 
             <div class="hero-box">
-                <h4>Get in touch with us:</h4>
+                <h4>{{ __('main.description21') }}</h4>
                 <ul>
-                    <li>Follow us on social media for updates and insights.</li>
-                    <li>We’re open to partnerships, collaborations, and media inquiries.</li>
+                    <li>{{ __('main.description22') }}</li>
+                    <li>{{ __('main.description23') }}</li>
                 </ul>
             </div>
             <div class="hero-box">
-                <h4>Join our network:</h4>
+                <h4>{{ __('main.description24') }}</h4>
                 <ul>
-                    <li><strong>Explore career opportunities at Acrovoy.</strong></li>
-                    <li>Subscribe to our newsletter to stay informed.</li>
-                    <li>Connect with us to learn how we can support your goals.</li>
+                    <li><strong>{{ __('main.description25') }}</strong></li>
+                    <li>{{ __('main.description26') }}</li>
+                    <li>{{ __('main.description27') }}</li>
                 </ul>
             </div>
 
             <div class="hero-box">
-                <h4>Contact us:</h4>
+                <h4>{{ __('main.contact_us') }}</h4>
                 <ul>
-                    <li><strong>Email:</strong> support@acrovoy.com</li>
-                    <li><strong>Telegram:</strong> @acrovoy_tech_support</li>
-                    <li>We usually respond within 24 hours on business days.</li>
+                    <li><strong>{{ __('main.email') }}</strong> {{ __('main.description31') }}</li>
+                    <li><strong>{{ __('main.telegram') }}</strong> {{ __('main.description32') }}</li>
+                    <li>{{ __('main.description33') }}</li>
                 </ul>
             </div>
 
@@ -166,29 +164,37 @@ and market scanning.</p>
     </div>
 </div>
 
-
+<script>
+    const translations = {
+        trader: {
+            title: @json(__('main.tradera')),
+            text: @json(__('main.tradera2')),
+        },
+        influencer: {
+            title: @json(__('main.influencera')),
+            text: @json(__('main.influencera2')),
+        },
+        developer: {
+            title: @json(__('main.developera')),
+            text: @json(__('main.developera2')),
+        },
+        startup: {
+            title: @json(__('main.startupa')),
+            text: @json(__('main.startupa2')),
+        }
+    };
+</script>
 
 <script>
 function showRole(role) {
     const result = document.getElementById('role-result');
-    let content = '';
+    const data = translations[role];
 
-    switch(role) {
-        case 'trader':
-            content = "<strong>You're a Trader</strong><br>Use our detection system to track large market moves in real time and make faster decisions.";
-            break;
-        case 'influencer':
-            content = "<strong>You're an Influencer</strong><br>Partner with Acrovoy and offer your audience powerful trading insights, with monetization tools built-in.";
-            break;
-        case 'developer':
-            content = "<strong>You're a Developer</strong><br>Integrate Acrovoy’s detection engine into your platform using our upcoming API.";
-            break;
-        case 'startup':
-            content = "<strong>You're a Startup</strong><br>Leverage Acrovoy’s tech to enhance your product, attract investors, and stand out from the competition.";
-            break;
+    if (data) {
+        result.innerHTML = `<strong>${data.title}</strong><br>${data.text}`;
+    } else {
+        result.innerHTML = '';
     }
-
-    result.innerHTML = content;
 }
 </script>
 
