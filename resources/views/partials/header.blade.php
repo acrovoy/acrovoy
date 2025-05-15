@@ -15,7 +15,7 @@
 
 
         <li class="nav-item">
-          <a class="nav-link me-3" aria-disabled="true" href="{{ route('collaboration') }}">{{ __('header.for_partners') }}</a>
+          <a class="nav-link me-2" aria-disabled="true" href="{{ route('collaboration') }}">{{ __('header.for_partners') }}</a>
       </li>
 
         <li class="nav-item dropdown">
