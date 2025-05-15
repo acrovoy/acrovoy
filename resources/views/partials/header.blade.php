@@ -14,6 +14,9 @@
         </li>
 
 
+        <li class="nav-item">
+          <a class="nav-link me-3" aria-disabled="true" href="{{ route('collaboration') }}">{{ __('header.for_partners') }}</a>
+      </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,9 +37,7 @@
       </ul>
 
      
-      <div class="nav-item">
-          <a class="nav-link me-3" aria-disabled="true" href="{{ route('collaboration') }}">{{ __('header.for_partners') }}</a>
-      </div>
+      
 
       @guest
           <!-- Если пользователь НЕ авторизован, показываем иконку профиля и форму логина -->
