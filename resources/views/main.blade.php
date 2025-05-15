@@ -12,15 +12,15 @@
         </div>
         <div class="hero-text">
     <h2>Reaching tomorrow today</h2>
-    <p><strong>Acrovoy</strong> is a team overloaded with features and is fully focused on a single task — detecting large orders.</p>
+<p><strong>Acrovoy</strong> is a visionary collective driven by precision. We build intelligent tools that decode market behavior and illuminate hidden liquidity — empowering professionals with actionable insight in real time.</p>
 
     <div class="hero-box">
-        <h4>Main features of the tool:</h4>
+        <h4>What drives us:</h4>
         <ul>
-            <li><strong>Supports Binance and Bybit exchanges.</strong></li>
-            <li>Scanning works both in start-stop mode and in automatic mode.</li>
-            <li>No need to open the order book manually — Order Scanner highlights relevant orders based on your parameters.</li>
-        </ul>
+         <li><strong>Acrovoy unites experts from diverse fields — technology, finance, and design.</strong></li>
+        <li>We collaborate to create innovative tools that solve complex real-world challenges.</li>
+        <li>Our strength lies in a shared vision and a multidisciplinary approach to development.</li>
+    </ul>
     </div>
 
     <div class="hero-box">
