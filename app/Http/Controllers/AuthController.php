@@ -81,7 +81,7 @@ class AuthController extends Controller
                 'additional_futures' => 'BTC, ETH',
                 'blacklisted_spot' => 'TST, MOVE',
                 'blacklisted_futures' => 'TST, MOVE',
-                'market' => '1',
+                'market' => '2',
             ]);
          }
         // Создание токена
