@@ -93,31 +93,32 @@ class AuthController extends Controller
 
 
     public function login(Request $request)
-    {
-        $data = $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
+{
+    $data = $request->validate([
+        'email' => 'required|string|email',
+        'password' => 'required|string',
+        'product_id' => 'required|integer',
+    ]);
+
+    $user = User::where('email', $data['email'])->first();
+
+    if (!$user || !Hash::check($data['password'], $user->password)) {
+        throw ValidationException::withMessages([
+            'email' => ['The provided credentials are incorrect.'],
         ]);
-
-        $user = User::where('email', $data['email'])->first();
-
-        if (!$user || !Hash::check($data['password'], $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provider credentials are incorrect.'],
-            ]);
-
-        }
-
-
-         // Удаляем все старые токены перед созданием нового
-         $user->tokens->each(function ($token) {
-            $token->delete();
-        });
-
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        return response()->json(['token' => $token]);
     }
+
+    // Преобразуем product_id в строку токена, например: "app_1"
+    $tokenName = 'app_' . $data['product_id'];
+
+    // Удалим старый токен именно для этого приложения (если был)
+    $user->tokens()->where('name', $tokenName)->delete();
+
+    // Создаём новый токен для этого приложения
+    $token = $user->createToken($tokenName)->plainTextToken;
+
+    return response()->json(['token' => $token]);
+}
 
 
     public function logout(Request $request) 
