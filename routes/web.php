@@ -166,7 +166,8 @@ Route::post('/contact', function (Request $request) {
     $validated = $request->validate([
         'email' => 'required|email',
         'subject' => 'required|string|max:255',
-        'message' => 'required|string|max:2000',
+        'message' => 'required|string',
+        'g-recaptcha-response' => 'required|captcha',
     ]);
 
   Mail::to('support@acrovoy.com')->send(new ContactFormMail($validated));

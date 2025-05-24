@@ -1,3 +1,9 @@
+
+@php
+/** @var \Anhskohbo\NoCaptcha\NoCaptcha $NoCaptcha */
+@endphp
+
+
 @extends('layouts.app')
 
 @section('title', __('contact.title'))
@@ -42,6 +48,10 @@
             <label for="message">{{ __('contact.message') }}</label>
             <textarea name="message" id="message" rows="6" required class="form-control">{{ old('message') }}</textarea>
         </div>
+
+        {!! NoCaptcha::display() !!}
+        {!! NoCaptcha::renderJs() !!}
+
 
         <button type="submit" class="btn btn-primary">{{ __('contact.send') }}</button>
     </form>
