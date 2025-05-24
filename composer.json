@@ -7,7 +7,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "anhskohbo/no-captcha": "^3.7",
+        "anhskohbo/no-captcha": "*",
         "laravel/framework": "^11.31",
         "laravel/jetstream": "^5.3",
         "laravel/sanctum": "^4.0",
