@@ -124,6 +124,10 @@
             <textarea name="message" id="message" rows="6" required class="form-control">{{ old('message') }}</textarea>
         </div>
 
+
+        {!! NoCaptcha::display() !!}
+        {!! NoCaptcha::renderJs() !!}
+
         <button type="submit" class="btn btn-primary">{{ __('contact.send') }}</button>
     </form>
         
