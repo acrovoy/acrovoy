@@ -38,6 +38,7 @@ return [
     'cryptocloud' => [
         'api_key' => env('CRYPTOCLOUD_API_KEY'),
         'shop_id' => env('CRYPTOCLOUD_SHOP_ID'),
+        'verify' => storage_path('cacert.pem'),
     ],
 
 ];
