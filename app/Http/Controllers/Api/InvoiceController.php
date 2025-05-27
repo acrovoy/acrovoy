@@ -70,6 +70,7 @@ class InvoiceController extends Controller
     {
         // Проверка, был ли передан email
         $email = $request->email;
+        $product_id = $request->product_id;
 
         // Поиск пользователя по email
         $user = User::where('email', $email)->first();
@@ -83,7 +84,9 @@ class InvoiceController extends Controller
         }
 
         // Поиск инвойса пользователя
-        $invoiceRecord = Invoices::where('user_id', $user->id)->first();
+        $invoiceRecord = Invoices::where('user_id', $user->id)
+        ->where('product_id', $product_id)
+        ->first();
 
         // Если инвойс не найден
         if (!$invoiceRecord) {

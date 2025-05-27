@@ -87,6 +87,7 @@ class SaleController extends Controller
                             ->keyBy('product_id');
 
         // Добавим инвойс к каждой продаже вручную
+        
         foreach ($sales as $sale) {
             $sale->invoiceDetails = $invoices->get($sale->product_id);
 
