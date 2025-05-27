@@ -15,14 +15,14 @@ class CoinController extends Controller
     public function getAllSpotCoins()
     {
 
-        $user = Auth::user();
+        // $user = Auth::user();
 
-        if (!$user) {
-            return response()->json([
-                'error' => 'Unauthorized',
-                'user' => null
-            ], 401);
-        }
+        // if (!$user) {
+        //     return response()->json([
+        //         'error' => 'Unauthorized',
+        //         'user' => null
+        //     ], 401);
+        // }
 
         $coins = Coins::where('check_volume', 1)
         ->get();
