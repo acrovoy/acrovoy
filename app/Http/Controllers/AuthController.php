@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\OctoSetting;
 use App\Models\Manager;
 use App\Models\ManagerProduct;
 use App\Models\Sale;
@@ -68,7 +69,7 @@ class AuthController extends Controller
         ]);
        
        
-        if($request['product_id'] == 1){
+       if ($request['product_id'] == 1) {
             Setting::create([
                 'user_id' => $user->id,
                 'display_length' => 'S',
@@ -83,7 +84,14 @@ class AuthController extends Controller
                 'blacklisted_futures' => 'TST, MOVE',
                 'market' => '2',
             ]);
-         }
+        } elseif ($request['product_id'] == 2) {
+            OctoSetting::create([
+                'user_id' => $user->id,
+                'theme' => 2,
+                'signal' => 1,
+                'gmt_id' => 2,
+            ]);
+        } 
         // Создание токена
         $token = $user->createToken('auth_token')->plainTextToken;
           

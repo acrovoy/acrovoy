@@ -16,16 +16,24 @@ class InvoiceController extends Controller
 {
     // Поиск пользователя по email
     $user = User::where('email', $request->email)->first();
+    $sale = Sale::where('id', $request->sale)->first();
 
     // Проверка, есть ли инвойс для данного пользователя
-    $existingInvoice = Invoices::where('user_id', $user->id)->first();
+    $existingInvoice = Invoices::where('user_id', $user->id)
+    ->where('product_id', $sale->product_id)
+    ->first();
 
     if ($existingInvoice) {
-        // Если инвойс существует, удаляем старый инвойс
-        $existingInvoice->delete();
+        // Если инвойс существует
+        return response()->json([
+        'status' => 'success',
+        'message' => 'Invoice already exists',
+        
+    ]);
+        
     }
 
-    $sale = Sale::where('id', $request->sale)->first();
+    
     
 
 
@@ -142,14 +150,16 @@ class InvoiceController extends Controller
                 $shop_id = config('services.cryptocloud.shop_id');
                 $currency = 'USD';
 
-                Log::info('http data', ['apiKey' => $apiKey,'shop_id'=> $shop_id,'currency'=> $currency]);
+                Log::info('http data', ['apiKey' => $apiKey,'shop_id'=> $shop_id,'currency'=> $currency, 'invoice' => $invoiceRecord->invoice]);
 
-                $response = Http::withHeaders([
-                        'Authorization' => 'Token ' . $apiKey,
-                        'Content-Type' => 'application/json',
-                    ])->post('https://api.cryptocloud.plus/v2/invoice/merchant/info', [
-                        'uuids' => [$invoiceRecord->invoice],
-                    ]);
+                $response = Http::withOptions([
+                    'verify' => config('services.cryptocloud.verify')
+                ])->withHeaders([
+                    'Authorization' => 'Token ' . $apiKey,
+                    'Content-Type' => 'application/json',
+                ])->post('https://api.cryptocloud.plus/v2/invoice/merchant/info', [
+                    'uuids' => [$invoiceRecord->invoice],
+                ]);
 
 
                      Log::info('REQUEST SENT:', [
@@ -186,7 +196,9 @@ class InvoiceController extends Controller
                     // Создаём новый инвойс
 
                      
-                    $newinvoiceresponse = Http::withHeaders([
+                    $newinvoiceresponse = Http::withOptions([
+                    'verify' => config('services.cryptocloud.verify')
+                ])->withHeaders([
                         'Authorization' => 'Token ' . $apiKey,
                         'Content-Type' => 'application/json',
                     ])->post('https://api.cryptocloud.plus/v2/invoice/create', [
@@ -376,6 +388,51 @@ public function checkPm(Request $request)
             ],
         ], 200);
     }
+
+
+
+    public function checkUserStatus(Request $request)
+{
+    $email = $request->email;
+    $product_id = $request->product_id;
+
+    // Найти пользователя по email
+    $user = User::where('email', $email)->first();
+
+    // Если пользователь не найден
+    if (!$user) {
+        return response()->json([
+            'status' => 'success',
+            'message' => 'not_registered'
+        ], 200);
+    }
+
+    // Поиск инвойса
+    $invoice = Invoices::where('user_id', $user->id)
+        ->where('product_id', $product_id)
+        ->first();
+
+    // Если инвойс не найден
+    if (!$invoice) {
+        return response()->json([
+            'status' => 'success',
+            'message' => 'not_registered'
+        ], 200);
+    }
+
+    // Проверка оплаты
+    if ($invoice->is_paid == 1) {
+        return response()->json([
+            'status' => 'success',
+            'message' => 'paid'
+        ], 200);
+    } else {
+        return response()->json([
+            'status' => 'success',
+            'message' => 'unpaid'
+        ], 200);
+    }
+}
 
 
 }

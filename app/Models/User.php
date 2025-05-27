@@ -70,4 +70,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Manager::class);
     }
+
+    public function settings()
+    {
+        return $this->hasOne(OctoSetting::class);
+    }
 }
