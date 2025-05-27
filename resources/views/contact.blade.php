@@ -2,7 +2,7 @@
 @php
 /** @var \Anhskohbo\NoCaptcha\NoCaptcha $NoCaptcha */
 @endphp
-
+@use('Anhskohbo\NoCaptcha\Facades\NoCaptcha', 'NoCaptcha')
 
 @extends('layouts.app')
 

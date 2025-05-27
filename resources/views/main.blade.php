@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Main')
-
+@use('Anhskohbo\NoCaptcha\Facades\NoCaptcha', 'NoCaptcha')
 @section('content')
 
 {{-- Hero Section --}}

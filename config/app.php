@@ -127,8 +127,9 @@ return [
     //     Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
     // ],
 
-    'aliases' => [
-        'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
-    ],
+    // 'aliases' => [
+    //     'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
+
+    // ],
 
 ];

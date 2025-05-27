@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
+
 // Главная страница
 Route::get('/', function () {
     $product = Products::where('id', 1)->latest()->first(); 
