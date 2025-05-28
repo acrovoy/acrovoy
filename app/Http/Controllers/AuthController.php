@@ -93,7 +93,8 @@ class AuthController extends Controller
             ]);
         } 
         // Создание токена
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $tokenName = 'app_' . $request['product_id'];
+        $token = $user->createToken($tokenName)->plainTextToken;
           
         // Возвращение токена
         return response()->json(['token' => $token, 'sale' => $sale->id, 'price' => $selling_price], 200);
