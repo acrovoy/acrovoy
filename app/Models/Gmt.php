@@ -10,6 +10,10 @@ class Gmt extends Model
 
     public $timestamps = false;
 
+    protected $casts = [
+    'offset' => 'integer',
+    ];
+
     protected $fillable = [
         'label',
         'offset',
