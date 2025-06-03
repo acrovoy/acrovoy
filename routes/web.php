@@ -138,6 +138,17 @@ Route::get('/orderscanner208', function () {
     return view('orderscanner208', compact('product', 'downloaded'));
 })->name('orderscanner208');
 
+
+Route::get('/octopoy528', function () {
+    $product = Products::where('id', 3)->latest()->first(); 
+    $data = Download::where('product_id', 2)->count();
+    $downloaded = $data;
+    
+    return view('octopoy528', compact('product', 'downloaded'));
+})->name('octopoy528');
+
+
+
 Route::get('/development', function () {
     return view('development');
 })->name('development');

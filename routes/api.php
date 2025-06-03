@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\PromocodeController;
 use App\Http\Controllers\Api\OctoEventController;
 use App\Http\Controllers\PaymentCallbackController;
 use App\Http\Controllers\Api\KeyController;
+use App\Http\Controllers\Api\AdminnController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -65,3 +66,18 @@ Route::post('/octo-events/store-user', [OctoEventController::class, 'storeUserEv
 Route::post('/user_data/check-user-staus', [InvoiceController::class, 'checkUserStatus']);
 Route::get('/settings/gmt/email', [OctoSettingController::class, 'getGmtByEmail']);
 Route::get('/keys', [KeyController::class, 'index']);
+
+
+#Adminn api
+
+Route::post('/adevent/add-event', [AdminnController::class, 'addEvent']);
+Route::post('/adevent/delete-all-events', [AdminnController::class, 'deleteEvents']);
+Route::post('/adevent/delete-part-event', [AdminnController::class, 'deletePartEvent']);
+Route::get('/adevent/users', [AdminnController::class, 'getOctopoyUsers']);
+Route::post('/adevent/add-personel-msgevent', [AdminnController::class, 'addPersonelEvent']);
+
+Route::get('/adevent/get-events', [AdminnController::class, 'getEvents']);
+Route::post('/adevent/delete-one-event', [AdminnController::class, 'deleteOneEvent']);
+Route::post('/adevent/total-params', [AdminnController::class, 'getTotalParams']);
+Route::get('/adevent/get-users-online', [AdminnController::class, 'getUsersOnline']);
+Route::get('/adevent/get-all-users', [AdminnController::class, 'getUsers']);
