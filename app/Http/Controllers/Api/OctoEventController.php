@@ -28,9 +28,9 @@ class OctoEventController extends Controller
     Log::info('Пользователь найден', ['user_id' => $user->id]);
 
     try {
-        $offset = OctoSetting::join('gmt', 'octo_settings.gmt_id', '=', 'gmt.id')
+        $offset = (int) (OctoSetting::join('gmt', 'octo_settings.gmt_id', '=', 'gmt.id')
             ->where('octo_settings.user_id', $user->id)
-            ->value('gmt.offset') ?? 0;
+            ->value('gmt.offset') ?? 0);
 
         Log::info('Смещение по времени (GMT offset) получено', ['offset' => $offset]);
 
