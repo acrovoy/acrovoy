@@ -61,8 +61,9 @@ Route::get('/gmts', [GmtController::class, 'index']);
 Route::post('/octo-settings/update-gmt', [OctoSettingController::class, 'updateGmt']);
 Route::post('/octo-settings/update-theme', [OctoSettingController::class, 'updateTheme']);
 Route::post('/octo-settings/update-signal', [OctoSettingController::class, 'updateSignal']);
-Route::get('/octo-events', [OctoEventController::class, 'getEvents']);
 Route::post('/octo-events/store-user', [OctoEventController::class, 'storeUserEvent']);
+Route::get('/octo-events', [OctoEventController::class, 'getEvents']);
+
 Route::post('/user_data/check-user-staus', [InvoiceController::class, 'checkUserStatus']);
 Route::get('/settings/gmt/email', [OctoSettingController::class, 'getGmtByEmail']);
 Route::get('/keys', [KeyController::class, 'index']);
