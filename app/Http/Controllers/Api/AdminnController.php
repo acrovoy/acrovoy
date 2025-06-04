@@ -14,6 +14,7 @@ use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
 use App\Models\OctoSetting;
+use Illuminate\Support\Facades\Log;
 
 class AdminnController extends Controller
 {
@@ -293,16 +294,25 @@ public function addPersonelEvent(Request $request)
 {
     // Проверка токена безопасности
     if ($request->input('token') !== 'diogen') {
+        Log::warning('Неверный токен', ['token' => $request->input('token')]);
         return response()->json(['error' => 'Unauthorized'], 403);
     }
 
+    // Лог входящих данных
+    Log::info('Получен запрос на создание персонального события', $request->all());
+
     // Валидация входных данных
-    $validated = $request->validate([
-        'user_id' => 'required|integer|exists:users,id',
-        'message' => 'required|string|max:255',
-        'date' => 'required|date_format:Y-m-d',
-        'time' => 'required|date_format:H:i',
-    ]);
+    try {
+        $validated = $request->validate([
+            'user_id' => 'required|integer|exists:users,id',
+            'message' => 'required|string|max:255',
+            'date' => 'required|date_format:Y-m-d',
+            'time' => 'required|date_format:H:i',
+        ]);
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        Log::error('Ошибка валидации', ['errors' => $e->errors()]);
+        return response()->json(['error' => 'Ошибка валидации', 'details' => $e->errors()], 422);
+    }
 
     try {
         // Устанавливаем смещение вручную (в часах)
@@ -322,14 +332,22 @@ public function addPersonelEvent(Request $request)
         $event->flag = 4;
         $event->save();
 
+        Log::info('Событие успешно создано', [
+            'user_id' => $validated['user_id'],
+            'message' => $validated['message'],
+            'datetime' => $datetime->toDateTimeString()
+        ]);
+
         return response()->json([
             'success' => true,
             'message' => 'Сообщение успешно отправлено!'
         ]);
     } catch (\Exception $e) {
+        Log::error('Ошибка при создании события', ['exception' => $e->getMessage()]);
         return response()->json(['error' => 'Ошибка при создании события: ' . $e->getMessage()], 500);
     }
 }
+
 
 
 
