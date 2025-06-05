@@ -85,6 +85,28 @@
                 <a href="{{ route('orderscanner101') }}" class="learn-more">{{ __('main.learn_more') }}</a>
             </div>
         </div>
+
+        {{-- Product 3 --}}
+        <div class="product">
+            <div class="product-info">
+                <h3>Octopoy</h3>
+                <p class="version">{{ __('main.version') }} 5.28 <span class="badge">{{ __('main.presale') }}</span></p>
+                <p>{{ __('main.description12') }}</p>
+                <ul>
+                    <li><strong>{{ __('main.description13') }}</strong></li>
+                    <li><strong>{{ __('main.description14') }}</strong></li>
+                    <li><strong>{{ __('main.description15') }}</strong></li>
+                    <li><strong>{{ __('main.description16') }}</strong></li>
+                    <li><strong>{{ __('main.description17') }}</strong></li>
+                </ul>
+                <a href="{{ route('octopoy528') }}" class="learn-more">{{ __('main.learn_more') }}</a>
+            </div>
+            <div class="product-image">
+                <img style="max-width: 220px;" src="{{ asset('img/o528.png') }}" alt="Octopoy 2.58">
+            </div>
+        </div>
+
+
     </div>
 </section>
 
@@ -187,19 +209,21 @@
             text: @json(__('main.startupa2')),
         }
     };
-</script>
 
-<script>
-function showRole(role) {
-    const result = document.getElementById('role-result');
-    const data = translations[role];
+    function showRole(role) {
+        const result = document.getElementById('role-result');
+        const data = translations[role];
 
-    if (data) {
-        result.innerHTML = `<strong>${data.title}</strong><br>${data.text}`;
-    } else {
-        result.innerHTML = '';
+        if (data) {
+            result.innerHTML = `<strong>${data.title}</strong><br>${data.text}`;
+        } else {
+            result.innerHTML = '';
+        }
     }
-}
+
+    document.addEventListener('DOMContentLoaded', function () {
+        showRole('influencer');
+    });
 </script>
 
 

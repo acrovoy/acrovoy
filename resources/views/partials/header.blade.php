@@ -23,9 +23,16 @@
             {{ __('header.products') }}
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('orderscanner208') }}">Order Scanner 2.08</a></li>
-            <li><a class="dropdown-item" href="{{ route('orderscanner101') }}">Order Scanner 1.01</a></li>
-            
+           
+          
+          @foreach($header_products as $product)
+              <li>
+                  <a class="dropdown-item" href="{{ $product->url }}" target="_blank">
+                      {{ $product->name }} {{ $product->version }}
+                  </a>
+              </li>
+          @endforeach
+
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item disabled" href="#">Octopoy 5.28</a></li>
           </ul>

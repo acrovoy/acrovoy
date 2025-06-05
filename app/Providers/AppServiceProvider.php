@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
+use App\Models\Products;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,7 +23,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // $locale = Session::get('locale', config('app.locale'));
-        // App::setLocale($locale);
+        View::composer('header', function ($view) {
+        $products = Products::where('is_active', 1)
+            ->select('name', 'version', 'url')
+            ->orderBy('name')
+            ->get();
+
+        $view->with('header_products', $products);
+    });
     }
 }
