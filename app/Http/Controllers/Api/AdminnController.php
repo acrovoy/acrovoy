@@ -382,80 +382,84 @@ public function addPersonelEvent(Request $request)
 
 public function getTotalParams(Request $request)
 {
-    // Проверка токена безопасности
     if ($request->input('token') !== 'diogen') {
         return response()->json(['error' => 'Unauthorized'], 403);
     }
 
-    // Общие суммы
-    $tot_income = Sale::sum('price');
-    $man_income = Sale::sum(DB::raw('price - own_price'));
-    $own_income = Sale::sum('own_price');
+    $sales = Sale::with(['invoice'])->get();
 
-    // Сумма price по каждому продукту
-    $tot_income_apps = Sale::select('product_id', DB::raw('SUM(price) as total'))
-        ->groupBy('product_id')
-        ->get();
+    $tot_income = 0;
+    $man_income = 0;
+    $own_income = 0;
+    $tot_is_paid = 0;
 
-    // Сумма own_price по каждому продукту
-    $own_income_apps = Sale::select('product_id', DB::raw('SUM(own_price) as total'))
-        ->groupBy('product_id')
-        ->get();
+    $products = Products::select('id', 'name', 'version')->get();
+    $qty_of_products = $products->count();
 
-    // Кол-во оплат по каждому продукту
-    $is_paid_apps = Sale::select('product_id', DB::raw('COUNT(DISTINCT buyer_id) as total'))
-        ->whereHas('invoice', function($q) {
-            $q->where('is_paid', 1);
-        })
-        ->groupBy('product_id')
-        ->get();
-
-    // Общее кол-во оплат
-    $tot_is_paid = Sale::whereHas('invoice', function($q) {
-        $q->where('is_paid', 1);
-    })->distinct('buyer_id')->count('buyer_id');
-
-    // Продукты
-    $product_list = Products::select('id', 'name', 'version')->get();
-    $qty_of_products = Products::count();
-
-    // Пользователи
     $tot_users = User::where('id', '!=', 1)->count();
-
-    // Онлайн (все уникальные пользователи)
     $tot_online = PersonalAccessToken::distinct('tokenable_id')->count('tokenable_id');
+
+    $incomePerProduct = [];
+    $ownIncomePerProduct = [];
+    $isPaidPerProduct = [];
+
+    foreach ($sales as $sale) {
+        $productId = $sale->product_id;
+        $price = $sale->price ?? 0;
+        $ownPrice = $sale->own_price ?? 0;
+        $commission = $price == 0 ? 0 : 1.4;
+        $paymentFee = round($price * 0.019, 2);
+        $managerEarn = round($price - $ownPrice, 2);
+        $profit = round($price - $ownPrice - $commission - $paymentFee, 2);
+
+        // Суммируем общие значения
+        $tot_income += $price;
+        $own_income += $ownPrice;
+        $man_income += $managerEarn;
+
+        // Сумма price по продуктам
+        $incomePerProduct[$productId] = ($incomePerProduct[$productId] ?? 0) + $price;
+
+        // Сумма own_price по продуктам
+        $ownIncomePerProduct[$productId] = ($ownIncomePerProduct[$productId] ?? 0) + $ownPrice;
+
+        // Оплаты
+        if ($sale->invoice && $sale->invoice->is_paid) {
+            $tot_is_paid++;
+            $isPaidPerProduct[$productId] = ($isPaidPerProduct[$productId] ?? 0) + 1;
+        }
+    }
 
     // Онлайн по каждому приложению (где name = product_id)
     $online_apps = PersonalAccessToken::select('name', DB::raw('COUNT(DISTINCT tokenable_id) as total'))
         ->groupBy('name')
         ->get();
 
-    // Сбор результата
+    // Финальный результат
     $result = [
-        'tot_income' => $tot_income,
-        'man_income' => $man_income,
-        'own_income' => $own_income,
+        'tot_income' => round($tot_income, 2),
+        'man_income' => round($man_income, 2),
+        'own_income' => round($own_income, 2),
         'tot_is_paid' => $tot_is_paid,
-        'product_list' => $product_list,
+        'product_list' => $products,
         'qty_of_products' => $qty_of_products,
         'tot_users' => $tot_users,
         'tot_online' => $tot_online,
     ];
 
-    // По продуктам: доходы и оплаты
-    foreach ($tot_income_apps as $row) {
-        $result['tot_income_app_' . $row->product_id] = $row->total;
+    // Доходы по продуктам
+    foreach ($incomePerProduct as $productId => $value) {
+        $result['tot_income_app_' . $productId] = round($value, 2);
     }
 
-    foreach ($own_income_apps as $row) {
-        $result['own_income_app_' . $row->product_id] = $row->total;
+    foreach ($ownIncomePerProduct as $productId => $value) {
+        $result['own_income_app_' . $productId] = round($value, 2);
     }
 
-    foreach ($is_paid_apps as $row) {
-        $result['is_paid_app_' . $row->product_id] = $row->total;
+    foreach ($isPaidPerProduct as $productId => $value) {
+        $result['is_paid_app_' . $productId] = $value;
     }
 
-    // Онлайн по продуктам (name = product_id)
     foreach ($online_apps as $row) {
         $result['online_app_' . $row->name] = $row->total;
     }
