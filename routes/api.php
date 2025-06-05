@@ -81,5 +81,6 @@ Route::post('/adevent/add-personel-msgevent', [AdminnController::class, 'addPers
 Route::get('/adevent/get-events', [AdminnController::class, 'getEvents']);
 Route::post('/adevent/delete-one-event', [AdminnController::class, 'deleteOneEvent']);
 Route::post('/adevent/total-params', [AdminnController::class, 'getTotalParams']);
+Route::post('/adevent/get-sale-list', [AdminnController::class, 'getSalesList']);
 Route::get('/adevent/get-users-online', [AdminnController::class, 'getUsersOnline']);
 Route::get('/adevent/get-all-users', [AdminnController::class, 'getUsers']);
