@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('header', function ($view) {
+        View::composer('partials.header', function ($view) {
         $products = Products::where('is_active', 1)
             ->select('name', 'version', 'url')
             ->orderBy('name')
