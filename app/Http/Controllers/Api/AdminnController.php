@@ -414,7 +414,7 @@ public function getTotalParams(Request $request)
 
         // Суммируем общие значения
         $tot_income += $price;
-        $own_income += $ownPrice;
+        $own_income += $profit;
         $man_income += $managerEarn;
 
         // Сумма price по продуктам
