@@ -313,10 +313,12 @@ public function addPersonelEvent(Request $request)
     // Лог входящих данных
     Log::info('Получен запрос на создание персонального события', $request->all());
 
+    $isForAll = $request->input('user_id') === 'all';
+
     // Валидация входных данных
     try {
         $validated = $request->validate([
-            'user_id' => 'required|integer|exists:users,id',
+            'user_id' => $isForAll ? 'required|string|in:all' : 'required|integer|exists:users,id',
             'message' => 'required|string|max:255',
             'date' => 'required|date_format:Y-m-d',
             'time' => 'required|date_format:H:i',
@@ -338,16 +340,23 @@ public function addPersonelEvent(Request $request)
         // Преобразуем в UTC: вычитаем offset
         $datetime->subHours($offset);
 
+        $users = $isForAll
+            ? \App\Models\User::pluck('id')
+            : [$validated['user_id']];
+
         // Сохраняем событие в UTC
-        $event = new Octoevent();
-        $event->user_id = $validated['user_id'];
-        $event->title = $validated['message'];
-        $event->datetime = $datetime;
-        $event->flag = $validated['flag'];  
-        $event->link = $validated['link'] ?? null;
-        $event->save();
+        foreach ($users as $userId) {
+            $event = new Octoevent();
+            $event->user_id = $userId;
+            $event->title = $validated['message'];
+            $event->datetime = $datetime;
+            $event->flag = $validated['flag'];
+            $event->link = $validated['link'] ?? null;
+            $event->save();
+        }
 
         Log::info('Событие успешно создано', [
+            'target' => $isForAll ? 'all users' : $validated['user_id'],
             'user_id' => $validated['user_id'],
             'message' => $validated['message'],
             'datetime' => $datetime->toDateTimeString(),
@@ -357,7 +366,9 @@ public function addPersonelEvent(Request $request)
 
         return response()->json([
             'success' => true,
-            'message' => 'Сообщение успешно отправлено!'
+            'message' => $isForAll
+                ? 'Сообщение отправлено всем пользователям!'
+                : 'Сообщение успешно отправлено!'
         ]);
     } catch (\Exception $e) {
         Log::error('Ошибка при создании события', ['exception' => $e->getMessage()]);
