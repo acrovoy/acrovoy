@@ -613,7 +613,8 @@ public function getUsers(Request $request)
             'commission' => 0,
             'payment_fee' => 0,
             'profit' => round($ownPrice, 2),
-            'is_buyer_manager' => isset($sale->buyer, $sale->manager->user) && $sale->buyer->id === $sale->manager->user->id,
+            'is_buyer_manager' => isset($sale->buyer, $sale->manager->user)
+                && $sale->buyer->email === $sale->manager->user->email,
         ];
 
         // ⬇️ Логируем каждую строку
