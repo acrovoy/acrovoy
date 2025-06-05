@@ -585,4 +585,45 @@ public function getUsers(Request $request)
 }
 
 
+
+    public function getSalesList(Request $request)
+{
+    if ($request->input('token') !== 'diogen') {
+        return response()->json(['error' => 'Unauthorized'], 403);
+    }
+
+    $sales = Sale::with(['buyer', 'product', 'invoice', 'manager.user'])
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    $data = [];
+
+    foreach ($sales as $sale) {
+        $price = $sale->price ?? 0;
+        $ownPrice = $sale->own_price ?? 0;
+
+        $saleData = [
+            'date' => $sale->created_at->format('d.m.Y'),
+            'email' => $sale->buyer->email ?? '—',
+            'product' => $sale->product->name . ' ' . $sale->product->version,
+            'manager' => $sale->manager->user->name ?? '—',
+            'price' => round($price, 2),
+            'manager_earn' => round($price - $ownPrice, 2),
+            'commission' => 0,
+            'payment_fee' => 0,
+            'profit' => round($ownPrice, 2),
+        ];
+
+        // ⬇️ Логируем каждую строку
+        Log::channel('sales')->info('Sale Record:', $saleData);
+
+        $data[] = $saleData;
+    }
+
+    return response()->json(['data' => $data]);
+}
+
+
+
+
 }

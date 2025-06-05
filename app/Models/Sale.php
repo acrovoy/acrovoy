@@ -30,10 +30,10 @@ class Sale extends Model
         return $this->belongsTo(User::class, 'buyer_id');
     }
 
-    public function manager(): BelongsTo
-    {
-        return $this->belongsTo(Manager::class)->with('user');
-    }
+    public function manager()
+{
+    return $this->belongsTo(Manager::class, 'manager_id');
+}
 
     public function invoice(): BelongsTo
     {
@@ -45,4 +45,17 @@ class Sale extends Model
     return $this->hasOne(Invoices::class, 'product_id', 'product_id')
                 ->whereColumn('user_id', 'buyer_id');
 }
+
+
+
+public function user()
+{
+    return $this->belongsTo(User::class, 'user_id');
 }
+
+
+
+
+}
+
+
