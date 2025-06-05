@@ -606,13 +606,13 @@ public function getUsers(Request $request)
 
         $isBuyerManager = Manager::where('user_id', $sale->buyer_id)->exists();
 
-        Log::info('manager', [
+        // Log::info('manager', [
             
-            'buyer' => $sale->buyer,
-            'sale->manager->user_id' => $sale->manager->user_id,
+        //     'buyer' => $sale->buyer,
+        //     'sale->manager->user_id' => $sale->manager->user_id,
             
             
-        ]);
+        // ]);
 
         $saleData = [
             'date' => $sale->created_at->format('d.m.Y'),
