@@ -33,8 +33,8 @@
               </li>
           @endforeach
 
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item disabled" href="#">Octopoy 5.28</a></li>
+            <!-- <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item disabled" href="#">Octopoy 5.28</a></li> -->
           </ul>
         </li>
         
