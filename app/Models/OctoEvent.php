@@ -21,6 +21,7 @@ class OctoEvent extends Model
         'flag',
         'created_at',
         'updated_at',
+        'link',
     ];
 
     public function user()

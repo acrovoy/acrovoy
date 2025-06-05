@@ -50,6 +50,7 @@ class OctoEventController extends Controller
                 'time' => $userTime->format('H:i'),
                 'title' => $event->title,
                 'flag' => $event->flag,
+                'link' => $event->link ?? null
             ];
         });
 
