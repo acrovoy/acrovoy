@@ -320,6 +320,8 @@ public function addPersonelEvent(Request $request)
             'message' => 'required|string|max:255',
             'date' => 'required|date_format:Y-m-d',
             'time' => 'required|date_format:H:i',
+            'link' => 'nullable|string|max:500',
+            'flag' => 'nullable|integer|in:4,5',
         ]);
     } catch (\Illuminate\Validation\ValidationException $e) {
         Log::error('Ошибка валидации', ['errors' => $e->errors()]);
@@ -341,13 +343,16 @@ public function addPersonelEvent(Request $request)
         $event->user_id = $validated['user_id'];
         $event->title = $validated['message'];
         $event->datetime = $datetime;
-        $event->flag = 4;
+        $event->flag = $validated['flag'];  
+        $event->link = $validated['link'] ?? null;
         $event->save();
 
         Log::info('Событие успешно создано', [
             'user_id' => $validated['user_id'],
             'message' => $validated['message'],
-            'datetime' => $datetime->toDateTimeString()
+            'datetime' => $datetime->toDateTimeString(),
+            'flag' => $event->flag,
+            'link' => $event->link,
         ]);
 
         return response()->json([
