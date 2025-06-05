@@ -410,7 +410,7 @@ public function getTotalParams(Request $request)
         $commission = $price == 0 ? 0 : 1.4;
         $paymentFee = round($price * 0.019, 2);
         $managerEarn = round($price - $ownPrice, 2);
-        $profit = round($price - $ownPrice - $commission - $paymentFee, 2);
+        $profit = round($price - $managerEarn - $commission - $paymentFee, 2);
 
         // Суммируем общие значения
         $tot_income += $price;
@@ -610,7 +610,7 @@ public function getUsers(Request $request)
 
         $commission = $price == 0 ? 0 : 1.4;
         $paymentFee = round($price * 0.019, 2);
-        $profit = round($price - $ownPrice - $commission - $paymentFee, 2);
+        $profit = round($price - $managerEarn - $commission - $paymentFee, 2);
 
         $isBuyerManager = Manager::where('user_id', $sale->buyer_id)->exists();
 
