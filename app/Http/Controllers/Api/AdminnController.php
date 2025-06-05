@@ -602,25 +602,19 @@ public function getUsers(Request $request)
         $price = $sale->price ?? 0;
         $ownPrice = $sale->own_price ?? 0;
 
-        // Вычисление заработка менеджера
-        $managerEarn = round($price - $ownPrice, 2);
-        if ($sale->manager_id == 1) {
-            $managerEarn = 0;
-        }
-
         $saleData = [
             'date' => $sale->created_at->format('d.m.Y'),
             'email' => $sale->buyer->email ?? '—',
             'product' => $sale->product->name . ' ' . $sale->product->version,
             'manager' => $sale->manager->user->name ?? '—',
             'price' => round($price, 2),
-            'manager_earn' => $managerEarn,
+            'manager_earn' => round($price - $ownPrice, 2),
             'commission' => 0,
             'payment_fee' => 0,
             'profit' => round($ownPrice, 2),
-            'is_buyer_manager' => isset($sale->buyer, $sale->manager->user) && $sale->buyer->id === $sale->manager->user->id,
         ];
 
+        // ⬇️ Логируем каждую строку
         Log::channel('sales')->info('Sale Record:', $saleData);
 
         $data[] = $saleData;
