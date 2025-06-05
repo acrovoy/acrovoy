@@ -263,7 +263,7 @@ public function deletePartEvent(Request $request)
 
     // Фильтруем важные события (флаг 1 или 2)
     $importantEvents = $events->filter(function ($event) {
-        return in_array($event->flag, [1, 2]);
+        return in_array($event->flag, [1, 2, 3, 5]);
     });
 
         Log::info('Важных к удалению: ' . $importantEvents->count());
