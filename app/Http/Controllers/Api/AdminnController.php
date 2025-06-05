@@ -230,6 +230,13 @@ public function deleteEvents(Request $request)
 
 public function deletePartEvent(Request $request)
 {
+    $token = $request->input('token');
+
+    // Проверка токена
+    if ($token !== 'diogen') {
+        return Response::json(['error' => 'Unauthorized'], 403);
+    }
+
     // Проверка токена
     if ($request->input('token') !== 'diogen') {
         return response()->json(['error' => 'Unauthorized'], 403);
