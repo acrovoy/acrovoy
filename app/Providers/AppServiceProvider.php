@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('partials.header', function ($view) {
         $products = Products::where('is_active', 1)
             ->select('name', 'version', 'url')
-            ->orderBy('name')
+            ->orderBy('id')
             ->get();
 
         $view->with('header_products', $products);
