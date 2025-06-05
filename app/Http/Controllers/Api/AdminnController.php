@@ -253,15 +253,20 @@ public function deletePartEvent(Request $request)
         return response()->json(['error' => 'Неверный формат времени'], 400);
     }
 
+        Log::info('Удаление событий до: ' . $targetTime);
     // Получаем все события до указанного времени
     $events = Octoevent::where('datetime', '<=', $targetTime)
         ->orderBy('datetime', 'desc')
         ->get();
 
+    Log::info('Найдено событий: ' . $events->count());
+
     // Фильтруем важные события (флаг 1 или 2)
     $importantEvents = $events->filter(function ($event) {
         return in_array($event->flag, [1, 2]);
     });
+
+        Log::info('Важных к удалению: ' . $importantEvents->count());
 
     if ($importantEvents->count() >= 8) {
         // Оставляем 8 последних важных событий, остальные — на удаление
