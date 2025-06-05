@@ -601,6 +601,7 @@ public function getUsers(Request $request)
     foreach ($sales as $sale) {
         $price = $sale->price ?? 0;
         $ownPrice = $sale->own_price ?? 0;
+        $managerEarn = round($price - $ownPrice, 2);
 
         $saleData = [
             'date' => $sale->created_at->format('d.m.Y'),
@@ -608,10 +609,11 @@ public function getUsers(Request $request)
             'product' => $sale->product->name . ' ' . $sale->product->version,
             'manager' => $sale->manager->user->name ?? '—',
             'price' => round($price, 2),
-            'manager_earn' => round($price - $ownPrice, 2),
+            'manager_earn' => $managerEarn,
             'commission' => 0,
             'payment_fee' => 0,
             'profit' => round($ownPrice, 2),
+            'is_buyer_manager' => isset($sale->buyer, $sale->manager->user) && $sale->buyer->id === $sale->manager->user->id,
         ];
 
         // ⬇️ Логируем каждую строку
