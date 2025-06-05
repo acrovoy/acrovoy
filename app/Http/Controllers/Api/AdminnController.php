@@ -605,15 +605,15 @@ public function getUsers(Request $request)
 
         $sales = Sale::with(['manager.user', 'buyer', 'product'])->get();
 
-        $isBuyerManager = $sale->manager && $sale->buyer && $sale->buyer_id === $sale->manager->user_id;
+        $isBuyerManager = $sale->manager && $sale->buyer && $sale->buyer_id == $sale->manager->user_id;
 
-        Log::info('manager', [
-            'manager' => $sale->manager,
-            'buyer' => $sale->buyer,
-            'sale->manager->user_id' => $sale->manager->user_id,
-            'buyer_id' => $sale->buyer_id,
+        // Log::info('manager', [
+        //     'manager' => $sale->manager,
+        //     'buyer' => $sale->buyer,
+        //     'sale->manager->user_id' => $sale->manager->user_id,
+        //     'buyer_id' => $sale->buyer_id,
             
-        ]);
+        // ]);
 
         $saleData = [
             'date' => $sale->created_at->format('d.m.Y'),
