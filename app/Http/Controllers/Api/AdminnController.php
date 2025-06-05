@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
 use App\Models\OctoSetting;
 use Illuminate\Support\Facades\Log;
+use App\Models\Manager;
 
 class AdminnController extends Controller
 {
@@ -603,17 +604,15 @@ public function getUsers(Request $request)
         $ownPrice = $sale->own_price ?? 0;
         $managerEarn = round($price - $ownPrice, 2);
 
-        $sales = Sale::with(['manager.user', 'buyer', 'product'])->get();
+        $isBuyerManager = Manager::where('user_id', $sale->buyer_id)->exists();
 
-        $isBuyerManager = $sale->manager && $sale->buyer && $sale->buyer_id == $sale->manager->user_id;
-
-        // Log::info('manager', [
-        //     'manager' => $sale->manager,
-        //     'buyer' => $sale->buyer,
-        //     'sale->manager->user_id' => $sale->manager->user_id,
-        //     'buyer_id' => $sale->buyer_id,
+        Log::info('manager', [
             
-        // ]);
+            'buyer' => $sale->buyer,
+            'sale->manager->user_id' => $sale->manager->user_id,
+            
+            
+        ]);
 
         $saleData = [
             'date' => $sale->created_at->format('d.m.Y'),
