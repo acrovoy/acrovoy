@@ -603,6 +603,13 @@ public function getUsers(Request $request)
         $ownPrice = $sale->own_price ?? 0;
         $managerEarn = round($price - $ownPrice, 2);
 
+        $isBuyerManager = false;
+
+        if (isset($sale->buyer, $sale->manager->user)) {
+            $isBuyerManager = isset($sale->buyer, $sale->manager->user) && $sale->buyer->id === $sale->manager->user->id;
+        }
+
+
         $saleData = [
             'date' => $sale->created_at->format('d.m.Y'),
             'email' => $sale->buyer->email ?? '—',
@@ -613,8 +620,7 @@ public function getUsers(Request $request)
             'commission' => 0,
             'payment_fee' => 0,
             'profit' => round($ownPrice, 2),
-            'is_buyer_manager' => isset($sale->buyer, $sale->manager->user)
-                && $sale->buyer->email === $sale->manager->user->email,
+            'is_buyer_manager' => $isBuyerManager,
         ];
 
         // ⬇️ Логируем каждую строку
