@@ -603,11 +603,8 @@ public function getUsers(Request $request)
         $ownPrice = $sale->own_price ?? 0;
         $managerEarn = round($price - $ownPrice, 2);
 
-        $isBuyerManager = false;
-
-        if (isset($sale->buyer, $sale->manager->user)) {
-            $isBuyerManager = isset($sale->buyer, $sale->manager->user) && $sale->buyer->id === $sale->manager->user->id;
-        }
+         $isBuyerManager = isset($sale->buyer, $sale->manager->user) &&
+            $sale->buyer->id === $sale->manager->user->id;
 
 
         $saleData = [
