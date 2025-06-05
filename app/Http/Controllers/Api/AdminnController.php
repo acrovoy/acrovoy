@@ -603,10 +603,17 @@ public function getUsers(Request $request)
         $ownPrice = $sale->own_price ?? 0;
         $managerEarn = round($price - $ownPrice, 2);
 
-        $sales = Sale::with(['manager', 'buyer'])->get();
+        $sales = Sale::with(['manager.user', 'buyer', 'product'])->get();
 
         $isBuyerManager = $sale->manager && $sale->buyer && $sale->buyer_id === $sale->manager->user_id;
 
+        Log::info('manager', [
+            'manager' => $sale->manager,
+            'buyer' => $sale->buyer,
+            'sale->manager->user_id' => $sale->manager->user_id,
+            'buyer_id' => $sale->buyer_id,
+            
+        ]);
 
         $saleData = [
             'date' => $sale->created_at->format('d.m.Y'),
