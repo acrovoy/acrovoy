@@ -605,7 +605,7 @@ public function getUsers(Request $request)
         $managerEarn = round($price - $ownPrice, 2);
 
         $commission = 0;
-        $paymentFee = round($price * 0.004, 2);
+        $paymentFee = round($price * 0.019, 2);
         $profit = round($price - $ownPrice - $commission - $paymentFee, 2);
 
         $isBuyerManager = Manager::where('user_id', $sale->buyer_id)->exists();
