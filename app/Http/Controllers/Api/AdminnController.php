@@ -604,7 +604,7 @@ public function getUsers(Request $request)
         $ownPrice = $sale->own_price ?? 0;
         $managerEarn = round($price - $ownPrice, 2);
 
-        $commission = 0;
+        $commission = 1.4;
         $paymentFee = round($price * 0.019, 2);
         $profit = round($price - $ownPrice - $commission - $paymentFee, 2);
 
