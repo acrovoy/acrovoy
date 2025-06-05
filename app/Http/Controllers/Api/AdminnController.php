@@ -604,15 +604,11 @@ public function getUsers(Request $request)
         $ownPrice = $sale->own_price ?? 0;
         $managerEarn = round($price - $ownPrice, 2);
 
-        $isBuyerManager = Manager::where('user_id', $sale->buyer_id)->exists();
+        $commission = 0;
+        $paymentFee = round($price * 0.004, 2);
+        $profit = round($price - $ownPrice - $commission - $paymentFee, 2);
 
-        // Log::info('manager', [
-            
-        //     'buyer' => $sale->buyer,
-        //     'sale->manager->user_id' => $sale->manager->user_id,
-            
-            
-        // ]);
+        $isBuyerManager = Manager::where('user_id', $sale->buyer_id)->exists();
 
         $saleData = [
             'date' => $sale->created_at->format('d.m.Y'),
@@ -621,13 +617,12 @@ public function getUsers(Request $request)
             'manager' => $sale->manager->user->name ?? '—',
             'price' => round($price, 2),
             'manager_earn' => $managerEarn,
-            'commission' => 0,
-            'payment_fee' => 0,
-            'profit' => round($ownPrice, 2),
+            'commission' => $commission,
+            'payment_fee' => $paymentFee,
+            'profit' => $profit,
             'is_buyer_manager' => $isBuyerManager,
         ];
 
-        // ⬇️ Логируем каждую строку
         Log::channel('sales')->info('Sale Record:', $saleData);
 
         $data[] = $saleData;
