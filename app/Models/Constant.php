@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Constant extends Model
 {
-     protected $table = 'constant';
+    protected $table = 'constant';
     public $timestamps = false;
+
+    // Обязательно добавьте это:
+    protected $primaryKey = 'key';
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = ['key', 'value'];
 
