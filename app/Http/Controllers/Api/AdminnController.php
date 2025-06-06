@@ -446,10 +446,10 @@ public function getTotalParams(Request $request)
         'value' => $total_changes,
     ];
 
-    Constant::updateOrCreate(
-    ['key' => 'total_changes'],    
-    ['value' => $total_changes]    
-    );
+    // Constant::updateOrCreate(
+    // ['key' => 'total_changes'],    
+    // ['value' => $total_changes]    
+    // );
 
     // Финальный результат
     $result = [
