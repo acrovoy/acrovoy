@@ -73,5 +73,6 @@ return [
     'developera2' => 'Integrate Acrovoy’s detection engine into your platform using our upcoming API.',
     'startupa' => 'You`re a Startup',
     'startupa2' => 'Leverage Acrovoy’s tech to enhance your product, attract investors, and stand out from the competition.',
+    'description8a' => 'We accept payments in cryptocurrency',
 
 ];

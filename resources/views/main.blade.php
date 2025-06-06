@@ -45,6 +45,7 @@
     {{-- Products Section --}}
     <div class="products-section">
         <h2 class="section-title">{{ __('main.description8') }}</h2>
+        <p class="section-subtitle mb-0"><span style="color:rgba(5, 107, 77, 0.96)">{{ __('main.description8a') }}</span></p>
         <p class="section-subtitle">{{ __('main.description9') }}</p>
 
         {{-- Product 1 --}}
@@ -91,7 +92,7 @@
         <div class="product">
             <div class="product-info">
                 <h3>Octopoy</h3>
-                <p class="version">{{ __('main.version') }} 5.28 <span style="color:cadetblue">| for any markets |</span> <span class="badge">{{ __('main.presale') }}</span></p>
+                <p class="version">{{ __('main.version') }} 5.28 <span style="color:cadetblue">| for any markets </span> </p>
                 <p>{{ __('main.description12a') }}</p>
                 <ul>
                     <li><strong>{{ __('main.description13a') }}</strong></li>

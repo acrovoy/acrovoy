@@ -93,7 +93,7 @@ Route::get('/download/orderscanner208', function () {
     }
 
     // Логируем скачивание
-    $product_id = 2;  // Здесь укажите актуальный id продукта
+    $product_id = 3;  // Здесь укажите актуальный id продукта
 
     // Создаем запись о скачивании с IP-адресом пользователя
     Download::create([
@@ -104,6 +104,28 @@ Route::get('/download/orderscanner208', function () {
     // Возвращаем файл на скачивание
     return Response::download($file);
 })->name('download.orderscanner208');
+
+
+Route::get('/download/octopoy528', function () {
+    $file = storage_path('app/public/octopoy/Octopoy528Setup.exe');
+
+    // Проверка существования файла
+    if (!file_exists($file)) {
+        abort(404, 'Файл не найден');
+    }
+
+    // Логируем скачивание
+    $product_id = 2;  // Здесь укажите актуальный id продукта
+
+    // Создаем запись о скачивании с IP-адресом пользователя
+    Download::create([
+        'product_id' => $product_id,
+        'ip_address' => request()->ip(),
+    ]);
+
+    // Возвращаем файл на скачивание
+    return Response::download($file);
+})->name('download.octopoy528');
 
 
 
@@ -140,7 +162,7 @@ Route::get('/orderscanner208', function () {
 
 
 Route::get('/octopoy528', function () {
-    $product = Products::where('id', 3)->latest()->first(); 
+    $product = Products::where('id', 2)->latest()->first(); 
     $data = Download::where('product_id', 2)->count();
     $downloaded = $data;
     

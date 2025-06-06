@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Acrovoy | Heute Morgen',
-    'version' => 'Version',
+    'version' => 'version',
     'product_welcome' => 'Wir freuen uns, unser neues Produkt zur effizienten Analyse des Orderbuchs vorzustellen.',
     'product_welcome1' => 'Dies ist ein einfaches, aber äußerst effektives Tool zur Analyse von Marktdaten in Echtzeit. Es hilft Händlern, große Volumina zu verfolgen, Bewegungen in der Orderbuchdichte zu analysieren und Handelsstrategien basierend auf der aktuellen Marktsituation zu optimieren.',
     'product_welcome2' => 'ist nicht mit Funktionen überladen und vollständig auf eine Aufgabe fokussiert – die Erkennung großer Orders.',
@@ -69,4 +69,11 @@ und das Marktscanning.',
     'developera2' => 'Integrieren Sie Acrovoys Erkennungs-Engine mithilfe unserer kommenden API in Ihre Plattform.',
     'startupa' => 'Sie sind ein Startup',
     'startupa2' => 'Nutzen Sie die Technologie von Acrovoy, um Ihr Produkt zu verbessern, Investoren anzuziehen und sich von der Konkurrenz abzuheben.',
+
+    'description12a' => 'Rechtzeitige Benachrichtigungen für Händler auf allen Märkten — Krypto, Aktien, Forex, Rohstoffe und mehr. Erhalten Sie sofortige Updates zu wichtigen wirtschaftlichen Ereignissen sowie zu Marktöffnungen und -schließungen, um der Konkurrenz voraus zu sein.',
+    'description13a' => 'Krypto, Aktien, Forex, Rohstoffe und mehr.',
+    'description14a' => 'Möglichkeit, eigene Ereignisse hinzuzufügen',
+    'description15a' => 'Verwalten Sie Ihre Benachrichtigungen',
+    'description16a' => 'Kompakte und vollständige Ansichtsmodi',
+    'description8a' => 'Wir akzeptieren Zahlungen in Kryptowährung',
 ];

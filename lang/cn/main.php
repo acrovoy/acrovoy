@@ -67,4 +67,12 @@ return [
     'developera2' => '使用我们即将推出的 API 将 Acrovoy 的检测引擎集成到您的平台中。',
     'startupa' => '您是初创公司',
     'startupa2' => '利用 Acrovoy 的技术增强您的产品，吸引投资者，并在竞争中脱颖而出。',
+    
+    
+    'description12a' => '为所有市场的交易者提供及时的提醒 — 加密货币、股票、外汇、大宗商品等。即时获取关键经济事件以及市场开盘和收盘的更新，始终领先一步。',
+    'description13a' => '加密货币、股票、外汇、大宗商品等。',
+    'description14a' => '支持添加您自己的事件',
+    'description15a' => '管理您的提醒',
+    'description16a' => '紧凑视图和完整视图模式',
+    'description8a' => '我们接受加密货币付款',
 ];

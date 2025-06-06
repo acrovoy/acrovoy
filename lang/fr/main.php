@@ -67,4 +67,11 @@ return [
     'developera2' => 'Intégrez le moteur de détection Acrovoy à votre plateforme grâce à notre prochaine API.',
     'startupa' => 'Vous êtes une Startup',
     'startupa2' => 'Utilisez la technologie Acrovoy pour booster votre produit, attirer des investisseurs et vous démarquer de la concurrence.',
+
+    'description12a' => 'Alertes opportunes pour les traders sur tous les marchés — crypto, actions, forex, matières premières et plus encore. Recevez des mises à jour instantanées sur les événements économiques clés, ainsi que sur les ouvertures et fermetures des marchés, pour garder une longueur d’avance.',
+    'description13a' => 'Crypto, actions, forex, matières premières et plus encore.',
+    'description14a' => 'Possibilité d’ajouter vos propres événements',
+    'description15a' => 'Gérez vos alertes',
+    'description16a' => 'Modes d’affichage compact et étendu',
+    'description8a' => 'Nous acceptons les paiements en cryptomonnaie',
 ];
