@@ -71,6 +71,13 @@ class ChangeSyncController extends Controller
 
     public function getConstants()
     {
+
+        $token = request()->query('token');
+        
+        if ($token !== 'diogen') {
+            return response()->json(['error' => 'Неверный токен'], 403);
+        }
+
         try {
             $constants = Constant::pluck('value', 'key');
             

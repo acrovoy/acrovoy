@@ -88,4 +88,5 @@ Route::get('/adevent/get-all-users', [AdminnController::class, 'getUsers']);
 Route::post('/adevent/get-all-downloads', [AdminnController::class, 'getAllDownloads']);
 Route::post('/changes', [ChangeSyncController::class, 'getChanges']);
 Route::post('/constants/update', [ChangeSyncController::class, 'updateConstant']);
+Route::post('/constants/get', [ChangeSyncController::class, 'getConstant']);
 
