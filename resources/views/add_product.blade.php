@@ -44,7 +44,7 @@
                 <input class="form-check-input" type="checkbox" name="products[]" value="{{ $product->id }}" {{ $product->checked }}>
                 </div>
                 <div class="custom-cell" style="text-align: left;">
-                    <a href="" class="text-primary" style="text-decoration: none;">{{ __('addproduct.details') }}</a>
+                    <a href="{{ $product->url }}" target="_blank" class="text-primary" style="text-decoration: none;">{{ __('addproduct.details') }}</a>
                 </div>
             </div>
         @endforeach

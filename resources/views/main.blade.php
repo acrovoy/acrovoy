@@ -91,13 +91,13 @@
             <div class="product-info">
                 <h3>Octopoy</h3>
                 <p class="version">{{ __('main.version') }} 5.28 <span class="badge">{{ __('main.presale') }}</span></p>
-                <p>{{ __('main.description12') }}</p>
+                <p>{{ __('main.description12a') }}</p>
                 <ul>
-                    <li><strong>{{ __('main.description13') }}</strong></li>
-                    <li><strong>{{ __('main.description14') }}</strong></li>
-                    <li><strong>{{ __('main.description15') }}</strong></li>
-                    <li><strong>{{ __('main.description16') }}</strong></li>
-                    <li><strong>{{ __('main.description17') }}</strong></li>
+                    <li><strong>{{ __('main.description13a') }}</strong></li>
+                    <li><strong>{{ __('main.description14a') }}</strong></li>
+                    <li><strong>{{ __('main.description15a') }}</strong></li>
+                    <li><strong>{{ __('main.description16a') }}</strong></li>
+                    
                 </ul>
                 <a href="{{ route('octopoy528') }}" class="learn-more">{{ __('main.learn_more') }}</a>
             </div>

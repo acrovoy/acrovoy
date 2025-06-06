@@ -40,10 +40,16 @@ return [
     'description12' => 'Stay ahead of the market with precision and speed. 
 Instantly detect large orders and leverage proxy capabilities. A powerful tool for real-time order book analysis 
 and market scanning.',
+
+    'description12a' => 'Timely alerts for traders in all markets — crypto, stocks, forex, commodities, and more. Get instant updates on critical economic events, as well as market openings and closings, to stay ahead.',
     'description13' => 'Supports Binance, Bybit and Bitget exchanges.',
+    'description13a' => 'Crypto, stocks, forex, commodities, and more.',
     'description14' => 'Wide coin coverage.',
+    'description14a' => 'Ability to add your own events',
     'description15' => 'Flexible settings.',
+    'description15a' => 'Manage your alerts',
     'description16' => 'Dual market analysis.',
+    'description16a' => 'Compact and full view modes',
     'description17' => 'Proxy support.',
     'learn_more' => 'Learn more...',
     'description19' => 'This is a simple yet highly effective crypto tool for analyzing market data — track large volumes, analyze order book density, movement strategies based on the current market situation.',
