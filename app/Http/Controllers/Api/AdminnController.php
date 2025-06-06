@@ -440,8 +440,11 @@ public function getTotalParams(Request $request)
     $tot_downloads = Download::count();
 
 
-    $tot_base_changes = Constant::where('key', 'total_changes')
-    ->first();
+    $total_changes = $this->countTotalChanges();
+
+    $tot_base_changes = [
+        'value' => $total_changes,
+    ];
 
     // Финальный результат
     $result = [
@@ -475,6 +478,36 @@ public function getTotalParams(Request $request)
     }
 
     return response()->json($result);
+}
+
+
+private function countTotalChanges()
+{
+    $lastSync = Constant::where('key', 'last_sync')->first()?->value;
+
+    if (!$lastSync) return 0;
+
+    $tables = [
+        'users',
+        'sales',
+        'octo_events',
+        'keys',
+        'downloads',
+        'cs_invoices',
+        'ads',
+    ];
+
+    $total = 0;
+
+    foreach ($tables as $table) {
+        $count = DB::table($table)
+            ->where('updated_at', '>', $lastSync)
+            ->count();
+
+        $total += $count;
+    }
+
+    return $total;
 }
 
 
