@@ -35,11 +35,9 @@ return [
     'startup' => 'Startup',
     'description8' => 'Our Products',
     'description9' => 'We are pleased to introduce our new product for efficient order book analysis.',
-    'description10' => 'Order Scanner',
+    'description10' => '',
     'presale' => 'presale',
-    'description12' => 'Stay ahead of the market with precision and speed. 
-Instantly detect large orders and leverage proxy capabilities. A powerful tool for real-time order book analysis 
-and market scanning.',
+    'description12' => 'Stay ahead of the crypto markets with precision and speed. Instantly detect large orders and leverage proxy capabilities. A powerful tool for real-time order book analysis and market scanning.',
 
     'description12a' => 'Timely alerts for traders in all markets — crypto, stocks, forex, commodities, and more. Get instant updates on critical economic events, as well as market openings and closings, to stay ahead.',
     'description13' => 'Supports Binance, Bybit and Bitget exchanges.',
@@ -52,7 +50,7 @@ and market scanning.',
     'description16a' => 'Compact and full view modes',
     'description17' => 'Proxy support.',
     'learn_more' => 'Learn more...',
-    'description19' => 'This is a simple yet highly effective crypto tool for analyzing market data — track large volumes, analyze order book density, movement strategies based on the current market situation.',
+    'description19' => 'This is a simple yet highly effective tool for analyzing crypto market data — track large volumes, examine order book density, and monitor movement strategies based on real-time market conditions.',
     'description20' => 'Supports Binance and Bybit exchanges.',
     'description21' => 'Get in touch with us:',
     'description22' => 'Follow us on social media for updates and insights.',

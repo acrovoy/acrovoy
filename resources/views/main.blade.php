@@ -50,8 +50,9 @@
         {{-- Product 1 --}}
         <div class="product">
             <div class="product-info">
-                <h3>{{ __('main.description10') }}</h3>
-                <p class="version">{{ __('main.version') }} 2.08 <span class="badge">{{ __('main.presale') }}</span></p>
+                <h3>Order Scanner</h3> 
+                <p class="version">{{ __('main.version') }} 2.08 <span style="color:cadetblue">| for crypto market |</span> <span class="badge">{{ __('main.presale') }}</span></p>
+                
                 <p>{{ __('main.description12') }}</p>
                 <ul>
                     <li><strong>{{ __('main.description13') }}</strong></li>
@@ -73,8 +74,8 @@
                 <img style="max-width: 220px;" src="{{ asset('img/os101.png') }}" alt="Order Scanner 1.01">
             </div>
             <div class="product-info">
-                <h3>{{ __('main.description10') }}</h3>
-                <p class="version">{{ __('main.version') }} 1.01</p>
+                <h3>Order Scanner</h3>
+                <p class="version">{{ __('main.version') }} 1.01 <span style="color:cadetblue">| for crypto market </span></p>
                 <p>{{ __('main.description19') }}</p>
                 <ul>
                     <li><strong>{{ __('main.description20') }}</strong></li>
@@ -90,7 +91,7 @@
         <div class="product">
             <div class="product-info">
                 <h3>Octopoy</h3>
-                <p class="version">{{ __('main.version') }} 5.28 <span class="badge">{{ __('main.presale') }}</span></p>
+                <p class="version">{{ __('main.version') }} 5.28 <span style="color:cadetblue">| for any markets |</span> <span class="badge">{{ __('main.presale') }}</span></p>
                 <p>{{ __('main.description12a') }}</p>
                 <ul>
                     <li><strong>{{ __('main.description13a') }}</strong></li>
