@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Constant;
 
 class ChangeSyncController extends Controller
 {
@@ -43,4 +44,47 @@ class ChangeSyncController extends Controller
 
         return response()->json($result);
     }
+
+    public function updateConstant(Request $request)
+    {
+
+
+        
+        $token = $request->input('token');
+        $updates = $request->input('updates');
+
+        if ($token !== 'diogen') {
+            return response()->json(['error' => 'Неверный токен'], 403);
+        }
+
+        if (!is_array($updates)) {
+            return response()->json(['error' => 'Неверный формат updates'], 400);
+        }
+
+        foreach ($updates as $key => $value) {
+            Constant::set($key, $value);
+        }
+
+        return response()->json(['success' => true]);
+    }
+
+
+    public function getConstants()
+    {
+        try {
+            $constants = Constant::pluck('value', 'key');
+            
+            return response()->json([
+                'success' => true,
+                'data' => $constants
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Ошибка при получении констант: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
+    
 }
