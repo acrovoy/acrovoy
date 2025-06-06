@@ -72,7 +72,7 @@ class AdminnController extends Controller
     }
 
     $events = $query
-        ->orderBy('datetime', 'desc')
+        ->orderBy('datetime', 'asc')
         ->select('id', 'title', 'datetime', 'flag')
         ->get()
         ->map(function ($event) use ($offset) {
