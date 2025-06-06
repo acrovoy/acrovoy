@@ -69,7 +69,7 @@ class ChangeSyncController extends Controller
 }
 
 
-    public function getConstants()
+    public function getConstants(Request $request)
     {
 
         $token = request()->query('token');
