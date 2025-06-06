@@ -442,13 +442,14 @@ public function getTotalParams(Request $request)
 
     $total_changes = $this->countTotalChanges();
 
+    $tot_base_changes = [
+        'value' => $total_changes,
+    ];
 
     Constant::updateOrCreate(
     ['key' => 'total_changes'],    
     ['value' => $total_changes]    
-);
-
-    
+    );
 
     // Финальный результат
     $result = [
@@ -461,7 +462,7 @@ public function getTotalParams(Request $request)
         'tot_users' => $tot_users,
         'tot_online' => $tot_online,
         'tot_downloads' => $tot_downloads,
-        'tot_base_changes' => $total_changes,
+        'tot_base_changes' => $tot_base_changes['value'],
     ];
 
     // Доходы по продуктам
