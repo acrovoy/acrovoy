@@ -39,6 +39,7 @@
             <a href="{{ $product->url }}" class="product-link" target="_blank">
                 {{ $product->name }} {{ $product->version }}
             </a>
+            <span style="color:rgb(3, 109, 170)">{{ $product->use }}</span>
             @if($product->description)
                 <p>{{ \Illuminate\Support\Str::limit($product->description, 100) }}</p>
             @endif
