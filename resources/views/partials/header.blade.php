@@ -24,11 +24,11 @@
           </a>
           <ul class="dropdown-menu">
            
-          
+         
           @foreach($header_products as $product)
               <li>
                   <a class="dropdown-item" href="{{ $product->url }}" target="_blank">
-                      {{ $product->name }} {{ $product->version }}
+                      {{ $product->name }} {{ $product->version }} <span style="color:rgb(3, 109, 170)">{{ $product->use }}</span>
                   </a>
               </li>
           @endforeach
