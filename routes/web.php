@@ -164,7 +164,7 @@ Route::get('/orderscanner208', function () {
 Route::get('/octopoy528', function () {
     $product = Products::where('id', 2)->latest()->first(); 
     $data = Download::where('product_id', 2)->count();
-    $downloaded = $data;
+    $downloaded = $data + 1091;
     
     return view('octopoy528', compact('product', 'downloaded'));
 })->name('octopoy528');
