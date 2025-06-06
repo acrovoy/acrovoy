@@ -46,34 +46,34 @@ class ChangeSyncController extends Controller
     }
 
     public function updateConstant(Request $request)
-    {
+{
+    $token = $request->input('token');
+    $updates = $request->input('constants'); // ключ должен соответствовать тому, что вы отправляете с клиента
 
-
-        
-        $token = $request->input('token');
-        $updates = $request->input('updates');
-
-        if ($token !== 'diogen') {
-            return response()->json(['error' => 'Неверный токен'], 403);
-        }
-
-        if (!is_array($updates)) {
-            return response()->json(['error' => 'Неверный формат updates'], 400);
-        }
-
-        foreach ($updates as $key => $value) {
-            Constant::set($key, $value);
-        }
-
-        return response()->json(['success' => true]);
+    if ($token !== 'diogen') {
+        return response()->json(['error' => 'Неверный токен'], 403);
     }
+
+    if (!is_array($updates)) {
+        return response()->json(['error' => 'Неверный формат constants'], 400);
+    }
+
+    foreach ($updates as $key => $value) {
+        Constant::updateOrInsert(
+            ['key' => $key],
+            ['value' => $value]
+        );
+    }
+
+    return response()->json(['success' => true]);
+}
 
 
     public function getConstants()
     {
 
         $token = request()->query('token');
-        
+
         if ($token !== 'diogen') {
             return response()->json(['error' => 'Неверный токен'], 403);
         }
