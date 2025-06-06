@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\OctoEventController;
 use App\Http\Controllers\PaymentCallbackController;
 use App\Http\Controllers\Api\KeyController;
 use App\Http\Controllers\Api\AdminnController;
+use App\Http\Controllers\Api\ChangeSyncController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -85,4 +86,5 @@ Route::post('/adevent/get-sale-list', [AdminnController::class, 'getSalesList'])
 Route::get('/adevent/get-users-online', [AdminnController::class, 'getUsersOnline']);
 Route::get('/adevent/get-all-users', [AdminnController::class, 'getUsers']);
 Route::post('/adevent/get-all-downloads', [AdminnController::class, 'getAllDownloads']);
+Route::post('/changes', [ChangeSyncController::class, 'getChanges']);
 
