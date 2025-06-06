@@ -639,20 +639,18 @@ public function getUsers(Request $request)
 public function getAllDownloads(Request $request)
     {
 
-        // Проверка простого токена авторизации
-    if ($request->input('token') !== 'diogen') {
+     if ($request->input('token') !== 'diogen') {
         return response()->json(['error' => 'Unauthorized'], 403);
     }
 
-    // Получение всех записей из таблицы downloads
-    $downloads = Download::all();
+    // Загружаем все загрузки вместе с данными по продуктам
+    $downloads = Download::with('product')->get();
 
-    // Возврат в формате JSON
     return response()->json([
         'status' => 'success',
         'data' => $downloads
     ]);
-    
+
     }
 
 
