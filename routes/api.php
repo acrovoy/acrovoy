@@ -84,3 +84,5 @@ Route::post('/adevent/total-params', [AdminnController::class, 'getTotalParams']
 Route::post('/adevent/get-sale-list', [AdminnController::class, 'getSalesList']);
 Route::get('/adevent/get-users-online', [AdminnController::class, 'getUsersOnline']);
 Route::get('/adevent/get-all-users', [AdminnController::class, 'getUsers']);
+Route::post('/adevent/get-all-downloads', [AdminnController::class, 'getAllDownloads']);
+

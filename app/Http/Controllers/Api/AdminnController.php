@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\OctoSetting;
 use Illuminate\Support\Facades\Log;
 use App\Models\Manager;
+use App\Models\Download;
 
 class AdminnController extends Controller
 {
@@ -635,7 +636,24 @@ public function getUsers(Request $request)
     return response()->json(['data' => $data]);
 }
 
+public function getAllDownloads(Request $request)
+    {
 
+        // Проверка простого токена авторизации
+    if ($request->input('token') !== 'diogen') {
+        return response()->json(['error' => 'Unauthorized'], 403);
+    }
+
+    // Получение всех записей из таблицы downloads
+    $downloads = Download::all();
+
+    // Возврат в формате JSON
+    return response()->json([
+        'status' => 'success',
+        'data' => $downloads
+    ]);
+    
+    }
 
 
 }
