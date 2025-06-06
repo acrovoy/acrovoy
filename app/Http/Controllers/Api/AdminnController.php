@@ -17,6 +17,7 @@ use App\Models\OctoSetting;
 use Illuminate\Support\Facades\Log;
 use App\Models\Manager;
 use App\Models\Download;
+use App\Models\Constant;
 
 class AdminnController extends Controller
 {
@@ -439,7 +440,8 @@ public function getTotalParams(Request $request)
     $tot_downloads = Download::count();
 
 
-    
+    $tot_base_changes = Constant::where('key', 'total_changes')
+    ->first();
 
     // Финальный результат
     $result = [
@@ -452,6 +454,7 @@ public function getTotalParams(Request $request)
         'tot_users' => $tot_users,
         'tot_online' => $tot_online,
         'tot_downloads' => $tot_downloads,
+        'tot_base_changes' => $tot_base_changes['value'],
     ];
 
     // Доходы по продуктам
