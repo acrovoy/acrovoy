@@ -436,6 +436,8 @@ public function getTotalParams(Request $request)
         ->groupBy('name')
         ->get();
 
+    $tot_downloads = Download::count();
+
     // Финальный результат
     $result = [
         'tot_income' => round($tot_income, 2),
@@ -446,6 +448,7 @@ public function getTotalParams(Request $request)
         'qty_of_products' => $qty_of_products,
         'tot_users' => $tot_users,
         'tot_online' => $tot_online,
+        'tot_downloads' => $tot_downloads,
     ];
 
     // Доходы по продуктам
