@@ -28,6 +28,7 @@ class Setting extends Model
          'blacklisted_futures',
          'market',
          'exchange',
+         'proxy',
      ];
  
      // Определяем связь с моделью User
