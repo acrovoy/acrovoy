@@ -121,7 +121,7 @@ class SettingController extends Controller
             'blacklisted_futures' => $settings_data['blacklisted_futures'],
             'market' => $settings['market'],
             'exchange' => $settings_data['exchange'],
-            'proxy' => $settings_data['proxy'],
+            'proxy' => $settings_data['proxy'] ?? null,
         ]);
 
         // Возвращаем успешный ответ
