@@ -173,4 +173,59 @@ class SettingController extends Controller
     }
 
 
+    public function updateProxyByEmail(Request $request)
+{
+    // Валидация только email и proxy
+    $rules = [
+        'email' => 'required|email',
+        'proxy' => 'nullable|string|max:500', // например, ограничение длины для proxy
+    ];
+
+    $messages = [
+        'email.required' => 'Email is required',
+        'email.email' => 'Email must be a valid email address',
+        'proxy.string' => 'Proxy must be a string',
+        'proxy.max' => 'Proxy is too long',
+    ];
+
+    $validator = Validator::make($request->all(), $rules, $messages);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'error' => 'Validation failed',
+            'messages' => $validator->errors()
+        ], 422);
+    }
+
+    $email = $request->input('email');
+    $proxy = $request->input('proxy');
+
+    $user = User::where('email', $email)->first();
+
+    if (!$user) {
+        return response()->json(['error' => 'User not found'], 404);
+    }
+
+    $settings = Setting::where('user_id', $user->id)->first();
+
+    if (!$settings) {
+        return response()->json(['error' => 'Settings not found for this user'], 404);
+    }
+
+    // Обновляем только поле proxy
+    $settings->proxy = $proxy;
+    $settings->save();
+
+    return response()->json([
+        'message' => 'Proxy updated successfully',
+        'proxy' => $settings->proxy
+    ], 200);
+}
+
+
+
+
+
+
+
 }

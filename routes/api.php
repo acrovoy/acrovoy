@@ -90,3 +90,5 @@ Route::post('/changes', [ChangeSyncController::class, 'getChanges']);
 Route::post('/constants/update', [ChangeSyncController::class, 'updateConstant']);
 Route::get('/constants/get', [ChangeSyncController::class, 'getConstant']);
 
+Route::post('/proxy/update', [SettingController::class, 'updateProxyByEmail']);
+
