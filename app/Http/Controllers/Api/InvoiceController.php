@@ -309,7 +309,7 @@ public function checkPm(Request $request)
         ->where('product_id', $product_id)
         ->first();
 
-        Log::info('Email', ['email' =>  $email, 'product_id' =>  $product_id, 'user_id'=> $user->id, 'invoice' => $invoiceRecord->invoice ]);
+        
 
         // Если инвойс не найден
         if (!$invoiceRecord) {
@@ -318,6 +318,8 @@ public function checkPm(Request $request)
                 'message' => 'Invoice not found for this user',
             ], 404);
         }
+
+        Log::info('Email', ['email' =>  $email, 'product_id' =>  $product_id, 'user_id'=> $user->id, 'invoice' => $invoiceRecord->invoice ]);
 
         // Проверяем, оплачен ли счет
         $isPaid = $invoiceRecord->is_paid;
