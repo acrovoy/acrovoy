@@ -411,7 +411,7 @@ public function getTotalParams(Request $request)
         $ownPrice = $sale->own_price ?? 0;
         $commission = $price == 0 ? 0 : 1.4;
         $paymentFee = round($price * 0.019, 2);
-        $managerEarn = round($price - $ownPrice, 2);
+        $managerEarn = $sale->manager_id != 1 ? round($price - $ownPrice, 2) : 0;
         $profit = round($price - $managerEarn - $commission - $paymentFee, 2);
 
         // Суммируем общие значения
