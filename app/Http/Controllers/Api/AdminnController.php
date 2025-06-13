@@ -654,11 +654,19 @@ public function getUsers(Request $request)
     foreach ($sales as $sale) {
         $price = $sale->price ?? 0;
         $ownPrice = $sale->own_price ?? 0;
-        $managerEarn = round($price - $ownPrice, 2);
+        
 
         $commission = $price == 0 ? 0 : 1.4;
         $paymentFee = round($price * 0.019, 2);
-        $profit = round($price - $managerEarn - $commission - $paymentFee, 2);
+
+        if ($sale->manager_id == 1) {
+            $managerEarn = 0;
+            $profit = round($price - $commission - $paymentFee, 2);
+        } else {
+            $managerEarn = round($price - $ownPrice, 2);
+            $profit = round($price - $managerEarn - $commission - $paymentFee, 2);
+        }
+        
 
         $isBuyerManager = Manager::where('user_id', $sale->buyer_id)->exists();
 
