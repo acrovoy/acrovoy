@@ -154,7 +154,7 @@ Route::get('/orderscanner101', function () {
 
 Route::get('/orderscanner208', function () {
     $product = Products::where('id', 3)->latest()->first(); 
-    $data = Download::where('product_id', 2)->count();
+    $data = Download::where('product_id', 3)->count();
     $downloaded = $data;
     
     return view('orderscanner208', compact('product', 'downloaded'));
