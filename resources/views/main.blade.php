@@ -52,7 +52,7 @@
         <div class="product">
             <div class="product-info">
                 <h3>Order Scanner</h3> 
-                <p class="version">{{ __('main.version') }} 2.08 <span style="color:cadetblue">| for crypto market |</span> <span class="badge">{{ __('main.presale') }}</span></p>
+                <p class="version">{{ __('main.version') }} 2.08 <span style="color:cadetblue">| for crypto market |</span> </p>
                 
                 <p>{{ __('main.description12') }}</p>
                 <ul>
