@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Acrovoy')</title>
-    <meta name="description" content="@yield('meta_description', 'Acrovoy — разработка приложений, веб разработка, стартапы все для трейдеров')">
-    <meta name="keywords" content="@yield('meta_keywords', 'веб разработка, веб разработчики, криптовалюта, трейдинг')">
+    <meta name="description" content="@yield('meta_description', 'Acrovoy — app development, web development, startups, everything for traders')">
+    <meta name="keywords" content="@yield('meta_keywords', 'web development, web developers, cryptocurrency, trading')">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph -->
