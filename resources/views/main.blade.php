@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Main')
+@section('title', 'Acrovoy :: be ahead')
 @use('Anhskohbo\NoCaptcha\Facades\NoCaptcha', 'NoCaptcha')
 @section('content')
 
@@ -135,7 +135,7 @@
 
         <div class="form-group">
             <label for="email">{{ __('contact.email') }}</label>
-            <input type="email" name="email" id="email" value="{{ old('email') }}" required class="form-control">
+            <input type="email" name="email" id="email" value="{{ old('email') }}" required class="form-control" autocomplete="email">
         </div>
 
         <div class="form-group">
@@ -218,6 +218,7 @@
 
         if (data) {
             result.innerHTML = `<strong>${data.title}</strong><br>${data.text}`;
+            result.scrollIntoView({ behavior: 'smooth' });
         } else {
             result.innerHTML = '';
         }
