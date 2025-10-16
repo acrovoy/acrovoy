@@ -33,7 +33,7 @@ return [
     'influencer' => '影响者',
     'developer' => '开发者',
     'startup' => '初创公司',
-    'description8' => '我们的产品',
+    'description8' => '我们新生产的产品',
     'description9' => '我们很高兴地介绍我们用于高效订单簿分析的新产品。',
     'description10' => '订单扫描器',
     'presale' => '预售',

@@ -33,7 +33,7 @@ return [
     'influencer' => 'Influencer',
     'developer' => 'Desarrollador',
     'startup' => 'Startup',
-    'description8' => 'Nuestros Productos',
+    'description8' => 'Nuestros productos recién producidos',
     'description9' => 'Nos complace presentar nuestro nuevo producto para un análisis eficiente del libro de órdenes.',
     'description10' => 'Order Scanner',
     'presale' => 'preventa',
