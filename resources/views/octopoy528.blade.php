@@ -118,7 +118,10 @@
 
                 <div class="d-flex align-items-start mt-4 gap-3 download-block">
                     <div class="">
-                    <a href="{{ route('download.octopoy528') }}" class="position-relative d-inline-block" style="width: 320px;">
+
+  <!-- <a href="" class="position-relative d-inline-block" style="width: 320px;"> -->
+
+                    <a href="" class="position-relative d-inline-block" style="width: 320px;">
                             <img src="{{ asset('img/download.png') }}" alt="Download" class="img-fluid" style="object-fit: cover;">
                             <div class="position-absolute translate-middle-x text-center text-white" style="top: 3%; left: 58%">
                                 <div style="font-size: 20px; font-weight: bold;">{{ __('o528.download') }}</div>
