@@ -9,6 +9,10 @@
          @endif
             <a href="{{ route('profile') }}" class="list-group-item list-group-item-action" style="background-color:rgb(255, 255, 255)">{{ __('sidebar.profile') }}</a>
         
-           
+            @if(auth()->user()->email == 'main@acrovoy.com')
+            <a href="/markell_rattan" class="list-group-item list-group-item-action" style="background-color:rgb(255, 255, 255)">{{ __('sidebar.markell') }}</a>
+         @endif
+
+
         </div>
     </div>

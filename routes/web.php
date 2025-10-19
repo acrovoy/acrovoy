@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\AccountingController;
+use App\Http\Controllers\ConstantController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\WarehouseController;
+use App\Http\Controllers\SupplyController;
+use App\Http\Controllers\ReportsController;
+use App\Http\Controllers\ManufacturedProductController;
 
 
 // Главная страница
@@ -211,3 +219,109 @@ Route::post('/contact', function (Request $request) {
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
+
+// Acounting
+
+Route::get('/markell_rattan', [\App\Http\Controllers\AccountingController::class, 'index'])->name('accounting.index');
+Route::prefix('accounting')->group(function () {
+    Route::get('/', [AccountingController::class, 'index'])->name('accounting.index');
+
+    // Доходы
+    Route::get('/income/create', [AccountingController::class, 'createIncome'])->name('income.create');
+    Route::post('/income/store', [AccountingController::class, 'storeIncome'])->name('income.store');
+
+    // Расходы
+    Route::get('/expense/create', [AccountingController::class, 'createExpense'])->name('expense.create');
+    Route::post('/expense/store', [AccountingController::class, 'storeExpense'])->name('expense.store');
+});
+
+// Доходы
+Route::get('/income/{income}/edit', [AccountingController::class, 'editIncome'])->name('income.edit');
+Route::put('/income/{income}', [AccountingController::class, 'updateIncome'])->name('income.update');
+Route::delete('/income/{income}', [AccountingController::class, 'destroyIncome'])->name('income.destroy');
+
+// Расходы
+Route::get('/expense/{expense}/edit', [AccountingController::class, 'editExpense'])->name('expense.edit');
+Route::put('/expense/{expense}', [AccountingController::class, 'updateExpense'])->name('expense.update');
+Route::delete('/expense/{expense}', [AccountingController::class, 'destroyExpense'])->name('expense.destroy');
+
+
+// Категории дохода
+Route::get('constants', [ConstantController::class, 'index'])->name('constants.index');
+Route::post('constants/income', [ConstantController::class, 'storeIncome'])->name('constants.income.store');
+Route::put('constants/income/{constant}', [ConstantController::class, 'updateIncome'])->name('constants.income.update');
+Route::delete('constants/income/{constant}', [ConstantController::class, 'destroyIncome'])->name('constants.income.destroy');
+
+// Категории расходов
+Route::post('constants/expense', [ConstantController::class, 'storeExpense'])->name('constants.expense.store');
+Route::put('constants/expense/{constant}', [ConstantController::class, 'updateExpense'])->name('constants.expense.update');
+Route::delete('constants/expense/{constant}', [ConstantController::class, 'destroyExpense'])->name('constants.expense.destroy');
+
+// СПОСОБЫ ОПЛАТЫ
+Route::post('constants/payment', [ConstantController::class, 'storePayment'])->name('constants.payment.store');
+Route::put('constants/payment/{constant}', [ConstantController::class, 'updatePayment'])->name('constants.payment.update');
+Route::delete('constants/payment/{constant}', [ConstantController::class, 'destroyPayment'])->name('constants.payment.destroy');
+
+// СТАТЬИ УЧЁТА
+Route::post('constants/account-article', [ConstantController::class, 'storeAccountArticle'])->name('constants.account.store');
+Route::put('constants/account-article/{constant}', [ConstantController::class, 'updateAccountArticle'])->name('constants.account.update');
+Route::delete('constants/account-article/{constant}', [ConstantController::class, 'destroyAccountArticle'])->name('constants.account.destroy');
+
+// КАТЕГОРИИ ПОСТАВОК
+Route::post('constants/supply', [ConstantController::class, 'storeSupply'])->name('constants.supply.store');
+Route::put('constants/supply/{constant}', [ConstantController::class, 'updateSupply'])->name('constants.supply.update');
+Route::delete('constants/supply/{constant}', [ConstantController::class, 'destroySupply'])->name('constants.supply.destroy');
+
+// ЕДИНИЦЫ ИЗМЕРЕНИЯ
+Route::post('constants/unit', [ConstantController::class, 'storeUnit'])->name('constants.unit.store');
+Route::put('constants/unit/{constant}', [ConstantController::class, 'updateUnit'])->name('constants.unit.update');
+Route::delete('constants/unit/{constant}', [ConstantController::class, 'destroyUnit'])->name('constants.unit.destroy');
+
+// УСЛОВИЯ ОПЛАТЫ
+Route::post('constants/payment-term', [ConstantController::class, 'storePaymentTerm'])->name('constants.payment_term.store');
+Route::put('constants/payment-term/{constant}', [ConstantController::class, 'updatePaymentTerm'])->name('constants.payment_term.update');
+Route::delete('constants/payment-term/{constant}', [ConstantController::class, 'destroyPaymentTerm'])->name('constants.payment_term.destroy');
+
+Route::resource('clients', ClientController::class);
+
+Route::resource('suppliers', SupplierController::class);
+
+Route::get('/reports', [ReportsController::class, 'index'])->name('reports.index');
+
+Route::get('clients/{client}', [ClientController::class, 'show'])->name('clients.show');
+
+Route::get('suppliers/{supplier}', [SupplierController::class, 'show'])->name('suppliers.show');
+
+Route::resource('warehouses', WarehouseController::class);
+
+
+// Список поставок склада (карточка склада)
+Route::get('/warehouses/{warehouse}/manage', [WarehouseController::class, 'manage'])->name('warehouses.manage');
+
+// Форма добавления поставки
+Route::get('/warehouses/{warehouse}/supplies/create', [WarehouseController::class, 'createSupply'])->name('warehouses.supplies.create');
+
+// Сохранение новой поставки
+Route::post('/warehouses/{warehouse}/supplies', [WarehouseController::class, 'storeSupply'])->name('warehouses.supplies.store');
+
+// Редактирование поставки
+Route::get('/warehouses/{warehouse}/supplies/{supply}/edit', [WarehouseController::class, 'editSupply'])->name('warehouses.supplies.edit');
+
+// Обновление поставки
+Route::put('/warehouses/{warehouse}/supplies/{supply}', [WarehouseController::class, 'updateSupply'])->name('warehouses.supplies.update');
+
+// Удаление поставки
+Route::delete('/warehouses/{warehouse}/supplies/{supply}', [WarehouseController::class, 'destroySupply'])->name('warehouses.supplies.destroy');
+
+
+
+// ПРОИЗВОДСТВО
+
+
+
+Route::resource('manufactured_products', ManufacturedProductController::class);
+
+Route::patch('manufactured_products/{manufacturedProduct}/produce', [ManufacturedProductController::class, 'markAsProduced'])
+    ->name('manufactured_products.produce');
+
+Route::patch('manufactured_products/{product}/stock', [ManufacturedProductController::class, 'stock'])->name('manufactured_products.stock');
