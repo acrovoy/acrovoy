@@ -77,7 +77,7 @@
     <div class="tab-content" id="reportTabsContent">
         {{-- 🔹 Доходы --}}
         <div class="tab-pane fade {{ $activeTab === 'incomes' ? 'show active' : '' }}" id="incomes" role="tabpanel">
-            <h4>Доходы <a href="{{ route('income.create') }}" class="btn btn-success me-2">➕</a></h4>
+            <h4>Доход <a href="{{ route('income.create') }}" class="btn btn-success me-2">➕</a></h4>
             <table class="table table-striped table-sm align-middle">
                 <thead>
                     <tr>
@@ -97,7 +97,7 @@
                 <tbody>
                     @forelse($incomes as $income)
                         <tr>
-                            <td>{{ $income->date }}</td>
+                            <td>{{ $income->date->format('d.m.Y') }}</td>
                             <td>{{ $income->document_number ?? '-' }}</td>
                             <td>{{ $income->clientRelation->name ?? '-' }}</td>
                             <td>{{ $income->description ?? '-' }}</td>
