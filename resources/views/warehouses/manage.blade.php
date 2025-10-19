@@ -13,7 +13,7 @@
     <table class="table table-bordered table-sm">
         <thead class="table-light">
             <tr>
-                <th>№</th>
+                
                 <th>Дата поступл</th>
                 <th>Номер документа</th>
                 <th>Поставщик</th>
@@ -35,7 +35,7 @@
         @if($warehouse->supplies && $warehouse->supplies->count())
             @foreach($warehouse->supplies as $index => $supply)
             <tr>
-                <td>{{ $index + 1 }}</td>
+                
                 <td>
                     {{ $supply->date_received ? $supply->date_received->format('d.m.Y') : '-' }}
                 </td>

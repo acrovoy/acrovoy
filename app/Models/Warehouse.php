@@ -15,7 +15,7 @@ class Warehouse extends Model
 
     public function supplies()
 {
-    return $this->hasMany(Supply::class);
+    return $this->hasMany(Supply::class)->orderByDesc('date_received');
 }
 
 
