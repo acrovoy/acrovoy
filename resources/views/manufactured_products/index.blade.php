@@ -61,9 +61,15 @@
                     @if($product->status === 'order')
                         <span class="badge bg-secondary">Заказ</span>
                     @elseif($product->status === 'produced')
-                        <span class="badge bg-warning">Произведено</span>
+                        <span class="badge bg-warning">Произведено</span><br>
+                        @if($product->serial_number)
+                            <small class="text-muted" style="font-size: 0.7rem;">{{ $product->serial_number }}</small>
+                        @endif
                     @elseif($product->status === 'stocked')
-                        <span class="badge bg-success">На складе</span>
+                        <span class="badge bg-success">На складе</span><br>
+                         @if($product->serial_number)
+                            <small class="text-muted" style="font-size: 0.8rem;">{{ $product->serial_number }}</small>
+                        @endif
                     @endif
                 </td>
                 <td>{{ $product->sku }}</td>

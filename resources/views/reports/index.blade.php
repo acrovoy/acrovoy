@@ -220,7 +220,10 @@
                     <tr>
                         <th>Дата</th>
                         <th>Склад</th>
+                        <th>Номер документа</th>
+                        <th>SKU</th>
                         <th>Наименование</th>
+                        <th>Категория</th>
                         <th>Поставщик</th>
                         <th>Кол-во</th>
                         <th>Цена</th>
@@ -230,9 +233,12 @@
                 <tbody>
                     @forelse($latestSupplies as $supply)
                         <tr>
-                            <td>{{ $supply->date_received }}</td>
+                            <td>{{ $supply->date_received->format('d.m.Y.') }}</td>
                             <td>{{ $supply->warehouse->name ?? '-' }}</td>
+                            <td>{{ $supply->document_number }}</td>
+                            <td>{{ $supply->sku }}</td>
                             <td>{{ $supply->name }}</td>
+                            <td>{{ $supply->category->name }}</td>
                             <td>{{ $supply->supplier->name ?? $supply->supplier_name ?? '—' }}</td>
                             <td class="text-end">{{ $supply->quantity }}</td>
                             <td class="text-end">{{ number_format($supply->price_per_unit, 2, ',', ' ') }}</td>

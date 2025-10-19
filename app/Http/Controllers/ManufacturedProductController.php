@@ -164,6 +164,15 @@ class ManufacturedProductController extends Controller
 
     $manufacturedProduct->status = 'produced';
     $manufacturedProduct->cost = $totalCost;
+    $manufacturedProduct->manufactured_at = now();
+
+    // 🔢 Генерация серийного номера
+    $date = now()->format('Ymd');
+    $lastId = ManufacturedProduct::max('id') + 1;
+    $serial = sprintf("SN-%s-%04d", $date, $lastId);
+
+    $manufacturedProduct->serial_number = $serial;
+
     $manufacturedProduct->save();
 
     return redirect()->route('manufactured_products.index')
@@ -185,7 +194,7 @@ public function stock(Request $request, ManufacturedProduct $product)
         $supply = new \App\Models\Supply();
         $supply->warehouse_id = $product->warehouse_id;
         $supply->date_received = now();
-        $supply->document_number = 'XXXXXXXXXXX';
+        $supply->document_number = $product->serial_number;
         $supply->supplier_name = 'Markell Rattan';
         $supply->sku = $product->sku;
         $supply->name = $product->name;
