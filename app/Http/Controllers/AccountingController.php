@@ -119,7 +119,6 @@ class AccountingController extends Controller
     {
         $request->validate([
             'date' => 'required|date',
-            'client_id' => 'nullable|exists:clients,id',
             'client_name' => 'nullable|string',
             'description' => 'required',
             'amount' => 'required|numeric',
@@ -163,7 +162,6 @@ class AccountingController extends Controller
 {
     $request->validate([
         'date' => 'required|date',
-        'supplier_id' => 'nullable|exists:suppliers,id',
         'supplier_name' => 'nullable|string',
         'description' => 'required',
         'amount' => 'required|numeric',
