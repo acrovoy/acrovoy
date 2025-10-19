@@ -50,7 +50,7 @@ class ManufacturedProductController extends Controller
             }
         }
 
-        return redirect()->route('manufactured_products.index')->with('success', 'Изделие создано');
+        return redirect()->route('manufactured_products.index')->with('success', 'Заказ на производство создан');
     }
 
     // Форма редактирования
