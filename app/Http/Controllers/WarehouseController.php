@@ -94,11 +94,11 @@ class WarehouseController extends Controller
         $data = $request->validate([
             'date_received' => 'required|date',
             'document_number' => 'nullable|string|max:255',
-            'supplier_id' => 'nullable|exists:suppliers,id',
+            'supplier_id' => 'nullable|exists:rattan.suppliers,id',
             'supplier_name' => 'nullable|string|max:255',
             'sku' => 'required|string|max:255',
             'name' => 'required|string|max:255',
-            'category_id' => 'nullable|exists:supply_categories,id',
+            'category_id' => 'nullable|exists:rattan.supply_categories,id',
             'unit' => 'required|string|max:50',
             'quantity' => 'required|numeric|min:0',
             'price_per_unit' => 'required|numeric|min:0',
