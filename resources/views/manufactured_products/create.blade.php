@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">➕ Создать готовое изделие</h1>
+    <h1 class="mb-4">➕ Создать заказ на производство изделия</h1>
 
     <form action="{{ route('manufactured_products.store') }}" method="POST">
         @csrf
@@ -70,7 +70,7 @@
                     <select name="components[0][supply_id]" class="form-select">
                         <option value="">— Выберите материал —</option>
                         @foreach($supplies as $supply)
-                            <option value="{{ $supply->id }}">{{ $supply->name }}</option>
+                            <option value="{{ $supply->id }}">{{ $supply->name }} ({{ $supply->price_per_unit }})</option>
                         @endforeach
                     </select>
                 </div>
