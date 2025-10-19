@@ -15,7 +15,9 @@ class ManufacturedProductController extends Controller
     // Список изделий
     public function index()
     {
-        $products = ManufacturedProduct::with('warehouse', 'components.supply', 'category')->get();
+        $products = ManufacturedProduct::with('warehouse', 'components.supply', 'category')
+        ->orderByDesc('created_at')
+        ->get();
 
 
 
