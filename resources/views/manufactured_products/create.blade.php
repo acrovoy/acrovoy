@@ -70,7 +70,7 @@
                     <select name="components[0][supply_id]" class="form-select">
                         <option value="">— Выберите материал —</option>
                         @foreach($supplies as $supply)
-                            <option value="{{ $supply->id }}">{{ $supply->name }} ({{ $supply->price_per_unit }})</option>
+                            <option value="{{ $supply->id }}">{{ $supply->name }} ({{ $supply->price_per_unit }}) - {{ $supply->quantity_remaining }}</option>
                         @endforeach
                     </select>
                 </div>
