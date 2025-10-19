@@ -91,7 +91,7 @@
                             <span>{{ $supply->date_received->format('d.m.Y') }} <strong>{{ $supply->name }}</strong> ({{ $supply->quantity ?? 0 }} {{ $supply->unit ?? '' }})</span>
                             <span class="badge bg-secondary">{{ $supply->warehouse->name ?? '—' }}</span>
                         </div>
-                        <small class="text-muted">Поставщик: {{ $supply->supplier?->name ?? $supply->supplier_name ?? '—' }} Артикул: <span class="text-success">{{ $supply->sku }}</span></small>
+                        <small class="text-muted">Поставщик: <span class="text-success">{{ $supply->supplier?->name ?? $supply->supplier_name ?? '—' }}</span> Артикул: <span class="text-success">{{ $supply->sku }}</span></small>
                     </li>
                 @endforeach
                 @if($latestSupplies->isEmpty())
