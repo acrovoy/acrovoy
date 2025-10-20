@@ -24,7 +24,7 @@ class ConstantController extends Controller
     public function storeIncome(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:income_categories,name',
+            'name' => 'required|string|max:255|unique:mysql_rattan.income_categories,name',
         ]);
 
         IncomeCategory::create(['name' => $request->name]);
@@ -35,7 +35,7 @@ class ConstantController extends Controller
     public function updateIncome(Request $request, IncomeCategory $constant)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:income_categories,name,' . $constant->id,
+            'name' => 'required|string|max:255|unique:mysql_rattan.income_categories,name,' . $constant->id,
         ]);
 
         $constant->update(['name' => $request->name]);
@@ -53,7 +53,7 @@ class ConstantController extends Controller
     public function storeExpense(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:expense_categories,name',
+            'name' => 'required|string|max:255|unique:mysql_rattan.expense_categories,name',
         ]);
 
         ExpenseCategory::create(['name' => $request->name]);
@@ -64,7 +64,7 @@ class ConstantController extends Controller
     public function updateExpense(Request $request, ExpenseCategory $constant)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:expense_categories,name,' . $constant->id,
+            'name' => 'required|string|max:255|unique:mysql_rattan.expense_categories,name,' . $constant->id,
         ]);
 
         $constant->update(['name' => $request->name]);
@@ -83,7 +83,7 @@ class ConstantController extends Controller
 public function storePayment(Request $request)
 {
     $request->validate([
-        'name' => 'required|string|max:255|unique:payment_methods,name',
+        'name' => 'required|string|max:255|unique:mysql_rattan.payment_methods,name',
     ]);
 
     PaymentMethod::create(['name' => $request->name]);
@@ -94,7 +94,7 @@ public function storePayment(Request $request)
 public function updatePayment(Request $request, PaymentMethod $constant)
 {
     $request->validate([
-        'name' => 'required|string|max:255|unique:payment_methods,name,' . $constant->id,
+        'name' => 'required|string|max:255|unique:mysql_rattan.payment_methods,name,' . $constant->id,
     ]);
 
     $constant->update(['name' => $request->name]);
@@ -112,7 +112,7 @@ public function destroyPayment(PaymentMethod $constant)
 public function storeAccountArticle(Request $request)
 {
     $request->validate([
-        'name' => 'required|string|max:255|unique:account_articles,name',
+        'name' => 'required|string|max:255|unique:mysql_rattan.account_articles,name',
     ]);
 
     AccountArticle::create(['name' => $request->name]);
@@ -123,7 +123,7 @@ public function storeAccountArticle(Request $request)
 public function updateAccountArticle(Request $request, AccountArticle $constant)
 {
     $request->validate([
-        'name' => 'required|string|max:255|unique:account_articles,name,' . $constant->id,
+        'name' => 'required|string|max:255|unique:mysql_rattan.account_articles,name,' . $constant->id,
     ]);
 
     $constant->update(['name' => $request->name]);
@@ -142,7 +142,7 @@ public function destroyAccountArticle(AccountArticle $constant)
 public function storeSupply(Request $request)
 {
     $request->validate([
-        'name' => 'required|string|max:255|unique:supply_categories,name',
+        'name' => 'required|string|max:255|unique:mysql_rattan.supply_categories,name',
     ]);
 
     SupplyCategory::create(['name' => $request->name]);
@@ -153,7 +153,7 @@ public function storeSupply(Request $request)
 public function updateSupply(Request $request, SupplyCategory $constant)
 {
     $request->validate([
-        'name' => 'required|string|max:255|unique:supply_categories,name,' . $constant->id,
+        'name' => 'required|string|max:255|unique:mysql_rattan.supply_categories,name,' . $constant->id,
     ]);
 
     $constant->update(['name' => $request->name]);
@@ -172,7 +172,7 @@ public function destroySupply(SupplyCategory $constant)
 public function storeUnit(Request $request)
 {
     $request->validate([
-        'name' => 'required|string|max:255|unique:units,name',
+        'name' => 'required|string|max:255|unique:mysql_rattan.units,name',
     ]);
 
     Unit::create(['name' => $request->name]);
@@ -183,7 +183,7 @@ public function storeUnit(Request $request)
 public function updateUnit(Request $request, Unit $constant)
 {
     $request->validate([
-        'name' => 'required|string|max:255|unique:units,name,' . $constant->id,
+        'name' => 'required|string|max:255|unique:mysql_rattan.units,name,' . $constant->id,
     ]);
 
     $constant->update(['name' => $request->name]);
@@ -202,7 +202,7 @@ public function destroyUnit(Unit $constant)
 public function storePaymentTerm(Request $request)
 {
     $request->validate([
-        'name' => 'required|string|max:255|unique:payment_terms,name',
+        'name' => 'required|string|max:255|unique:mysql_rattan.payment_terms,name',
     ]);
 
     PaymentTerm::create(['name' => $request->name]);
@@ -213,7 +213,7 @@ public function storePaymentTerm(Request $request)
 public function updatePaymentTerm(Request $request, PaymentTerm $constant)
 {
     $request->validate([
-        'name' => 'required|string|max:255|unique:payment_terms,name,' . $constant->id,
+        'name' => 'required|string|max:255|unique:mysql_rattan.payment_terms,name,' . $constant->id,
     ]);
 
     $constant->update(['name' => $request->name]);
