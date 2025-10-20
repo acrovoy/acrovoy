@@ -88,17 +88,10 @@ class AccountingController extends Controller
          // Получаем все склады с поставками
         $warehouses = Warehouse::with(['supplies' => function ($query) {
     $query->selectRaw('warehouse_id, sku, name, unit, SUM(COALESCE(quantity_remaining, quantity)) as total_remaining')
-          ->where('category_id', 1)
-          ->where(function ($q) {
-              $q->whereNotNull('quantity_remaining')
-                ->where('quantity_remaining', '>', 0)
-                ->orWhere(function ($q2) {
-                    $q2->whereNotNull('quantity')
-                       ->where('quantity', '>', 0);
-                });
-          })
-          ->groupBy('warehouse_id', 'sku', 'name', 'unit')
-          ->orderBy('name');
+        ->where('category_id', 1)
+        ->groupBy('warehouse_id', 'sku', 'name', 'unit')
+        ->havingRaw('SUM(COALESCE(quantity_remaining, quantity)) > 0') // ⬅️ фильтруем только положительные остатки
+        ->orderBy('name');
 }])->get();
 
         // Последние доходы (например, 5 последних)
