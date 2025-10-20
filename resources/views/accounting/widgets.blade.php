@@ -118,12 +118,11 @@
                         <strong>{{ $warehouse->name }}</strong>
                     </li>
                     @forelse($warehouse->supplies as $supply)
-                        @php
-                            $remaining = $supply->quantity_remaining ?? ($supply->quantity ?? 0);
-                        @endphp
                         <li class="list-group-item p-1 d-flex justify-content-between">
                             <span>{{ $supply->name }} ({{ $supply->unit ?? '' }})</span>
-                            <span class="badge {{ $remaining >= 2 ? 'bg-success' : 'bg-danger' }}">{{ $remaining }}</span>
+                            <span class="badge {{ $supply->total_remaining >= 2 ? 'bg-success' : 'bg-danger' }}">
+                                {{ number_format($supply->total_remaining, 2, '.', ' ') }}
+                            </span>
                         </li>
                     @empty
                         <li class="list-group-item p-1 text-muted">Нет товаров</li>
