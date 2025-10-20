@@ -118,15 +118,26 @@
                         <strong>{{ $warehouse->name }}</strong>
                     </li>
                     @forelse($warehouse->supplies as $supply)
-                        <li class="list-group-item p-1 d-flex justify-content-between">
-                            <span>{{ $supply->name }} ({{ $supply->unit ?? '' }})</span>
-                            <span class="badge {{ $supply->total_remaining >= 2 ? 'bg-success' : 'bg-danger' }}">
-                                {{ number_format($supply->total_remaining, 2, '.', ' ') }}
-                            </span>
-                        </li>
-                    @empty
-                        <li class="list-group-item p-1 text-muted">Нет товаров</li>
-                    @endforelse
+    @php
+        $qty = $supply->total_remaining;
+        if ($qty < 2) {
+            $badgeClass = 'bg-danger';
+        } elseif ($qty < 4) {
+            $badgeClass = 'bg-warning';
+        } else {
+            $badgeClass = 'bg-success';
+        }
+    @endphp
+
+    <li class="list-group-item p-1 d-flex justify-content-between align-items-center">
+        <span>{{ $supply->name }} ({{ $supply->unit ?? '' }})</span>
+        <span class="badge {{ $badgeClass }}">
+            {{ number_format($qty, 2, '.', ' ') }}
+        </span>
+    </li>
+@empty
+    <li class="list-group-item text-muted">Нет товаров</li>
+@endforelse
                 @endforeach
 
                 @if($warehouses->isEmpty())
