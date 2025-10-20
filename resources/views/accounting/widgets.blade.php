@@ -25,7 +25,7 @@
 
 
 
-  {{-- 2) Последние поступившие на склад товары --}}
+  {{-- 2) Склад готовой продукции --}}
 <div class="col-12 col-md-6 col-lg-6">
     <div class="card p-3 shadow-sm h-100 border-success">
         <div class="d-flex align-items-center mb-2">
@@ -37,7 +37,7 @@
                 @foreach($suppliesReady as $supply)
                     <li class="list-group-item p-1">
                         <div class="d-flex justify-content-between">
-                            <span><strong>{{ $supply->name }}</strong> ({{ $supply->quantity_remaining ?? 0 }} {{ $supply->unit ?? '' }})</span>
+                            <span><strong>{{ $supply->name }}</strong> ({{ $supply->total_quantity ?? 0 }} {{ $supply->unit ?? '' }})</span>
                             <span class="badge bg-secondary">{{ $supply->warehouse->name ?? '—' }}</span>
                         </div>
                         <small class="text-muted">Дата: <span class="text-success">{{ $supply->date_received->format('d.m.Y') }}</span> Поставщик: <span class="text-success">{{ $supply->supplier?->name ?? $supply->supplier_name ?? '—' }}</span> Артикул: <span class="text-success">{{ $supply->sku }}</span></small>

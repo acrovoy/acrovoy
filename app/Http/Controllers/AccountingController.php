@@ -48,9 +48,26 @@ class AccountingController extends Controller
         $suppliesRaw = Supply::where('category_id', 1)
         ->latest('date_received')
         ->get();
-        $suppliesReady = Supply::where('category_id', 2)
-        ->latest('date_received')
-        ->get();
+        
+        // Получаем все готовые позиции
+$suppliesReady = Supply::where('category_id', 2)
+    ->where(function ($q) {
+        $q->whereNotNull('quantity_remaining')
+          ->where('quantity_remaining', '>', 0)
+          ->orWhere(function ($q2) {
+              $q2->whereNotNull('quantity')
+                 ->where('quantity', '>', 0);
+          });
+    })
+    ->latest('date_received')
+    ->get();
+
+// Группируем по артикулу и суммируем остаток
+$suppliesReady = $suppliesReady->groupBy('sku')->map(function($group) {
+    $first = $group->first(); // берем любую запись для остальных данных
+    $first->total_quantity = $group->sum(fn($item) => $item->quantity_remaining ?? 0);
+    return $first;
+})->values();
 
 
 
