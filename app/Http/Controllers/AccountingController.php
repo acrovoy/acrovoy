@@ -89,7 +89,7 @@ class AccountingController extends Controller
         $warehouses = Warehouse::with('supplies')->get();
 
         // Последние доходы (например, 5 последних)
-       $latestIncomes = Income::with('clientRelation')->latest()->take(5)->get();
+       $latestIncomes = Income::with('clientRelation')->latest()->take(10)->get();
 
        $incomeCategories = IncomeCategory::all();
         $expenseCategories = ExpenseCategory::all();
