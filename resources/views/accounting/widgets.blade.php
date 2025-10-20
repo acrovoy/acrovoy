@@ -88,8 +88,8 @@
                 @foreach($suppliesRaw as $supply)
                     <li class="list-group-item p-1">
                         <div class="d-flex justify-content-between">
-                            <span>{{ $supply->date_received->format('d.m.Y') }} <strong>{{ $supply->name }}</strong> ({{ $supply->quantity ?? 0 }} {{ $supply->unit ?? '' }})</span>
-                            <span class="badge bg-secondary">{{ $supply->warehouse->name ?? '—' }}</span>
+                            <span>{{ $supply->date_received->format('d.m.Y') }} <strong>{{ $supply->name }}</strong> </span>
+                            <span><strong>{{ $supply->quantity ?? 0 }}</strong> {{ $supply->unit ?? '' }} <span class="badge bg-secondary"> {{ $supply->warehouse->name ?? '—' }}</span></span>
                         </div>
                         <small class="text-muted">Поставщик: <span class="text-success">{{ $supply->supplier?->name ?? $supply->supplier_name ?? '—' }}</span> Артикул: <span class="text-success">{{ $supply->sku }}</span></small>
                     </li>
