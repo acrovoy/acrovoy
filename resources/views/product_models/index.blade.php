@@ -39,20 +39,29 @@
     <a href="{{ route('product_models.create') }}" class="btn btn-primary mb-3">➕ Добавить модель</a>
 
     <div class="row">
-        @foreach($models as $model)
-        <div class="col-md-4 mb-3">
-            <div class="card h-100 shadow-sm">
-                @if($model->photo)
-                    <img src="{{ asset('storage/'.$model->photo) }}" class="card-img-top" style="height:200px;object-fit:cover">
+    @foreach($models as $model)
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow-sm">
+            @if($model->photo)
+                <img src="{{ asset('storage/'.$model->photo) }}" class="card-img-top" style="height:200px;object-fit:cover">
+            @endif
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="fw-bold mb-0">{{ $model->name }}</h5>
+                    <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $model->id }}" aria-expanded="false" aria-controls="collapse-{{ $model->id }}">
+                        ▼
+                    </button>
+                </div>
+                <small class="text-muted">Артикул: {{ $model->sku ?? '—' }}</small>
+
+                {{-- Кол-во можно произвести всегда видно --}}
+                @if ($model->can_produce > 0)
+                    <p class="text-success fw-bold">Можно произвести {{ $model->can_produce }} шт.</p>
+                @else
+                    <p class="text-danger fw-bold">Недостаточно сырья</p>
                 @endif
-                <div class="card-body">
-                    <h5 class="fw-bold">{{ $model->name }}</h5>
-                    <small class="text-muted">Артикул: {{ $model->sku ?? '—' }}</small>
-                    @if ($model->can_produce > 0)
-                        <p class="text-success fw-bold">Можно произвести{{ $model->can_produce }} шт.</p>
-                    @else
-                        <p class="text-danger fw-bold">Недостаточно сырья</p>
-                    @endif
+
+                <div class="collapse mt-2" id="collapse-{{ $model->id }}">
                     <hr>
                     <p class="mb-1 fw-semibold">Состав:</p>
                     <ul>
@@ -65,14 +74,7 @@
                         <p class="mb-1 fw-semibold">Описание:</p>
                         <p>{{ $model->description }}</p>
                     @endif
-                    
 
-                    {{-- Блок расчёта производства --}}
-                     <hr>
-
-                    {{-- Кол-во можно произвести --}}
-                    
-                    {{-- Подробные остатки по компонентам --}}
                     @if (!empty($model->stock_details))
                         <p class="mb-1 fw-semibold">📦 Остатки по компонентам:</p>
                         <table class="table table-sm mt-2">
@@ -99,18 +101,19 @@
                         </table>
                     @endif
 
-
                     <div class="mt-3">
                         <a href="{{ route('product_models.edit', $model) }}" class="btn btn-warning btn-sm">✏️</a>
                         <form action="{{ route('product_models.destroy', $model) }}" method="POST" style="display:inline-block">
-                            @csrf @method('DELETE')
+                            @csrf
+                            @method('DELETE')
                             <button class="btn btn-danger btn-sm" onclick="return confirm('Удалить модель?')">🗑️</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        @endforeach
     </div>
+    @endforeach
+</div>
 </div>
 @endsection
