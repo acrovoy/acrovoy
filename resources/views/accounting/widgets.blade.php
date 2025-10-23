@@ -40,7 +40,7 @@
                             <span><strong>{{ $supply->name }}</strong> </span>
                             <span><strong>{{ $supply->total_quantity ?? 0 }}</strong> {{ $supply->unit ?? '' }} <span class="badge bg-secondary">{{ $supply->warehouse->name ?? '—' }}</span></span>
                         </div>
-                        <small class="text-muted">Дата: <span class="text-success">{{ $supply->date_received->format('d.m.Y') }}</span> Поставщик: <span class="text-success">{{ $supply->supplier?->name ?? $supply->supplier_name ?? '—' }}</span> Артикул: <span class="text-success">{{ $supply->sku }}</span></small>
+                        <small class="text-muted">Поставщик: <span class="text-success">{{ $supply->supplier?->name ?? $supply->supplier_name ?? '—' }}</span> Артикул: <span class="text-success">{{ $supply->sku }}</span></small>
                     </li>
                 @endforeach
                 @if($latestSupplies->isEmpty())

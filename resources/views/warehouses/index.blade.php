@@ -13,6 +13,9 @@
         {{-- Производство --}}
             <a href="{{ route('manufactured_products.index') }}" class="ms-3 fs-4 text-decoration-none" title="Производство">🏭</a>
 
+             {{-- Модели товаров --}}
+            <a href="{{ route('product_models.index') }}" class="ms-3 fs-4 text-decoration-none" title="Модели товаров">🪑</a>
+            
         {{-- Клиенты --}}
         <a href="{{ route('clients.index') }}" class="ms-3 fs-4 text-decoration-none" title="Клиенты">👥</a>
 

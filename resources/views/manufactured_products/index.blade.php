@@ -14,7 +14,9 @@
             {{-- Склад --}}
             <a href="{{ route('warehouses.index') }}" class="ms-3 fs-4 text-decoration-none" title="Склад">🏬</a>
 
-           
+            {{-- Модели товаров --}}
+            <a href="{{ route('product_models.index') }}" class="ms-3 fs-4 text-decoration-none" title="Модели товаров">🪑</a>
+            
 
             {{-- Клиенты --}}
             <a href="{{ route('clients.index') }}" class="ms-3 fs-4 text-decoration-none" title="Клиенты">👥</a>
@@ -40,6 +42,7 @@
     @endif
 
     <a href="{{ route('manufactured_products.create') }}" class="btn btn-success mb-3">Создать изделие</a>
+    <a href="{{ route('raw-materials.index') }}" class="btn btn-warning mb-3">+ Добавить сырьё</a>
 
     <table class="table table-bordered">
         <thead>

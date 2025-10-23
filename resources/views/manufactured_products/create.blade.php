@@ -7,6 +7,17 @@
     <form action="{{ route('manufactured_products.store') }}" method="POST">
         @csrf
 
+        {{-- Выбор модели для автозаполнения --}}
+        <div class="mb-3">
+            <label class="form-label">Выберите модель изделия (для автозаполнения состава)</label>
+            <select id="product-model-select" class="form-select">
+                <option value="">— Выберите модель —</option>
+                @foreach($productModels as $model)
+                    <option value="{{ $model->id }}">{{ $model->name }} ({{ $model->sku }})</option>
+                @endforeach
+            </select>
+        </div>
+
         {{-- Наименование и артикул --}}
         <div class="mb-3">
             <label class="form-label">Наименование</label>
@@ -22,9 +33,9 @@
         <div class="mb-3">
             <label class="form-label">Статус изделия</label>
             <select name="status" class="form-select">
-                <option value="order" {{ old('status', $manufacturedProduct->status ?? '') == 'order' ? 'selected' : '' }}>Заказ на производство</option>
-                <option value="produced" {{ old('status', $manufacturedProduct->status ?? '') == 'produced' ? 'selected' : '' }}>Произведено</option>
-                <option value="stocked" {{ old('status', $manufacturedProduct->status ?? '') == 'stocked' ? 'selected' : '' }}>Поставлено на склад</option>
+                <option value="order" {{ old('status') == 'order' ? 'selected' : '' }}>Заказ на производство</option>
+                <option value="produced" {{ old('status') == 'produced' ? 'selected' : '' }}>Произведено</option>
+                <option value="stocked" {{ old('status') == 'stocked' ? 'selected' : '' }}>Поставлено на склад</option>
             </select>
         </div>
 
@@ -53,8 +64,6 @@
                 @endforeach
             </select>
         </div>
-
-       
 
         {{-- Примечания --}}
         <div class="mb-3">
@@ -93,6 +102,7 @@
 <script>
 let componentIndex = 1;
 
+// Добавление новой строки компонента
 document.getElementById('add-component').addEventListener('click', function() {
     const wrapper = document.getElementById('components-wrapper');
     const row = document.querySelector('.component-row').cloneNode(true);
@@ -108,6 +118,7 @@ document.getElementById('add-component').addEventListener('click', function() {
     componentIndex++;
 });
 
+// Удаление строки компонента
 document.addEventListener('click', function(e){
     if(e.target && e.target.classList.contains('btn-remove-component')){
         const rows = document.querySelectorAll('.component-row');
@@ -115,6 +126,55 @@ document.addEventListener('click', function(e){
             e.target.closest('.component-row').remove();
         }
     }
+});
+
+// Автозаполнение компонентов при выборе модели
+document.getElementById('product-model-select').addEventListener('change', function() {
+    const modelId = this.value;
+    const wrapper = document.getElementById('components-wrapper');
+    wrapper.innerHTML = '';
+    componentIndex = 0;
+
+    if (!modelId) return;
+
+    fetch(`/product-models/${modelId}/components`)
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(comp => {
+                const row = document.createElement('div');
+                row.classList.add('component-row', 'row', 'mb-2');
+
+                if (comp.supply_exists) {
+                    row.innerHTML = `
+                        <div class="col-md-6">
+                            <select name="components[${componentIndex}][supply_id]" class="form-select">
+                                <option value="${comp.supply_id}" selected>
+                                    ${comp.name} (${comp.price_per_unit}) - ${comp.quantity_remaining}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" step="0.01" name="components[${componentIndex}][quantity]" class="form-control" value="${comp.quantity}" placeholder="Количество">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-danger btn-remove-component">✖</button>
+                        </div>
+                    `;
+                } else {
+                    row.innerHTML = `
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" value="Компонент '${comp.name}' отсутствует на складе" disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-danger btn-remove-component">✖</button>
+                        </div>
+                    `;
+                }
+
+                wrapper.appendChild(row);
+                componentIndex++;
+            });
+        });
 });
 </script>
 @endsection

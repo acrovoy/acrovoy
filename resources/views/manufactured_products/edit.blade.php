@@ -2,31 +2,41 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">✏️ Редактировать изделие</h1>
+    <h1 class="mb-4">✏️ Редактировать заказ на производство изделия</h1>
 
-    <form action="{{ route('manufactured_products.update', $manufacturedProduct->id) }}" method="POST">
+    <form action="{{ route('manufactured_products.update', $manufacturedProduct) }}" method="POST">
         @csrf
         @method('PUT')
+
+        {{-- Выбор модели для автозаполнения --}}
+        <div class="mb-3">
+            <label class="form-label">Выберите модель изделия (для автозаполнения состава)</label>
+            <select id="product-model-select" class="form-select">
+                <option value="">— Выберите модель —</option>
+                @foreach($productModels as $model)
+                    <option value="{{ $model->id }}">{{ $model->name }} ({{ $model->sku }})</option>
+                @endforeach
+            </select>
+        </div>
 
         {{-- Наименование и артикул --}}
         <div class="mb-3">
             <label class="form-label">Наименование</label>
-            <input type="text" name="name" class="form-control" value="{{ old('name', $manufacturedProduct->name) }}" required>
+            <input type="text" name="name" class="form-control" value="{{ $manufacturedProduct->name }}" required>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Артикул (SKU)</label>
-            <input type="text" name="sku" class="form-control" value="{{ old('sku', $manufacturedProduct->sku) }}">
+            <input type="text" name="sku" class="form-control" value="{{ $manufacturedProduct->sku }}">
         </div>
 
-
-         {{-- Статус --}}
+        {{-- Статус --}}
         <div class="mb-3">
             <label class="form-label">Статус изделия</label>
             <select name="status" class="form-select">
-                <option value="order" {{ old('status', $manufacturedProduct->status ?? '') == 'order' ? 'selected' : '' }}>Заказ на производство</option>
-                <option value="produced" {{ old('status', $manufacturedProduct->status ?? '') == 'produced' ? 'selected' : '' }}>Произведено</option>
-                <option value="stocked" {{ old('status', $manufacturedProduct->status ?? '') == 'stocked' ? 'selected' : '' }}>Поставлено на склад</option>
+                <option value="order" {{ $manufacturedProduct->status == 'order' ? 'selected' : '' }}>Заказ на производство</option>
+                <option value="produced" {{ $manufacturedProduct->status == 'produced' ? 'selected' : '' }}>Произведено</option>
+                <option value="stocked" {{ $manufacturedProduct->status == 'stocked' ? 'selected' : '' }}>Поставлено на склад</option>
             </select>
         </div>
 
@@ -36,7 +46,7 @@
             <select name="category_id" class="form-select">
                 <option value="">— Выберите категорию —</option>
                 @foreach($categories as $category)
-                    <option value="{{ $category->id }}" {{ old('category_id', $manufacturedProduct->category_id) == $category->id ? 'selected' : '' }}>
+                    <option value="{{ $category->id }}" {{ $manufacturedProduct->category_id == $category->id ? 'selected' : '' }}>
                         {{ $category->name }}
                     </option>
                 @endforeach
@@ -49,56 +59,55 @@
             <select name="warehouse_id" class="form-select">
                 <option value="">— Выберите склад —</option>
                 @foreach($warehouses as $warehouse)
-                    <option value="{{ $warehouse->id }}" {{ old('warehouse_id', $manufacturedProduct->warehouse_id) == $warehouse->id ? 'selected' : '' }}>
+                    <option value="{{ $warehouse->id }}" {{ $manufacturedProduct->warehouse_id == $warehouse->id ? 'selected' : '' }}>
                         {{ $warehouse->name }}
                     </option>
                 @endforeach
             </select>
         </div>
 
-       
-
         {{-- Примечания --}}
         <div class="mb-3">
             <label class="form-label">Примечания</label>
-            <textarea name="notes" class="form-control">{{ old('notes', $manufacturedProduct->notes) }}</textarea>
+            <textarea name="notes" class="form-control">{{ $manufacturedProduct->notes }}</textarea>
         </div>
 
         {{-- Состав изделия --}}
         <h4 class="mt-4">Состав изделия</h4>
         <div id="components-wrapper">
-            @foreach(old('components', $manufacturedProduct->components->toArray()) as $index => $component)
-            <div class="component-row row mb-2">
-                <div class="col-md-6">
-                    <select name="components[{{ $index }}][supply_id]" class="form-select">
-                        <option value="">— Выберите материал —</option>
-                        @foreach($supplies as $supply)
-                            <option value="{{ $supply->id }}" {{ $component['supply_id'] == $supply->id ? 'selected' : '' }}>
-                                {{ $supply->name }}
-                            </option>
-                        @endforeach
-                    </select>
+            @foreach($manufacturedProduct->components as $index => $comp)
+                <div class="component-row row mb-2">
+                    <div class="col-md-6">
+                        <select name="components[{{ $index }}][supply_id]" class="form-select">
+                            <option value="">— Выберите материал —</option>
+                            @foreach($supplies as $supply)
+                                <option value="{{ $supply->id }}" {{ $comp->supply_id == $supply->id ? 'selected' : '' }}>
+                                    {{ $supply->name }} ({{ $supply->price_per_unit }}) - {{ $supply->quantity_remaining }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" step="0.01" name="components[{{ $index }}][quantity]" class="form-control" value="{{ $comp->quantity }}" placeholder="Количество">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger btn-remove-component">✖</button>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <input type="number" step="0.01" name="components[{{ $index }}][quantity]" class="form-control" value="{{ $component['quantity'] }}" placeholder="Количество">
-                </div>
-                <div class="col-md-2">
-                    <button type="button" class="btn btn-danger btn-remove-component">✖</button>
-                </div>
-            </div>
             @endforeach
         </div>
 
         <button type="button" class="btn btn-primary mb-3" id="add-component">➕ Добавить компонент</button>
 
-        <button type="submit" class="btn btn-success">Сохранить изменения</button>
+        <button type="submit" class="btn btn-success">Обновить изделие</button>
         <a href="{{ route('manufactured_products.index') }}" class="btn btn-secondary">Отмена</a>
     </form>
 </div>
 
 <script>
-let componentIndex = {{ count(old('components', $manufacturedProduct->components)) }};
+let componentIndex = {{ $manufacturedProduct->components->count() }};
 
+// Добавление новой строки компонента
 document.getElementById('add-component').addEventListener('click', function() {
     const wrapper = document.getElementById('components-wrapper');
     const row = document.querySelector('.component-row').cloneNode(true);
@@ -114,6 +123,7 @@ document.getElementById('add-component').addEventListener('click', function() {
     componentIndex++;
 });
 
+// Удаление строки компонента
 document.addEventListener('click', function(e){
     if(e.target && e.target.classList.contains('btn-remove-component')){
         const rows = document.querySelectorAll('.component-row');
@@ -121,6 +131,47 @@ document.addEventListener('click', function(e){
             e.target.closest('.component-row').remove();
         }
     }
+});
+
+// Автозаполнение компонентов при выборе модели
+document.getElementById('product-model-select').addEventListener('change', function() {
+    const modelId = this.value;
+    const wrapper = document.getElementById('components-wrapper');
+
+    wrapper.innerHTML = '';
+    componentIndex = 0;
+
+    if (!modelId) return;
+
+    fetch(`/product-models/${modelId}/components`)
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(comp => {
+                const row = document.createElement('div');
+                row.classList.add('component-row', 'row', 'mb-2');
+
+                row.innerHTML = `
+                    <div class="col-md-6">
+                        <select name="components[${componentIndex}][supply_id]" class="form-select">
+                            <option value="">— Выберите материал —</option>
+                            @foreach($supplies as $supply)
+                                <option value="{{ $supply->id }}" ${comp.supply_id == {{ $supply->id }} ? 'selected' : ''}>
+                                    {{ $supply->name }} ({{ $supply->price_per_unit }}) - {{ $supply->quantity_remaining }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" step="0.01" name="components[${componentIndex}][quantity]" class="form-control" value="${comp.quantity}" placeholder="Количество">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger btn-remove-component">✖</button>
+                    </div>
+                `;
+                wrapper.appendChild(row);
+                componentIndex++;
+            });
+        });
 });
 </script>
 @endsection

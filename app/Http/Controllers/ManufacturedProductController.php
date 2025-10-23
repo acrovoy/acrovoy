@@ -9,6 +9,7 @@ use App\Models\Supply;
 use App\Models\Warehouse;
 use App\Models\Category;
 use App\Models\ManufacturedProductComponentCost;
+use App\Models\ProductModel;
 
 class ManufacturedProductController extends Controller
 {
@@ -33,7 +34,9 @@ class ManufacturedProductController extends Controller
     $warehouses = Warehouse::all();
     $supplies = Supply::all();
     $categories = Category::all(); // <-- добавлено
-    return view('manufactured_products.create', compact('warehouses', 'supplies', 'categories'));
+    $productModels = ProductModel::with('components.rawmaterial')->get();
+    return view('manufactured_products.create', compact('warehouses', 'supplies', 'categories', 'productModels'));
+    
 }
 
     // Сохранение нового изделия
@@ -62,7 +65,9 @@ class ManufacturedProductController extends Controller
     $supplies = Supply::all();
     $categories = Category::all(); // <-- добавлено
     $manufacturedProduct->load('components.supply');
-    return view('manufactured_products.edit', compact('manufacturedProduct', 'warehouses', 'supplies', 'categories'));
+    $productModels = ProductModel::with('components.rawmaterial')->get();
+    
+    return view('manufactured_products.edit', compact('manufacturedProduct', 'warehouses', 'supplies', 'categories', 'productModels'));
 }
 
     // Обновление изделия
