@@ -2,7 +2,41 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">🧱 База сырья</h1>
+    
+
+    <div class="d-flex align-items-center justify-content-between mb-3 mt-4">
+        <h1 class="mb-0">🧱 База сырья</h1>
+
+        <div class="d-flex">
+
+            {{-- Бухгалтерия --}}
+            <a href="{{ route('accounting.index') }}" class="ms-3 fs-4 text-decoration-none" title="Бухгалтерия">📘</a>
+            
+            {{-- Склад --}}
+            <a href="{{ route('warehouses.index') }}" class="ms-3 fs-4 text-decoration-none" title="Склад">🏬</a>
+
+            {{-- Производство --}}
+            <a href="{{ route('manufactured_products.index') }}" class="ms-3 fs-4 text-decoration-none" title="Производство">🏭</a>
+
+            {{-- Модели товаров --}}
+            <a href="{{ route('product_models.index') }}" class="ms-3 fs-4 text-decoration-none" title="Модели товаров">🪑</a>
+            
+
+            {{-- Клиенты --}}
+            <a href="{{ route('clients.index') }}" class="ms-3 fs-4 text-decoration-none" title="Клиенты">👥</a>
+
+            {{-- Поставщики --}}
+            <a href="{{ route('suppliers.index') }}" class="ms-3 fs-4 text-decoration-none" title="Поставщики">🤝</a>
+
+             {{-- Отчеты --}}
+            <a href="{{ route('reports.index') }}" class="ms-3 fs-4 text-decoration-none" title="Отчеты">📊</a>
+
+            {{-- Настройки --}}
+            <a href="{{ route('constants.index') }}" class="ms-3 fs-4 text-decoration-none" title="Настройки">⚙️</a>
+
+           
+        </div>
+    </div>
 
     <a href="{{ route('raw-materials.create') }}" class="btn btn-success mb-3">➕ Добавить сырьё</a>
 
