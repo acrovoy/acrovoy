@@ -21,6 +21,8 @@ use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\SupplyController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\ManufacturedProductController;
+use App\Http\Controllers\ProductModelController;
+use App\Http\Controllers\RawMaterialController;
 
 
 // Главная страница
@@ -325,3 +327,14 @@ Route::patch('manufactured_products/{manufacturedProduct}/produce', [Manufacture
     ->name('manufactured_products.produce');
 
 Route::patch('manufactured_products/{product}/stock', [ManufacturedProductController::class, 'stock'])->name('manufactured_products.stock');
+
+
+// МОДЕЛИ
+
+Route::resource('product_models', ProductModelController::class);
+
+// сырьё
+
+Route::resource('raw-materials', RawMaterialController::class);
+
+Route::get('/product-models/{id}/components', [ProductModelController::class, 'getComponents']);
