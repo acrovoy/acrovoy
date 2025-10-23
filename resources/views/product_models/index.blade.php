@@ -48,6 +48,11 @@
                 <div class="card-body">
                     <h5 class="fw-bold">{{ $model->name }}</h5>
                     <small class="text-muted">Артикул: {{ $model->sku ?? '—' }}</small>
+                    @if ($model->can_produce > 0)
+                        <p class="text-success fw-bold">Можно произвести{{ $model->can_produce }} шт.</p>
+                    @else
+                        <p class="text-danger fw-bold">Недостаточно сырья</p>
+                    @endif
                     <hr>
                     <p class="mb-1 fw-semibold">Состав:</p>
                     <ul>
@@ -63,21 +68,18 @@
                     
 
                     {{-- Блок расчёта производства --}}
-                    <hr>
-                    <p class="mb-1 fw-semibold">Кол-во можно произвести:</p>
-                    @if ($model->can_produce > 0)
-                        <p class="text-success fw-bold">{{ $model->can_produce }}</p>
-                    @else
-                        <p class="text-danger">Недостаточно сырья</p>
-                    @endif
+                     <hr>
 
-                    {{-- Подробности по сырью --}}
+                    {{-- Кол-во можно произвести --}}
+                    
+                    {{-- Подробные остатки по компонентам --}}
                     @if (!empty($model->stock_details))
+                        <p class="mb-1 fw-semibold">📦 Остатки по компонентам:</p>
                         <table class="table table-sm mt-2">
                             <thead class="table-light">
                                 <tr>
                                     <th>Сырьё</th>
-                                    <th>Артикул</th>
+                                    <th>Код</th>
                                     <th>Нужно</th>
                                     <th>Есть</th>
                                     <th>Можно сделать</th>
@@ -87,7 +89,7 @@
                                 @foreach ($model->stock_details as $d)
                                     <tr>
                                         <td>{{ $d['name'] }}</td>
-                                        <td>{{ $d['sku'] }}</td>
+                                        <td>{{ $d['code'] ?? '—' }}</td>
                                         <td>{{ $d['required'] }}</td>
                                         <td>{{ $d['available'] }}</td>
                                         <td>{{ $d['can_make'] }}</td>

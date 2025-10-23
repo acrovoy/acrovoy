@@ -16,26 +16,27 @@ class ProductModelController extends Controller
 
     foreach ($models as $model) {
         $possibleUnits = [];
-        $details = []; // подробности по каждому компоненту
+        $details = [];
 
         foreach ($model->components as $comp) {
             $raw = $comp->rawmaterial;
-            $sku = $raw?->sku;
+            $code = $raw?->code; // <-- вместо sku
             $required = $comp->quantity;
             $available = 0;
 
-            if ($sku && $required > 0) {
-                // Сумма всех остатков по этому артикулу
-                $available = Supply::where('sku', $sku)
+            if ($code && $required > 0) {
+                // Сумма всех остатков по этому коду в supplies
+                $available = Supply::where('sku', $code) // в supplies поле sku = код
                     ->where('quantity_remaining', '>', 0)
                     ->sum('quantity_remaining');
 
-                $can_make = $required > 0 ? floor($available / $required) : 0;
+                $can_make = floor($available / $required);
+
                 $possibleUnits[] = $can_make;
 
                 $details[] = [
                     'name' => $raw?->name ?? '—',
-                    'sku' => $sku,
+                    'code' => $code,
                     'required' => $required,
                     'available' => $available,
                     'can_make' => $can_make,
@@ -43,11 +44,10 @@ class ProductModelController extends Controller
             }
         }
 
-        $model->can_produce = count($possibleUnits)
-            ? min($possibleUnits)
-            : 0;
-
+        $model->can_produce = count($possibleUnits) ? min($possibleUnits) : 0;
         $model->stock_details = $details;
+
+       
     }
 
     return view('product_models.index', compact('models'));
