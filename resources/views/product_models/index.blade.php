@@ -61,6 +61,43 @@
                         <p>{{ $model->description }}</p>
                     @endif
                     
+
+                    {{-- Блок расчёта производства --}}
+                    <hr>
+                    <p class="mb-1 fw-semibold">Кол-во можно произвести:</p>
+                    @if ($model->can_produce > 0)
+                        <p class="text-success fw-bold">{{ $model->can_produce }}</p>
+                    @else
+                        <p class="text-danger">Недостаточно сырья</p>
+                    @endif
+
+                    {{-- Подробности по сырью --}}
+                    @if (!empty($model->stock_details))
+                        <table class="table table-sm mt-2">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Сырьё</th>
+                                    <th>Артикул</th>
+                                    <th>Нужно</th>
+                                    <th>Есть</th>
+                                    <th>Можно сделать</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($model->stock_details as $d)
+                                    <tr>
+                                        <td>{{ $d['name'] }}</td>
+                                        <td>{{ $d['sku'] }}</td>
+                                        <td>{{ $d['required'] }}</td>
+                                        <td>{{ $d['available'] }}</td>
+                                        <td>{{ $d['can_make'] }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
+
+
                     <div class="mt-3">
                         <a href="{{ route('product_models.edit', $model) }}" class="btn btn-warning btn-sm">✏️</a>
                         <form action="{{ route('product_models.destroy', $model) }}" method="POST" style="display:inline-block">

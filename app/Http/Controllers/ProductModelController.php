@@ -11,10 +11,47 @@ use App\Models\RawMaterial;
 class ProductModelController extends Controller
 {
     public function index()
-    {
-        $models = ProductModel::with('components.rawmaterial')->get();
-        return view('product_models.index', compact('models'));
+{
+    $models = ProductModel::with('components.rawmaterial')->get();
+
+    foreach ($models as $model) {
+        $possibleUnits = [];
+        $details = []; // подробности по каждому компоненту
+
+        foreach ($model->components as $comp) {
+            $raw = $comp->rawmaterial;
+            $sku = $raw?->sku;
+            $required = $comp->quantity;
+            $available = 0;
+
+            if ($sku && $required > 0) {
+                // Сумма всех остатков по этому артикулу
+                $available = Supply::where('sku', $sku)
+                    ->where('quantity_remaining', '>', 0)
+                    ->sum('quantity_remaining');
+
+                $can_make = $required > 0 ? floor($available / $required) : 0;
+                $possibleUnits[] = $can_make;
+
+                $details[] = [
+                    'name' => $raw?->name ?? '—',
+                    'sku' => $sku,
+                    'required' => $required,
+                    'available' => $available,
+                    'can_make' => $can_make,
+                ];
+            }
+        }
+
+        $model->can_produce = count($possibleUnits)
+            ? min($possibleUnits)
+            : 0;
+
+        $model->stock_details = $details;
     }
+
+    return view('product_models.index', compact('models'));
+}
 
     public function create()
     {
