@@ -63,7 +63,7 @@
 
                 <div class="collapse mt-2" id="collapse-{{ $model->id }}">
                     <hr>
-                    <p class="mb-1 fw-semibold">Состав:</p>
+                    <p class="mb-1 fw-semibold">🧩 Состав:</p>
                     <ul>
                         @foreach($model->components as $comp)
                             <li>{{ $comp->rawmaterial?->name ?? '—' }} — {{ $comp->quantity }}</li>
@@ -71,7 +71,7 @@
                     </ul>
 
                     @if ($model->description)
-                        <p class="mb-1 fw-semibold">Описание:</p>
+                        <p class="mb-1 fw-semibold">📄 Описание:</p>
                         <p>{{ $model->description }}</p>
                     @endif
 
