@@ -68,7 +68,7 @@
 
         <div class="mb-3">
             <label>Количество</label>
-            <input type="number" name="quantity" class="form-control" value="{{ $supply->quantity }}" required>
+            <input type="number" step="0.01" name="quantity" class="form-control" value="{{ $supply->quantity }}" required>
         </div>
 
         <div class="mb-3">
