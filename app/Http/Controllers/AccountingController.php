@@ -51,14 +51,8 @@ class AccountingController extends Controller
         
         // Получаем все готовые позиции
 $suppliesReady = Supply::where('category_id', 2)
-    ->where(function ($q) {
-        $q->whereNotNull('quantity_remaining')
-          ->where('quantity_remaining', '>', 0)
-          ->orWhere(function ($q2) {
-              $q2->whereNotNull('quantity')
-                 ->where('quantity', '>', 0);
-          });
-    })
+    ->whereNotNull('quantity_remaining')
+    ->where('quantity_remaining', '>', 0)
     ->latest('date_received')
     ->get();
 
