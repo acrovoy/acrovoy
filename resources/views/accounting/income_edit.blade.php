@@ -9,7 +9,9 @@
 
         <div class="mb-3">
             <label>Дата</label>
-            <input type="date" name="date" value="{{ $income->date }}" class="form-control" required>
+            <input type="date" name="date" class="form-control"
+            value="{{ old('date', $income->date ? \Carbon\Carbon::parse($income->date)->format('Y-m-d') : '') }}" required>
+            
         </div>
         <div class="mb-3">
             <label>Документ/№ счёта</label>

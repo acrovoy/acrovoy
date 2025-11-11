@@ -23,6 +23,7 @@ use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\ManufacturedProductController;
 use App\Http\Controllers\ProductModelController;
 use App\Http\Controllers\RawMaterialController;
+use App\Http\Controllers\ProductSalesController;
 
 
 // Главная страница
@@ -338,3 +339,40 @@ Route::resource('product_models', ProductModelController::class);
 Route::resource('raw-materials', RawMaterialController::class);
 
 Route::get('/product-models/{id}/components', [ProductModelController::class, 'getComponents']);
+
+
+// ПРОДАЖИ
+
+Route::prefix('product-sales')->group(function () {
+    // Список всех продаж
+    Route::get('/', [ProductSalesController::class, 'index'])->name('product_sales.index');
+
+    // Форма создания новой продажи
+    Route::get('/create', [ProductSalesController::class, 'create'])->name('product_sales.create');
+
+    // Сохранение новой продажи
+    Route::post('/', [ProductSalesController::class, 'store'])->name('product_sales.store');
+
+    // Просмотр одной продажи
+    Route::get('/{productSale}', [ProductSalesController::class, 'show'])->name('product_sales.show');
+
+    // Форма редактирования
+    Route::get('/{productSale}/edit', [ProductSalesController::class, 'edit'])->name('product_sales.edit');
+
+    // Обновление продажи
+    Route::put('/{productSale}', [ProductSalesController::class, 'update'])->name('product_sales.update');
+
+    // Удаление продажи
+    Route::delete('/{productSale}', [ProductSalesController::class, 'destroy'])->name('product_sales.destroy');
+});
+
+// Отметить как оплачено
+Route::patch('/product-sales/{productSale}/pay', [ProductSalesController::class, 'pay'])->name('product_sales.pay');
+
+Route::patch('/product-sales/{productSale}/draft', [ProductSalesController::class, 'draft'])->name('product_sales.draft');
+
+Route::patch('/product-sales/{productSale}/ship', [ProductSalesController::class, 'ship'])
+    ->name('product_sales.ship');
+
+Route::patch('/product-sales/{productSale}/return', [ProductSalesController::class, 'return'])
+     ->name('product_sales.return');

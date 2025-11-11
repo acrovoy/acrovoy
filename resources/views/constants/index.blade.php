@@ -6,6 +6,11 @@
         <h1 class="mb-0">⚙️ Настройки</h1>
 
         <div class="d-flex">
+
+        {{-- ПРОДАЖИ --}}
+            <a href="{{ route('product_sales.index') }}" class="ms-3 fs-4 text-decoration-none" title="Склад">💰</a>
+
+            
              {{-- Бухгалтерия --}}
             <a href="{{ route('accounting.index') }}" class="ms-3 fs-4 text-decoration-none" title="Бухгалтерия">📘</a>
             

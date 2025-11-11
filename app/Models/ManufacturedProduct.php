@@ -17,7 +17,11 @@ class ManufacturedProduct extends Model
         'warehouse_id',
         'produced_quantity',
         'unit',
-        'notes'
+        'notes',
+        'serial_number',
+        'manufactured_at',
+        'cost', 
+        'status'
     ];
 
   

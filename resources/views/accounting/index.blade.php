@@ -6,6 +6,10 @@
         <h1 class="mb-0">📘 Markell Ratan</h1>
 
         <div class="d-flex">
+
+        {{-- ПРОДАЖИ --}}
+            <a href="{{ route('product_sales.index') }}" class="ms-3 fs-4 text-decoration-none" title="Склад">💰</a>
+
             {{-- Склад --}}
             <a href="{{ route('warehouses.index') }}" class="ms-3 fs-4 text-decoration-none" title="Склад">🏬</a>
 
