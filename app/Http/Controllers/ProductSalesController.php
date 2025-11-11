@@ -82,7 +82,7 @@ public function store(Request $request)
         'client_id' => 'nullable|exists:mysql_rattan.clients,id',
         'items' => 'required|array',
         'items.*.supply_id' => 'required|exists:mysql_rattan.supplies,id',
-        'items.*.quantity' => 'required|numeric|min:0.01',
+        'items.*.quantity' => 'required|numeric|min:1.00',
         'items.*.price' => 'required|numeric|min:0',
     ]);
 // dd($request);
