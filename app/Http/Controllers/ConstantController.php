@@ -10,9 +10,12 @@ use App\Models\AccountArticle;
 use App\Models\SupplyCategory;
 use App\Models\Unit;
 use App\Models\PaymentTerm;
+use App\Models\PriceType;
 
 class ConstantController extends Controller
 {
+
+    protected $connection = 'mysql_rattan'; // если таблица на другом соединении
     public function index()
     {
         $incomeCategories = IncomeCategory::orderBy('name')->get();
@@ -225,6 +228,48 @@ public function destroyPaymentTerm(PaymentTerm $constant)
 {
     $constant->delete();
     return redirect()->route('constants.index')->with('success', 'Условие оплаты удалено!');
+}
+
+
+
+// Добавление нового типа цены
+public function storePriceType(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'code' => 'required|string|max:255',
+    ]);
+
+    PriceType::create([
+        'name' => $request->name,
+        'code' => $request->code,
+    ]);
+
+    return redirect()->back()->with('success', 'Тип цены успешно добавлен.');
+}
+
+// Обновление существующего типа цены
+public function updatePriceType(Request $request, PriceType $priceType)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'code' => 'required|string|max:255' . $priceType->id,
+    ]);
+
+    $priceType->update([
+        'name' => $request->name,
+        'code' => $request->code,
+    ]);
+
+    return redirect()->back()->with('success', 'Тип цены успешно обновлён.');
+}
+
+// Удаление типа цены
+public function destroyPriceType(PriceType $priceType)
+{
+    $priceType->delete();
+
+    return redirect()->back()->with('success', 'Тип цены успешно удалён.');
 }
 
 

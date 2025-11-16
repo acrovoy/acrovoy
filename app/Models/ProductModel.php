@@ -19,4 +19,9 @@ class ProductModel extends Model
     {
         return $this->hasMany(ProductModelComponent::class);
     }
+
+    public function prices()
+{
+    return $this->hasMany(ProductPrice::class, 'sku', 'sku');
+}
 }

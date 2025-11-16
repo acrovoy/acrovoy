@@ -7,6 +7,10 @@
 
         <div class="d-flex">
 
+
+        {{-- ПРАЙС --}}
+            <a href="{{ route('product_prices.index') }}" class="ms-3 fs-4 text-decoration-none" title="Склад">📋</a>
+            
         {{-- ПРОДАЖИ --}}
             <a href="{{ route('product_sales.index') }}" class="ms-3 fs-4 text-decoration-none" title="Склад">💰</a>
 
@@ -303,7 +307,47 @@
     </tbody>
 </table>
 
+{{-- ТИПЫ ЦЕН --}}
+<h3>Типы цен</h3>
+<form action="{{ route('constants.price_type.store') }}" method="POST" class="d-flex mb-3">
+    @csrf
+    <input type="text" name="name" class="form-control me-2" placeholder="Новый тип цены" required>
+    <input type="text" name="code" class="form-control me-2" placeholder="Код (например: retail, vip, wholesale)" required>
+    <button type="submit" class="btn btn-primary">➕ Добавить</button>
+</form>
 
+<table class="table table-bordered mb-5">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Код</th>
+            <th width="150">Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(\App\Models\PriceType::orderBy('name')->get() as $type)
+        <tr>
+            <td>
+                <form action="{{ route('constants.price_type.update', $type) }}" method="POST" class="d-flex">
+                    @csrf
+                    @method('PUT')
+                    <input type="text" name="name" value="{{ $type->name }}" class="form-control me-2">
+                    <input type="text" name="code" value="{{ $type->code }}" class="form-control me-2">
+                    <button type="submit" class="btn btn-warning btn-sm">💾</button>
+                </form>
+            </td>
+            <td>{{ $type->code }}</td>
+            <td>
+                <form action="{{ route('constants.price_type.destroy', $type) }}" method="POST" onsubmit="return confirm('Удалить тип цены?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">🗑️</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 
 </div>
 @endsection

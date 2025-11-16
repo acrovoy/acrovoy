@@ -9,6 +9,9 @@
 
         <div class="d-flex">
 
+        {{-- ПРАЙС --}}
+            <a href="{{ route('product_prices.index') }}" class="ms-3 fs-4 text-decoration-none" title="Склад">📋</a>
+            
             {{-- ПРОДАЖИ --}}
             <a href="{{ route('product_sales.index') }}" class="ms-3 fs-4 text-decoration-none" title="Склад">💰</a>
 

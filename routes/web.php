@@ -24,6 +24,7 @@ use App\Http\Controllers\ManufacturedProductController;
 use App\Http\Controllers\ProductModelController;
 use App\Http\Controllers\RawMaterialController;
 use App\Http\Controllers\ProductSalesController;
+use App\Http\Controllers\ProductPriceController;
 
 
 // Главная страница
@@ -285,6 +286,12 @@ Route::post('constants/payment-term', [ConstantController::class, 'storePaymentT
 Route::put('constants/payment-term/{constant}', [ConstantController::class, 'updatePaymentTerm'])->name('constants.payment_term.update');
 Route::delete('constants/payment-term/{constant}', [ConstantController::class, 'destroyPaymentTerm'])->name('constants.payment_term.destroy');
 
+// ТИПЫ ЦЕН
+Route::post('constants/price_type', [ConstantController::class, 'storePriceType'])->name('constants.price_type.store');
+Route::put('constants/price_type/{priceType}', [ConstantController::class, 'updatePriceType'])->name('constants.price_type.update');
+Route::delete('constants/price_type/{priceType}', [ConstantController::class, 'destroyPriceType'])->name('constants.price_type.destroy');
+
+
 Route::resource('clients', ClientController::class);
 
 Route::resource('suppliers', SupplierController::class);
@@ -376,3 +383,20 @@ Route::patch('/product-sales/{productSale}/ship', [ProductSalesController::class
 
 Route::patch('/product-sales/{productSale}/return', [ProductSalesController::class, 'return'])
      ->name('product_sales.return');
+
+
+Route::prefix('product-prices')->group(function () {
+    Route::get('/', [ProductPriceController::class, 'index'])->name('product_prices.index');
+    Route::get('/create', [ProductPriceController::class, 'create'])->name('product_prices.create');
+    Route::post('/', [ProductPriceController::class, 'store'])->name('product_prices.store');
+    Route::get('/{productPrice}', [ProductPriceController::class, 'show'])->name('product_prices.show');
+    Route::get('/{productPrice}/edit', [ProductPriceController::class, 'edit'])->name('product_prices.edit');
+    Route::put('/{productPrice}', [ProductPriceController::class, 'update'])->name('product_prices.update');
+    Route::delete('/{productPrice}', [ProductPriceController::class, 'destroy'])->name('product_prices.destroy');
+});
+
+Route::get('/prices/list', [ProductPriceController::class, 'priceList'])
+    ->name('prices.list');
+
+    Route::get('/prices/export/excel', [ProductPriceController::class, 'exportExcel'])
+    ->name('prices.export.excel');

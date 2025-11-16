@@ -9,6 +9,9 @@
         <div class="d-flex">
             {{-- Бухгалтерия --}}
             <a href="{{ route('accounting.index') }}" class="ms-3 fs-4 text-decoration-none" title="Бухгалтерия">📘</a>
+            
+            {{-- ПРАЙС --}}
+            <a href="{{ route('product_prices.index') }}" class="ms-3 fs-4 text-decoration-none" title="Склад">📋</a>
             {{-- Склад --}}
             <a href="{{ route('warehouses.index') }}" class="ms-3 fs-4 text-decoration-none" title="Склад">🏬</a>
             {{-- Производство --}}
