@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="d-flex align-items-center justify-content-between mt-4">
-        <h1 class="mb-0">📘 Markell Ratan</h1>
+        <h1 class="mb-0">📘 Markell Business</h1>
 
         <div class="d-flex">
 
