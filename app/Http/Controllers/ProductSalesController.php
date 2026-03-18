@@ -19,12 +19,23 @@ class ProductSalesController extends Controller
     protected $connection = 'mysql_rattan';
 
     // Список продаж
-    public function index()
-    {
-        $sales = ProductSale::with('client')->get();
+    public function index(Request $request)
+{
+    $query = ProductSale::with(['client', 'warehouse']);
 
-        return view('product_sales.index', compact('sales'));
+    if ($request->filled('warehouse_id')) {
+        $query->where('warehouse_id', $request->warehouse_id);
     }
+
+    $sales = $query->get();
+
+    // 🔥 Сумма всех продаж (с учетом фильтра)
+    $totalSum = $sales->sum('total_amount');
+
+    $warehouses = Warehouse::all();
+
+    return view('product_sales.index', compact('sales', 'warehouses', 'totalSum'));
+}
 
     // Форма создания новой продажи
     public function create(Request $request)
