@@ -800,3 +800,9 @@ footer {
     border-radius: 6px;
     font-size: 0.95rem;
 }
+
+button.disabled {
+    opacity: 0.6;
+    filter: grayscale(100%);
+    cursor: not-allowed;
+}

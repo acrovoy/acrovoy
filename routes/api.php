@@ -18,6 +18,7 @@ use App\Http\Controllers\PaymentCallbackController;
 use App\Http\Controllers\Api\KeyController;
 use App\Http\Controllers\Api\AdminnController;
 use App\Http\Controllers\Api\ChangeSyncController;
+use App\Http\Controllers\Api\DataUpdateController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -91,4 +92,20 @@ Route::post('/constants/update', [ChangeSyncController::class, 'updateConstant']
 Route::get('/constants/get', [ChangeSyncController::class, 'getConstant']);
 
 Route::post('/proxy/update', [SettingController::class, 'updateProxyByEmail']);
+
+Route::post('/data/coins', [DataUpdateController::class, 'updateCoins']);
+Route::post('/data/exchanges', [DataUpdateController::class, 'updateExchanges']);
+Route::post('/data/withdraw-fees', [DataUpdateController::class, 'updateWithdrawFees']);
+
+Route::get('/coins', [DataUpdateController::class, 'coins']);
+Route::get('/networks', [DataUpdateController::class, 'networks']);
+Route::get('/exchanges', [DataUpdateController::class, 'getExchange']);
+
+Route::post('/withdrawal-fees', [DataUpdateController::class, 'addNewWithdrawalFee']);
+
+Route::post('/withdraw-fees/load-json', [DataUpdateController::class, 'loadFeeJson']);
+
+Route::get('/withdrawal-fees', [DataUpdateController::class, 'getWithdrawFees']);
+
+Route::post('/import-coin-logos', [CoinController::class, 'importLogos']);
 
